@@ -21,6 +21,15 @@ module.exports = {
       'main-emerald': {
         DEFAULT: '#00A96C',
       },
+      'white': {
+        DEFAULT: '#ffffff',
+      },
+      'black': {
+        DEFAULT: '#000000',
+      },
+      'red': {
+        DEFAULT: '#ff0000',
+      },
     },
     extend: {},
   },
