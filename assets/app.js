@@ -75,9 +75,11 @@ import './bootstrap';
     /* END BURGER MENU */
 
     /*START PROFIL MENU*/
-    const profil_menu_button = document.querySelector('#profil-menu-button');
+    const profil_menu_buttons = document.querySelectorAll('.profil-menu-button');
     const profil_menu = document.querySelector('#profil-menu');
     let isProfilMenuVisible = false;
+
+    console.log(profil_menu_buttons);
 
     function toggleProfilMenu(){
         profil_menu.classList.toggle('hidden');
@@ -89,11 +91,13 @@ import './bootstrap';
             isProfilMenuVisible = true;
         }
     }
-
-    profil_menu_button.addEventListener('click',toggleProfilMenu);
-
+    
+    profil_menu_buttons.forEach(element => {
+            element.addEventListener('click',toggleProfilMenu); 
+        });
+    
     document.addEventListener('click',(e)=>{
-        if(e.target.id !== "profil-menu" && e.target.id !== "profil-menu-button" && isProfilMenuVisible){
+        if(e.target.id !== "profil-menu" && !e.target.classList.contains("profil-menu-button") && isProfilMenuVisible){
             toggleProfilMenu();
         }else if(e.target.id !== "mobile-menu" && e.target.id !== "mobile-open-button" && isMobileMenuVisible){
             toggleMenu();
