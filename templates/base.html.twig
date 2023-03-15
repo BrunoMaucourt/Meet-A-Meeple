@@ -3,21 +3,19 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}
-        
-			{% endblock title %}
+			{% block title %}{% endblock title %}
 		</title>
-        <meta name="description" content="Êtes-vous fatigué de jouer seul à vos jeux de société préférés ? MeetAMeeple a la solution pour vous - un site internet qui permet aux joueurs de jeux de société de se rencontrer et d'organiser des parties en personne.">
-        <meta name="keywords" content="Meeple, jeux de société">
-        <meta name="author" content="Bruno Maucourt, Ferdi Hasani, Thibault Couanon">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Êtes-vous fatigué de jouer seul à vos jeux de société préférés ? MeetAMeeple a la solution pour vous - un site internet qui permet aux joueurs de jeux de société de se rencontrer et d'organiser des parties en personne.">
+		<meta name="keywords" content="Meeple, jeux de société">
+		<meta name="author" content="Bruno Maucourt, Ferdi Hasani, Thibault Couanon">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link
 		rel="icon" href="{{ asset('img/favicon/favicon.svg') }}">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			<link rel="preconnect" href="https://fonts.googleapis.com">
-    		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    		<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
@@ -27,95 +25,94 @@
 	</head>
 
 	<body class="bg-white min-h-screen">
-    {% block header %}
-		<header class="sticky z-10 top-0 bg-white">
-			<section class="max-w-full mx-auto p-4 flex justify-between items-center">
-				<div class="w-1/3">
-					<img id="mobile-open-button" class="cursor-pointer scale-75 xl:hidden" src="{{ asset('img/menu_logo/open_menu.svg') }}" alt="open_menu_icon">
-					<nav class="hidden space-x-8 xl:flex" aria-label="main">
-						<a href="" class="hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Comment ça marche ?</a>
-						<a href="" class="hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Trouver des joueurs</a>
+		{% block header %}
+			<header class="sticky z-10 top-0 bg-white">
+				<section class="max-w-full mx-auto p-4 flex justify-between items-center">
+					<div class="w-1/3">
+						<img id="mobile-open-button" class="cursor-pointer scale-75 xl:hidden" src="{{ asset('img/menu_logo/open_menu.svg') }}" alt="open_menu_icon">
+						<nav class="hidden space-x-8 xl:flex" aria-label="main">
+							<a href="" class="hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Comment ça marche ?</a>
+							<a href="" class="hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Trouver des joueurs</a>
+						</nav>
+					</div>
+					<div id="site_title" class="text-2xl w-1/3 text-center font-pacifico xl:scale-125 xl:translate-y-8">
+						<a href="">Meet a Meeple</a>
+					</div>
+					<div class="w-1/3 flex justify-end relative">
+						<button class="profil-menu-button hidden sm:block hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Mon Compte</button>
+						<img class="profil-menu-button cursor-pointer scale-75 sm:hidden" src="{{ asset('img/profil_menu/person.svg') }}" alt="my_account_icon">
+						<nav id="profil-menu" class="hidden overflow-hidden bg-white top-12 right-0 w-60 absolute flex-col rounded shadow-2xl shadow-gray-400" aria-label="profil">
+							<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange">
+								<div class="w-1/6 p-1">
+									<img src="{{ asset('img/profil_menu/person.svg') }}" alt="profil_image">
+								</div>
+								<a href="" class="w-full h-10 flex justify-start items-center ml-2 font-bold">Couanon Thibault</a>
+							</div>
+							<hr class="border-t-1 border-main-grey">
+							<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
+								<div class="w-1/6 p-1">
+									<img src="{{ asset('img/profil_menu/login.svg') }}" alt="login_logo">
+								</div>
+								<a href="" class="w-full h-10 flex justify-start items-center ml-2">Connexion</a>
+							</div>
+							<hr class="border-t-1 border-main-grey">
+							<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
+								<div class="w-1/6 p-1">
+									<img src="{{ asset('img/profil_menu/signup.svg') }}" alt="signup_logo">
+								</div>
+								<a href="" class="w-full h-10 flex justify-start items-center ml-2">Inscription</a>
+							</div>
+							<hr class="border-t-1 border-main-grey">
+							<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
+								<div class="w-1/6 p-1">
+									<img src="{{ asset('img/profil_menu/dashboard.svg') }}" alt="dashboard_logo">
+								</div>
+								<a href="" class="w-full h-10 flex justify-start items-center ml-2">Tableau de Bord</a>
+							</div>
+							<hr class="border-t-1 border-main-grey">
+							<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
+								<div class="w-1/6 p-1 relative">
+									<img src="{{ asset('img/profil_menu/message.svg') }}" alt="dashboard_logo">
+									<div class="absolute w-2 h-2 top-1 right-0 bg-red rounded-full"></div>
+								</div>
+								<a href="" class="w-full h-10 flex justify-start items-center ml-2">Messages</a>
+							</div>
+							<hr class="border-t-1 border-main-grey">
+							<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
+								<div class="w-1/6 p-1">
+									<img src="{{ asset('img/profil_menu/game.svg') }}" alt="dashboard_logo">
+								</div>
+								<a href="" class="w-full h-10 flex justify-start items-center ml-2">Mes Parties</a>
+							</div>
+							<hr class="border-t-1 border-main-grey">
+							<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
+								<div class="w-1/6 p-1">
+									<img src="{{ asset('img/profil_menu/signout.svg') }}" alt="dashboard_logo">
+								</div>
+								<a href="" class="w-full h-10 flex justify-start items-center ml-2">Déconnexion</a>
+							</div>
+						</nav>
+					</div>
+				</section>
+				<section id="mobile-menu" class="absolute top-0 hidden w-72 flex-col bg-main-brown text-base text-white z-10 px-10 pt-12 animate-open-menu">
+					<img id="mobile-close-button" class="cursor-pointer absolute scale-50 top-2 right-2" src="{{ asset('img/menu_logo/close_menu.svg') }}" alt="close_menu_icon">
+					<nav class="min-h-screen flex flex-col gap-5" aria-label="mobile">
+						<a class="hover:scale-105 transition-all duration-500" href="">Comment ça marche ?</a>
+						<a class="hover:scale-105 transition-all duration-500" href="">Trouver des joueurs</a>
+						<a class="hover:scale-105 transition-all duration-500" href="">FAQ</a>
+						<a class="hover:scale-105 transition-all duration-500" href="">Contact</a>
+						<a class="hover:scale-105 transition-all duration-500" href="">A Propos</a>
+						<a class="hover:scale-105 transition-all duration-500" href="">Mon Compte</a>
 					</nav>
-				</div>
-				<div id="site_title" class="text-2xl w-1/3 text-center font-pacifico xl:scale-125 xl:translate-y-8">
-					<a href="">Meet a Meeple</a>
-				</div>
-				<div class="w-1/3 flex justify-end relative">
-					<button class="profil-menu-button hidden sm:block hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Mon Compte</button>
-					<img  class="profil-menu-button cursor-pointer scale-75 sm:hidden" src="{{ asset('img/profil_menu/person.svg') }}" alt="my_account_icon">
-					<nav id="profil-menu" class="hidden overflow-hidden bg-white top-12 right-0 w-60 absolute flex-col rounded shadow-2xl shadow-gray-400" aria-label="profil">
-						<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange">
-							<div class="w-1/6 p-1">
-								<img src="{{ asset('img/profil_menu/person.svg') }}" alt="profil_image" >
-							</div>
-							<a href="" class="w-full h-10 flex justify-start items-center ml-2 font-bold">Couanon Thibault</a>
-						</div>
-						<hr class="border-t-1 border-main-grey">
-						<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
-							<div class="w-1/6 p-1">
-								<img src="{{ asset('img/profil_menu/login.svg') }}" alt="login_logo" >
-							</div>
-							<a href="" class="w-full h-10 flex justify-start items-center ml-2">Connexion</a>
-						</div>
-						<hr class="border-t-1 border-main-grey">
-						<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
-							<div class="w-1/6 p-1">
-								<img src="{{ asset('img/profil_menu/signup.svg') }}" alt="signup_logo" >
-							</div>
-							<a href="" class="w-full h-10 flex justify-start items-center ml-2">Inscription</a>
-						</div>
-						<hr class="border-t-1 border-main-grey">
-						<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
-							<div class="w-1/6 p-1">
-								<img src="{{ asset('img/profil_menu/dashboard.svg') }}" alt="dashboard_logo" >
-							</div>
-							<a href="" class="w-full h-10 flex justify-start items-center ml-2">Tableau de Bord</a>
-						</div>
-						<hr class="border-t-1 border-main-grey">
-						<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
-							<div class="w-1/6 p-1 relative">
-								<img src="{{ asset('img/profil_menu/message.svg') }}" alt="dashboard_logo" >
-								<div class="absolute w-2 h-2 top-1 right-0 bg-red rounded-full"></div>
-							</div>
-							<a href="" class="w-full h-10 flex justify-start items-center ml-2">Messages</a>
-						</div>
-						<hr class="border-t-1 border-main-grey">
-						<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
-							<div class="w-1/6 p-1">
-								<img src="{{ asset('img/profil_menu/game.svg') }}" alt="dashboard_logo" >
-							</div>
-							<a href="" class="w-full h-10 flex justify-start items-center ml-2">Mes Parties</a>
-						</div>
-						<hr class="border-t-1 border-main-grey">
-						<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
-							<div class="w-1/6 p-1">
-								<img src="{{ asset('img/profil_menu/signout.svg') }}" alt="dashboard_logo" >
-							</div>
-							<a href="" class="w-full h-10 flex justify-start items-center ml-2">Déconnexion</a>
-						</div>
-					</nav>
-				</div>
-			</section>
-			<section id="mobile-menu" class="absolute top-0 hidden w-72 flex-col bg-main-brown text-base text-white z-10 px-10 pt-12 animate-open-menu">
-				<img id="mobile-close-button" class="cursor-pointer absolute scale-50 top-2 right-2" src="{{ asset('img/menu_logo/close_menu.svg') }}" alt="close_menu_icon">
-				<nav class="min-h-screen flex flex-col gap-5" aria-label="mobile">
-					<a class="hover:scale-105 transition-all duration-500" href="">Comment ça marche ?</a>
-					<a class="hover:scale-105 transition-all duration-500" href="">Trouver des joueurs</a>
-					<a class="hover:scale-105 transition-all duration-500" href="">FAQ</a>
-					<a class="hover:scale-105 transition-all duration-500" href="">Contact</a>
-					<a class="hover:scale-105 transition-all duration-500" href="">A Propos</a>
-					<a class="hover:scale-105 transition-all duration-500" href="">Mon Compte</a>
-				</nav>
-			</section>
-		</header>
-    {% endblock header %}
-    
-    {% block main %}
-    
-    {% endblock main %}
-    
-    {% block footer %}
-    
-    {% endblock footer %}
+				</section>
+			</header>
+		{% endblock header %}
+
+		<main class="mt-5">
+            {% block main %}
+            {% endblock main %}
+		</main>
+
+			{% block footer %}{% endblock footer %}
 		</body>
 	</html>

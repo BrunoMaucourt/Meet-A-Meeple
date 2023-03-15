@@ -8,11 +8,21 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: UserBlackListRepository::class)]
 class UserBlackList
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+    
     #[ORM\Column]
     private ?int $userThatBlock_ID = null;
 
     #[ORM\Column]
     private ?int $userBanned_ID = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getUserThatBlockID(): ?int
     {
