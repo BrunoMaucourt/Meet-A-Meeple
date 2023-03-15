@@ -31,7 +31,21 @@ module.exports = {
         DEFAULT: '#ff0000',
       },
     },
-    extend: {},
+    extend: {
+      fontFamily:{
+        'pacifico': ['Pacifico', 'cursive'],
+        'montserrat' : ['Montserrat', 'sans-serif'],
+      }  
+    },
+    keyframes:{
+      'open-menu':{
+        '0%': { transform :'translateX(-18rem)' },
+        '100%': { transform :'translateX(0px)' },
+      },
+    },
+    animation: {
+      'open-menu' : 'open-menu 0.5s ease-in-out forwards',
+    },
   },
   plugins: [],
 }
