@@ -8,12 +8,14 @@ module.exports = {
     colors: {
       'main-orange': {
         DEFAULT: '#FFB300',
+        dark: '#DC9A00',
       },
       'main-green': {
         DEFAULT: '#00E3A0',
       },
       'main-grey': {
         DEFAULT: '#B6A999',
+        light: '#dbdbdb',
       },
       'main-brown': {
         DEFAULT: '#504538',

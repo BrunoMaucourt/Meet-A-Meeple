@@ -5,14 +5,28 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
+
+    #[ORM\Column]
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
@@ -33,25 +47,13 @@ class User
     private ?string $city = null;
 
     #[ORM\Column]
-    private ?int $city_GPS_lat = null;
-
-    #[ORM\Column]
-    private ?int $city_GPS_long = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?float $city_GPS_lat = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $email = null;
+    private ?string $city_GPS_long = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
-
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $favoriteGame = null;
 
     #[ORM\Column]
     private ?int $trait1_ID = null;
@@ -60,7 +62,7 @@ class User
     private ?int $trait2_ID = null;
 
     #[ORM\Column]
-    private ?int $trait3_ID = null;
+    private ?int $trait3 = null;
 
     #[ORM\Column]
     private ?int $trait4_ID = null;
@@ -69,20 +71,88 @@ class User
     private ?string $pictureProfil = null;
 
     #[ORM\Column]
-    private ?int $user_level_ID = null;
+    private ?float $rate = null;
 
     #[ORM\Column]
-    private ?float $rate = null;
+    private ?int $user_level_ID = null;
 
     #[ORM\Column]
     private ?int $absence = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $lastConnexion = null;
+    private ?\DateTimeInterface $last_connexion = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function getLastName(): ?string
@@ -109,14 +179,14 @@ class User
         return $this;
     }
 
-    public function getGender(): ?int
+    public function getGenderID(): ?int
     {
         return $this->gender_ID;
     }
 
-    public function setGender(int $gender): self
+    public function setGenderID(int $gender_ID): self
     {
-        $this->gender_ID = $gender;
+        $this->gender_ID = $gender_ID;
 
         return $this;
     }
@@ -157,62 +227,26 @@ class User
         return $this;
     }
 
-    public function getCityGPSLat(): ?int
+    public function getCityGPSLat(): ?float
     {
         return $this->city_GPS_lat;
     }
 
-    public function setCityGPSLat(int $city_GPS_lat): self
+    public function setCityGPSLat(float $city_GPS_lat): self
     {
         $this->city_GPS_lat = $city_GPS_lat;
 
         return $this;
     }
 
-    public function getCityGPSLong(): ?int
+    public function getCityGPSLong(): ?string
     {
         return $this->city_GPS_long;
     }
 
-    public function setCityGPSLong(int $city_GPS_long): self
+    public function setCityGPSLong(string $city_GPS_long): self
     {
         $this->city_GPS_long = $city_GPS_long;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
 
         return $this;
     }
@@ -225,18 +259,6 @@ class User
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getFavoriteGame(): ?string
-    {
-        return $this->favoriteGame;
-    }
-
-    public function setFavoriteGame(string $favoriteGame): self
-    {
-        $this->favoriteGame = $favoriteGame;
 
         return $this;
     }
@@ -265,14 +287,14 @@ class User
         return $this;
     }
 
-    public function getTrait3ID(): ?int
+    public function getTrait3(): ?int
     {
-        return $this->trait3_ID;
+        return $this->trait3;
     }
 
-    public function setTrait3ID(int $trait3_ID): self
+    public function setTrait3(int $trait3): self
     {
-        $this->trait3_ID = $trait3_ID;
+        $this->trait3 = $trait3;
 
         return $this;
     }
@@ -301,18 +323,6 @@ class User
         return $this;
     }
 
-    public function getUserLevelID(): ?int
-    {
-        return $this->user_level_ID;
-    }
-
-    public function setUserLevelID(int $user_level_ID): self
-    {
-        $this->user_level_ID = $user_level_ID;
-
-        return $this;
-    }
-
     public function getRate(): ?float
     {
         return $this->rate;
@@ -321,6 +331,18 @@ class User
     public function setRate(float $rate): self
     {
         $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getUserLevelID(): ?int
+    {
+        return $this->user_level_ID;
+    }
+
+    public function setUserLevelID(int $user_level_ID): self
+    {
+        $this->user_level_ID = $user_level_ID;
 
         return $this;
     }
@@ -339,12 +361,24 @@ class User
 
     public function getLastConnexion(): ?\DateTimeInterface
     {
-        return $this->lastConnexion;
+        return $this->last_connexion;
     }
 
-    public function setLastConnexion(\DateTimeInterface $lastConnexion): self
+    public function setLastConnexion(\DateTimeInterface $last_connexion): self
     {
-        $this->lastConnexion = $lastConnexion;
+        $this->last_connexion = $last_connexion;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }
