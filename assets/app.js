@@ -13,7 +13,7 @@ import './bootstrap';
 
 
 
-/******** START FOOTER********/
+/******** START HEADER********/
 
     let header = document.querySelector('header');
     let body = document.querySelector('body');
@@ -104,4 +104,4 @@ import './bootstrap';
         }
     })
     /*END PROFIL MENU*/
-/********END FOOTER********/
+/********END HEADER********/

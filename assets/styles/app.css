@@ -12,6 +12,23 @@
     .main-xl-section{
         min-height: calc(100vh - 325px);
     }
+
+    .main-width{
+        width: calc(100vw - 256px);
+    }
+    .main-mobile-width{
+        width: calc(100vw - 64px);
+    }
+
+    .aside-xl-section{
+        height: calc(100vh - 64px);
+    }
+    .aside-small-section{
+        height: calc(100vh - 80px);
+    }
+    .aside-mobile-section{
+        height: calc(100vh - 80px);
+    }
 }
 
 ::selection{
