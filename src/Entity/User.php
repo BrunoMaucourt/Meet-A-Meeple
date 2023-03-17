@@ -5,10 +5,12 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -62,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $trait2_ID = null;
 
     #[ORM\Column]
-    private ?int $trait3 = null;
+    private ?int $trait3_ID = null;
 
     #[ORM\Column]
     private ?int $trait4_ID = null;
@@ -84,6 +86,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $favorite_game = null;
 
     public function getId(): ?int
     {
@@ -287,14 +292,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getTrait3(): ?int
+    public function getTrait3ID(): ?int
     {
-        return $this->trait3;
+        return $this->trait3_ID;
     }
 
-    public function setTrait3(int $trait3): self
+    public function setTrait3ID(int $trait3_ID): self
     {
-        $this->trait3 = $trait3;
+        $this->trait3 = $trait3_ID;
 
         return $this;
     }
@@ -379,6 +384,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getFavoriteGame(): ?string
+    {
+        return $this->favorite_game;
+    }
+
+    public function setFavoriteGame(string $favorite_game): self
+    {
+        $this->favorite_game = $favorite_game;
 
         return $this;
     }

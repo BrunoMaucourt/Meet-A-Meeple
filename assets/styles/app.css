@@ -2,19 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities{
-    .main-mobile-section{
+@layer utilities {
+    .main-mobile-section {
         min-height: calc(100vh - 484px);
     }
-    .main-small-section{
+
+    .main-small-section {
         min-height: calc(100vh - 300px);
     }
-    .main-xl-section{
+
+    .main-xl-section {
         min-height: calc(100vh - 325px);
     }
 }
 
-::selection{
-    color:white;
+@layer components {
+    .btn-orange {
+        @apply mt-5 rounded-md bg-main-orange text-white w-fit p-3 shadow-md mx-auto transition-all duration-500 hover:bg-main-orange-dark
+    }
+
+    .btn-grey {
+        @apply mt-5 rounded-md bg-main-grey-light text-black w-fit p-3 shadow-md hover:bg-main-grey transition-all duration-500
+    }
+}
+
+::selection {
+    color: white;
     background-color: #ffb300;
 }
