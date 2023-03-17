@@ -25,9 +25,6 @@
     .aside-xl-section{
         height: calc(100vh - 64px);
     }
-    .aside-small-section{
-        height: calc(100vh - 80px);
-    }
     .aside-mobile-section{
         height: calc(100vh - 80px);
     }
