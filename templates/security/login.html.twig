@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion
+{% block title %}
+	Connexion
 {% endblock %}
 
 {% block main %}
@@ -21,34 +22,34 @@
 			<h1 class="h3 mb-3">Se connecter</h1>
 			<label for="inputEmail" class="mt-5">Mon email</label>
 			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="border rounded" autocomplete="email" required autofocus>
-			<label for="inputPassword class="mt-5">Mon mot de passe</label>
+			<label for="inputPassword class=" mt-5">Mon mot de passe</label>
 			<input type="password" name="password" id="inputPassword" class="border rounded" autocomplete="current-password" required>
 
 			<input
 			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 			{#
-			            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-			            See https://symfony.com/doc/current/security/remember_me.html
-			
-			            <div class="checkbox mb-3">
-			                <label>
-			                    <input type="checkbox" name="_remember_me"> Remember me
-			                </label>
-			            </div>
-			        #}
+									            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+									            See https://symfony.com/doc/current/security/remember_me.html
+									
+									            <div class="checkbox mb-3">
+									                <label>
+									                    <input type="checkbox" name="_remember_me"> Remember me
+									                </label>
+									            </div>
+									        #}
 
-			<button class="mt-5 rounded-md bg-main-orange text-white w-fit p-3 shadow-md mx-auto hover:bg-main-orange-dark transition-all duration-500" type="submit">
+			<button class="btn-orange" type="submit">
 				Se connecter
 			</button>
 		</form>
-        <div class="flex flex-row justify-center">
-             <button class="mt-5 rounded-md bg-main-grey-light text-black w-fit p-3 shadow-md hover:bg-main-grey transition-all duration-500" type="submit">
+		<div class="flex flex-row justify-center">
+			<button class="btn-grey" type="submit">
 				S'inscrire
 			</button>
-            <button class="mt-5 rounded-md bg-main-grey-light text-black w-fit p-3 shadow-md hover:bg-main-grey transition-all duration-500" type="submit">
+			<button class="btn-grey" type="submit">
 				Mot de passe oublié
 			</button>
-        </div>
+		</div>
 	</div>
 {% endblock %}
