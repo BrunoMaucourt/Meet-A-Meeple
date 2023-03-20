@@ -4,9 +4,48 @@
 Chercher une partie ou un joueur
 {% endblock title %}
 
-{% block main %}
-	<h1 class="text-3xl font-bold underline bg-slate-300">
-		Hello world!
+{% block withdashboard %}
+{% endblock withdashboard %}
+
+{% block main_content %}
+<section class="w-full flex flex-col items-center gap-10">
+	<h1 class="text-2xl font-bold text-center">
+		Recherchez rapidement des joueurs ou des parties autour de vous !
 	</h1>
-	<div class="w-full bg-main-orange h-3/4">test</div>
-{% endblock %}
+	<form action="" method="" class="bg-gradient-to-br from-white via-white to-main-orange/20 w-full max-w-xl lg:w-2/3 h-fit p-6 shadow-around rounded flex flex-col gap-14">
+		<div class="flex justify-center gap-10">
+			<div>
+				<input class="accent-main-emerald" type="radio" id="joueur" value="joueur" name="recherche" checked="checked">
+				<label for="recherche">Joueur</label>
+			</div>
+			<div>
+				<input class="accent-main-emerald" type="radio" id="partie" value="partie" name="recherche">
+				<label for="recherche">Partie</label>
+			</div>			
+		</div>
+		<div class="flex flex-col items-center justify-center gap-16 lg:flex-row lg:justify-between ">
+			<div class="relative w-full lg:w-1/2 flex flex-col justify-center items-center">
+				<input class="w-full border max-w-[400px] rounded p-1 outline-main-green disabled:bg-black/5 disabled:placeholder:text-black" type="text" name="location" id="location" placeholder="Saisissez une ville">
+				<div id="location-choice" class="absolute -top-5 w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
+					<label class="text-sm" for="locate-my-position">Choisir ma position</label>
+					<input class="accent-main-emerald" type="checkbox" name="locate-my-position" id="locate-my-position" value="my-position">
+				</div>
+				<div id="city-list" class="hidden absolute top-9 bg-white w-full max-w-[400px] rounded border border-main-grey shadow-2xl h-fit  flex-col gap-1 overflow-hidden">
+					<div class="w-full h-full p-1 hover:bg-main-green/10 hover:shadow cursor-pointer">RAmbouillet</div>
+					<div class="w-full h-full p-1 hover:bg-main-green/10 hover:shadow">RAmbouillet</div>
+					<div class="w-full h-full p-1 hover:bg-main-green/10">RAmbouillet</div>
+				</div>
+			</div>
+			
+			<div class="w-full md:w-1/2 max-w-[300px] relative flex justify-center">
+				<input class="accent-main-green w-full  before:h-8 before:w-8 before:rounded-lg before:left-0 before:top-5 before:absolute before:content-['5km'] after:h-8 after:w-8 after:rounded-lg after:right-0 after:top-5 after:absolute after:content-['25km']" type="range" id"range" min="5" max="25" step="5" value="5">
+			</div>
+			
+		</div>
+		<input type="submit" class="btn-orange" value="Rechercher">
+		
+		
+	</form>
+</section>
+	
+{% endblock main_content %}

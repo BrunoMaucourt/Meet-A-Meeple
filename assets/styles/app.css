@@ -32,15 +32,10 @@
 
 @layer components {
     .btn-orange {
-        @apply mt-5 rounded-md bg-main-orange text-white w-fit p-3 shadow-md mx-auto transition-all duration-500 hover:bg-main-orange-dark
+        @apply mt-5 rounded-md bg-main-orange text-white w-fit p-3 shadow-md mx-auto transition-all duration-500 hover:bg-main-orange-dark cursor-pointer
     }
 
     .btn-grey {
-        @apply mt-5 rounded-md bg-main-grey-light text-black w-fit p-3 shadow-md hover:bg-main-grey transition-all duration-500
+        @apply mt-5 rounded-md bg-main-grey-light text-black w-fit p-3 shadow-md hover:bg-main-grey transition-all duration-500 cursor-pointer
     }
-}
-
-::selection {
-    color: white;
-    background-color: #ffb300;
 }

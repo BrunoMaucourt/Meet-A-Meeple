@@ -37,6 +37,9 @@ module.exports = {
       fontFamily:{
         'pacifico': ['Pacifico', 'cursive'],
         'montserrat' : ['Montserrat', 'sans-serif'],
+      },
+      boxShadow: {
+        'around': '0 -1px 4px 0 rgba(26, 26, 26, 0.3),0 4px 8px 0 rgba(26, 26, 26, 0.3)',
       }  
     },
     keyframes:{
