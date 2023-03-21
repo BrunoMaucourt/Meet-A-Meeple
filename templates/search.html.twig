@@ -4,6 +4,10 @@
 Chercher une partie ou un joueur
 {% endblock title %}
 
+{% block bonus_javascript %}
+<script defer src="{{ asset('build/js/search.js') }}"></script> 
+{% endblock bonus_javascript %}
+
 {% block withdashboard %}
 {% endblock withdashboard %}
 
@@ -30,21 +34,21 @@ Chercher une partie ou un joueur
 					<label class="text-sm" for="locate-my-position">Choisir ma position</label>
 					<input class="accent-main-emerald" type="checkbox" name="locate-my-position" id="locate-my-position" value="my-position">
 				</div>
-				<div id="city-list" class="hidden absolute top-9 bg-white w-full max-w-[400px] rounded border border-main-grey shadow-2xl h-fit  flex-col gap-1 overflow-hidden">
+				<input class="hidden" type="text" name="lat" id="latitude_input">
+				<input class="hidden" type="text" name="long" id="longitude_input">
+				<div id="city-list" class="hidden z-20 absolute top-9 bg-white w-full max-w-[400px] rounded border border-main-grey shadow-2xl h-fit  flex-col gap-1 overflow-hidden">
 					<div class="w-full h-full p-1 hover:bg-main-green/10 hover:shadow cursor-pointer">RAmbouillet</div>
 					<div class="w-full h-full p-1 hover:bg-main-green/10 hover:shadow">RAmbouillet</div>
 					<div class="w-full h-full p-1 hover:bg-main-green/10">RAmbouillet</div>
 				</div>
 			</div>
 			
-			<div class="w-full md:w-1/2 max-w-[300px] relative flex justify-center">
-				<input class="accent-main-green w-full  before:h-8 before:w-8 before:rounded-lg before:left-0 before:top-5 before:absolute before:content-['5km'] after:h-8 after:w-8 after:rounded-lg after:right-0 after:top-5 after:absolute after:content-['25km']" type="range" id"range" min="5" max="25" step="5" value="5">
+			<div class="w-full md:w-1/2 max-w-[300px] relative flex justify-center z-10">
+				<input class="accent-main-green w-full before:h-8 before:w-8 before:rounded-lg before:left-0 before:top-5 before:absolute before:content-['5km'] after:h-8 after:w-8 after:rounded-lg after:right-0 after:top-5 after:absolute after:content-['25km']" type="range" name="range" id"range" min="5" max="25" step="5" value="5">
 			</div>
 			
 		</div>
-		<input type="submit" class="btn-orange" value="Rechercher">
-		
-		
+		<input type="submit" class="btn-orange" value="Rechercher">	
 	</form>
 </section>
 	
