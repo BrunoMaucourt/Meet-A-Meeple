@@ -1,0 +1,201 @@
+{% extends 'base.html.twig' %}
+
+
+{% block withdashboard %}
+{% endblock withdashboard %}
+
+
+
+{% block main_content %}
+<section class="w-full flex flex-col gap-8 items-center lg:flex-row flex-wrap lg:justify-center">
+    <div class="flex w-full max-w-4xl h-fit rounded-lg shadow-md bg-gradient-to-br from-white via-white to-main-orange/20 p-3">
+        <div class="w-full lg:w-2/3 h-full">
+            <h2 class="font-bold text-xl my-3">Et si vous faisiez le premier pas ?</h2>
+            <ul>
+                <li class="ml-6 list-disc">Créer des parties pour rencontrer des gens</li>
+                <li class="ml-6 list-disc">Faite vous de nouveaux amis</li>                
+                <li class="ml-6 list-disc">Jouez !</li>
+            </ul>
+
+            <h2 class="font-bold text-xl my-3">Commencez dès maintenant !</h2>
+                <div class="flex flex-wrap gap-2">
+                    <a class="block w-fit p-2 border border-main-green rounded-lg text-main-green font-bold  hover:bg-main-green/20 transition-all duration-300" href="">Créer partie</a>
+                    <a class="block w-fit p-2 rounded-lg text-main-green font-bold  hover:bg-main-green/20 transition-all duration-300" href="">Trouver un lieu pour vos parties</a>
+                    <a class="block w-fit p-2 rounded-lg text-main-green font-bold  hover:bg-main-green/20 transition-all duration-300" href="">Conseils</a>
+                </div>
+            
+        </div>
+        <div class="lg:w-1/3 hidden md:flex justify-center items-center p-8">
+            <img class="" src="{{ asset('img/content/test.jpg') }}" alt="">
+        </div>
+    </div>
+
+
+    <div class="flex justify-center w-full">
+        <h2 class="text-2xl font-bold uppercase underline">Résumé</h2>
+    </div>
+    <div class="w-full max-w-4xl flex flex-col lg:flex-row justify-center items-center gap-8 "> 
+        <!--START Games Card -->
+        <div class="w-full max-w-xs h-[436px] flex flex-col items-center justify-center rounded-lg shadow-around bg-gradient-to-br from-white via-white to-main-orange/10 p-3 gap-3">
+            <div class="flex flex-col items-center">
+                <h3 class="font-bold">Parties</h3>
+                <p>à venir : 10</p>
+                <p>jouées : 5</p>
+                <p>créées : 6</p>
+                <p>joueurs rencontrés : 10</p>
+            </div>
+            
+            <h3 class="font-bold">Parties récentes</h3>
+            <div class="flex flex-col gap-2 w-full h-[244px] overflow-y-scroll">
+                <div class="w-full h-fit rounded bg-main-orange/20 p-2 flex flex-col gap-1">
+                    <div class="h-2/3 flex">
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/calendar.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">21/02/2021</span>
+                        </div>
+                    
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/location.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Rambouillet</span>
+                        </div>
+                    </div>
+                    <div class="h-1/3 flex justify-center items-center gap-2">
+                        <span class="text-xs">participants :</span> 
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                    </div>
+                </div>
+                <div class="w-full h-fit rounded bg-main-orange/20 p-2 flex flex-col gap-1">
+                    <div class="h-2/3 flex">
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/calendar.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">21/02/2021</span>
+                        </div>
+                    
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/location.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Rambouillet</span>
+                        </div>
+                    </div>
+                    <div class="h-1/3 flex justify-center items-center gap-2">
+                        <span class="text-xs">participants :</span> 
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                    </div>
+                </div>
+                <div class="w-full h-fit rounded bg-main-orange/20 p-2 flex flex-col gap-1">
+                    <div class="h-2/3 flex">
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/calendar.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">8/12/2022</span>
+                        </div>
+                    
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/location.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Paris</span>
+                        </div>
+                    </div>
+                    <div class="h-1/3 flex justify-center items-center gap-2">
+                        <span class="text-xs">participants :</span> 
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                    </div>
+                </div>
+                <div class="w-full h-fit rounded bg-main-orange/20 p-2 flex flex-col gap-1">
+                    <div class="h-2/3 flex">
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/calendar.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">22/06/2023</span>
+                        </div>
+                    
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/location.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Villeparisis</span>
+                        </div>
+                    </div>
+                    <div class="h-1/3 flex justify-center items-center gap-2">
+                        <span class="text-xs">participants :</span> 
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <img class="w-6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END Games Card -->
+
+        <!--START MESSAGE Card -->
+        <div class="w-full max-w-xs h-[436px] flex flex-col items-center justify-center rounded-lg shadow-around bg-gradient-to-br from-white via-white to-main-orange/10 p-3 gap-3">
+            <div class="flex flex-col items-center">
+                <h3 class="font-bold">Message</h3>
+                <p>amis : 6</p>
+                <p>bloqués : 5</p>
+                <p>discussion en cours : 3</p>
+                <p>sodomie anticipée : 6</p>
+            </div>
+            
+            <h3 class="font-bold">Derniers messages</h3>
+            <div class="flex flex-col gap-2 w-full h-[244px] overflow-y-scroll">
+                <div class="w-full h-fit rounded bg-main-orange/20 p-2 flex flex-col gap-1">
+                    <div class="h-2/3 flex">
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Guillaume</span>
+                        </div>
+                    
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/calendar.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Hier à 22h</span>
+                        </div>
+                    </div>
+                    <div class="h-1/3 flex justify-center items-center gap-2">
+                        <a class="text-xs p-1 border rounded border-main-orange bg-main-orange hover:bg-main-orange-dark hover:border-main-orange_dark text-white font-bold" href="">voir</a>
+                    </div>
+                </div>
+                <div class="w-full h-fit rounded bg-main-orange/20 p-2 flex flex-col gap-1">
+                    <div class="h-2/3 flex">
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Katarina</span>
+                        </div>
+                    
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/calendar.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Aujourd'hui à 22h</span>
+                        </div>
+                    </div>
+                    <div class="h-1/3 flex justify-center items-center gap-2">
+                        <a class="text-xs p-1 border rounded border-main-orange bg-main-orange hover:bg-main-orange-dark hover:border-main-orange_dark text-white font-bold" href="">voir</a>
+                    </div>
+                </div>
+                <div class="w-full h-fit rounded bg-main-orange/20 p-2 flex flex-col gap-1">
+                    <div class="h-2/3 flex">
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">Ferdi</span>
+                        </div>
+                    
+                        <div class="w-1/2 flex flex-wrap gap-1 justify-center items-center">
+                            <img class="w-8" src="{{ asset('img/content/calendar.svg') }}" alt="">
+                            <span class="w-1/2 text-xs">200 AV.JC</span>
+                        </div>
+                    </div>
+                    <div class="h-1/3 flex justify-center items-center gap-2">
+                        <a class="text-xs p-1 border rounded border-main-orange bg-main-orange hover:bg-main-orange-dark hover:border-main-orange_dark text-white font-bold" href="">voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END MESSAGE Card -->
+
+
+    </div>
+    
+   
+</section>
+	
+{% endblock main_content %}
