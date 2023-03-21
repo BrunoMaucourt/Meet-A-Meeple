@@ -22,12 +22,12 @@ class RegistrationFormType extends AbstractType
             ->add('last_name')
             ->add('first_name')
             ->add('gender_id',ChoiceType::class, [
-    'choices'  => [
-        'Non précisé' => false,
-        'Homme' => null,
-        'Femme' => true,
-        ]
-    ])
+                'choices'  => [
+                    'Non précisé' => false,
+                    'Homme' => null,
+                    'Femme' => true,
+                    ]
+                ])
             ->add('pseudo')
             ->add('birthdate')
             ->add('city')
