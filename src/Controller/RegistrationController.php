@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,6 +32,16 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            // Add GPS position
+            $user->setCityGPSLat(49.366669);
+            $user->setCityGPSLong(6.16667);
+
+            // Add last sign-up date
+            date_default_timezone_set('Europe/Paris');
+            //$date = date('m/d/Y h:i:s a', time());
+            //$dateIm = getdate();
+            $dateIm = new DateTime();
+            $user->setLastConnexion($dateIm);
 
             $entityManager->persist($user);
             $entityManager->flush();

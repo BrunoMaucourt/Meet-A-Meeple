@@ -3,96 +3,100 @@
 {% block title %}Inscription
 {% endblock %}
 
-{% block main %}
-	<h1>Inscription</h1>
-	<div class="flex justify-center items-center w-1/2">
-		{{ form_start(registrationForm) }}
-		<fieldset class="mt-5">
-			<legend class="text-main-orange text-3xl">Mes informations</legend>
-			{{ form_row(registrationForm.last_name, {
-                        'attr': {'class': 'border'},
-                        label: 'Mon nom de famille'
-                        })
-                    }}
-			{{ form_row(registrationForm.first_name, {'attr': {
-                        'class': 'border'},
-                        label: 'Mon prénom'
-                        })
-                    }}
-			{{ form_row(registrationForm.pseudo, {'attr': {
-                        'class': 'border'},
-                        label: 'Mon pseudo'
-                        })
-                    }}
-			{{ form_row(registrationForm.gender_id, {'attr': {
-                        'class': 'border'},
-                        label: 'Mon genre'
-                        })
-                    }}
-			{{ form_row(registrationForm.birthdate, {
-                        label: 'Mon anniversaire'
-                        })
-                    }}
-			{{ form_row(registrationForm.city, {'attr': {'class': 'border'},
-                        label: 'Ville'
-                        })
-                    }}
-		</fieldset>
-		<fieldset class="mt-5">
-			<legend class="text-main-orange text-3xl">Mes informations de connexions</legend>
-			{{ form_row(registrationForm.email, {'attr': {'class': 'border'},
-                        label: 'Mon adresse email'
-                        })
-                    }}
-			{{ form_row(registrationForm.plainPassword, {
-                label: 'Mon mot de passe',
-                attr: {'class': 'border'}
-                }) }}
-		</fieldset>
-		<fieldset class="mt-5">
-			<legend class="text-main-orange text-3xl">Mon profil</legend>
-			{{ form_row(registrationForm.picture_profil, {
-                        label: 'Ma photo de profil'
-                        })
-                    }}
-			{{ form_row(registrationForm.description, {'attr': {'class': 'border'},
-                        label: 'Ma description'
-                        })
-                    }}
-			{{ form_row(registrationForm.favorite_game, {'attr': {'class': 'border'},
-                        label: 'Mon jeu préféré'
-                        })
-                    }}
-		</fieldset>
-		<fieldset class="mt-5">
-			<legend class="text-main-orange text-3xl">Mes préfèrences</legend>
-			{{ form_row(registrationForm.trait1_id, {
-                        label: 'Mes préfèrences'
-                        })
-                    }}
-			{{ form_row(registrationForm.trait2_id, {
-                        label: 'Mes préfèrences'
-                        })
-                    }}
-			{{ form_row(registrationForm.trait3_id, {
-                        label: 'Mes préfèrences'
-                        })
-                    }}
-			{{ form_row(registrationForm.trait4_id, {
-                        label: 'Mes préfèrences'
-                        })
-                    }}
-		</fieldset>
+{% block nodashboard %}{% endblock nodashboard %}
 
-		<fieldset class="mt-5">
-			<legend class="text-main-orange text-3xl">Traitement de mes données</legend>
-			{{ form_row(registrationForm.RGPDconsent, {
-                        label: 'J\'accèpte que mes données soient traitées'
-                        })
-                    }}
-		</fieldset>
+{% block main_content %}
+	<section>
+		<h1>Inscription</h1>
+		<div class="flex justify-center items-center w-1/2">
+			{{ form_start(registrationForm) }}
+			<fieldset class="mt-5">
+				<legend class="text-main-orange text-3xl">Mes informations</legend>
+				{{ form_row(registrationForm.last_name, {
+                                'attr': {'class': 'border'},
+                                label: 'Mon nom de famille'
+                                })
+                        }}
+				{{ form_row(registrationForm.first_name, {'attr': {
+                                'class': 'border'},
+                                label: 'Mon prénom'
+                                })
+                        }}
+				{{ form_row(registrationForm.pseudo, {'attr': {
+                                'class': 'border m-5'},
+                                label: 'Mon pseudo'
+                                })
+                        }}
+				{{ form_row(registrationForm.gender_id, {'attr': {
+                                'class': 'border'},
+                                label: 'Mon genre'
+                                })
+                        }}
+				{{ form_row(registrationForm.birthdate, {
+                                label: 'Mon anniversaire'
+                                })
+                        }}
+				{{ form_row(registrationForm.city, {'attr': {'class': 'border'},
+                                label: 'Ville'
+                                })
+                        }}
+			</fieldset>
+			<fieldset class="mt-5">
+				<legend class="text-main-orange text-3xl">Mes informations de connexions</legend>
+				{{ form_row(registrationForm.email, {'attr': {'class': 'border'},
+                                label: 'Mon adresse email'
+                                })
+                        }}
+				{{ form_row(registrationForm.plainPassword, {
+                        label: 'Mon mot de passe',
+                        attr: {'class': 'border'}
+                        }) }}
+			</fieldset>
+			<fieldset class="mt-5">
+				<legend class="text-main-orange text-3xl">Mon profil</legend>
+				{{ form_row(registrationForm.picture_profil, {
+                                label: 'Ma photo de profil'
+                                })
+                        }}
+				{{ form_row(registrationForm.description, {'attr': {'class': 'border'},
+                                label: 'Ma description'
+                                })
+                        }}
+				{{ form_row(registrationForm.favorite_game, {'attr': {'class': 'border'},
+                                label: 'Mon jeu préféré'
+                                })
+                        }}
+			</fieldset>
+			<fieldset class="mt-5">
+				<legend class="text-main-orange text-3xl">Mes préfèrences</legend>
+				{{ form_row(registrationForm.trait1_id, {
+                                label: 'Mes préfèrences'
+                                })
+                        }}
+				{{ form_row(registrationForm.trait2_id, {
+                                label: 'Mes préfèrences'
+                                })
+                        }}
+				{{ form_row(registrationForm.trait3_id, {
+                                label: 'Mes préfèrences'
+                                })
+                        }}
+				{{ form_row(registrationForm.trait4_id, {
+                                label: 'Mes préfèrences'
+                                })
+                        }}
+			</fieldset>
 
-		<button type="submit" class="btn-orange">S'inscrire</button>
-		{{ form_end(registrationForm) }}
+			<fieldset class="mt-5">
+				<legend class="text-main-orange text-3xl">Traitement de mes données</legend>
+				{{ form_row(registrationForm.RGPDconsent, {
+                                label: 'J\'accèpte que mes données soient traitées'
+                                })
+                        }}
+                        </fieldset>
+
+                        <button type="submit" class="btn-orange">S'inscrire</button>
+                        {{ form_end(registrationForm) }}
 		</div>
-	{% endblock %}
+	</section>
+{% endblock main_content %}

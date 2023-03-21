@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MyProfilController extends AbstractController
 {
-    #[Route('/myprofil', name: 'my profil')]
+    #[Route('/myProfil', name: 'my profil')]
     public function myProfil(): Response
     {
         return $this->render('myProfil.html.twig');
