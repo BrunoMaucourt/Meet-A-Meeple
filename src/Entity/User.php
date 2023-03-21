@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -81,14 +81,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $absence = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $last_connexion = null;
-
     #[ORM\Column]
+    private ?\DateTime $last_connexion = null;
+
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(length: 255)]
     private ?string $favorite_game = null;
+
+    /**
+     * Add default values during construction of new user
+     */
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+        $this->rate = 0;
+        $this->user_level_ID = 0;
+        $this->absence = 0;
+    }
 
     public function getId(): ?int
     {
@@ -299,7 +310,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setTrait3ID(int $trait3_ID): self
     {
-        $this->trait3 = $trait3_ID;
+        $this->trait3_ID = $trait3_ID;
 
         return $this;
     }
@@ -369,7 +380,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->last_connexion;
     }
 
-    public function setLastConnexion(\DateTimeInterface $last_connexion): self
+    public function setLastConnexion(\DateTime $last_connexion): self
     {
         $this->last_connexion = $last_connexion;
 

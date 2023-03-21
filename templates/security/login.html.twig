@@ -4,7 +4,14 @@
 	Connexion
 {% endblock %}
 
-{% block main %}
+{% block nodashboard %}
+{% endblock nodashboard %}
+
+{% block main_content %}
+	<h1 class="text-3xl font-bold underline bg-slate-300">
+		Se connecter
+	</h1>
+
 	<div class="w-full p-5">
 		<form method="post" class="bg-main-grey-light w-3/4 max-w-md flex flex-col justify-center mx-auto">
 			{% if error %}
@@ -52,4 +59,4 @@
 			</button>
 		</div>
 	</div>
-{% endblock %}
+{% endblock main_content %}

@@ -21,50 +21,50 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('last_name')
             ->add('first_name')
-            ->add('gender_id',ChoiceType::class, [
+            ->add('gender_id', ChoiceType::class, [
                 'choices'  => [
-                    'Non précisé' => false,
-                    'Homme' => null,
-                    'Femme' => true,
-                    ]
-                ])
+                    'Non précisé' => 0,
+                    'Homme' => 1,
+                    'Femme' => 2,
+                ]
+            ])
             ->add('pseudo')
             ->add('birthdate')
             ->add('city')
             ->add('description')
             ->add('favorite_game')
-            ->add('trait1_id',ChoiceType::class, [
+            ->add('trait1_id', ChoiceType::class, [
                 'choices'  => [
-                    'Option 1' => false,
-                    'Option 2' => null,
-                    'Option 3' => true,
-                    'Option 4' => true,
-                    ]
-                ])
-            ->add('trait2_id',ChoiceType::class, [
+                    'Option 1' => 0,
+                    'Option 2' => 1,
+                    'Option 3' => 2,
+                    'Option 4' => 3,
+                ]
+            ])
+            ->add('trait2_id', ChoiceType::class, [
                 'choices'  => [
-                    'Option 1' => false,
-                    'Option 2' => null,
-                    'Option 3' => true,
-                    'Option 4' => true,
-                    ]
-                ])
-            ->add('trait3_id',ChoiceType::class, [
+                    'Option 1' => 0,
+                    'Option 2' => 1,
+                    'Option 3' => 2,
+                    'Option 4' => 3,
+                ]
+            ])
+            ->add('trait3_id', ChoiceType::class, [
                 'choices'  => [
-                    'Option 1' => false,
-                    'Option 2' => null,
-                    'Option 3' => true,
-                    'Option 4' => true,
-                    ]
-                ])
-            ->add('trait4_id',ChoiceType::class, [
+                    'Option 1' => 0,
+                    'Option 2' => 1,
+                    'Option 3' => 2,
+                    'Option 4' => 3,
+                ]
+            ])
+            ->add('trait4_id', ChoiceType::class, [
                 'choices'  => [
-                    'Option 1' => false,
-                    'Option 2' => null,
-                    'Option 3' => true,
-                    'Option 4' => true,
-                    ]
-                ])
+                    'Option 1' => 0,
+                    'Option 2' => 1,
+                    'Option 3' => 2,
+                    'Option 4' => 3,
+                ]
+            ])
             ->add('picture_profil', FileType::class)
             ->add('email')
             ->add('RGPDconsent', CheckboxType::class, [
@@ -91,8 +91,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
