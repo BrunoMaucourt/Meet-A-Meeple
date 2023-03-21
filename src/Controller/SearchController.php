@@ -11,6 +11,9 @@ class SearchController extends AbstractController
     #[Route('/search', name: 'search')]
     public function search(): Response
     {
+        // Allow acces only to connected user
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('search.html.twig');
     }
 }

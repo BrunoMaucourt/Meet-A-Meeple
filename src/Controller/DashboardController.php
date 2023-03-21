@@ -11,6 +11,9 @@ class DashboardController extends AbstractController
     #[Route('/dashboard', name: 'dashboard')]
     public function home(): Response
     {
+        // Allow acces only to connected user
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('dashboard.html.twig');
     }
 }

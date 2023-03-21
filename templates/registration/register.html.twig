@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription
+{% block title %}
+Inscription
 {% endblock %}
+
+{% block bonus_javascript %}
+<script defer src="{{ asset('js/search.js') }}"></script> 
+{% endblock bonus_javascript %}
 
 {% block nodashboard %}{% endblock nodashboard %}
 
