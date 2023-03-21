@@ -12,8 +12,7 @@ class TestController extends AbstractController
     public function home(): Response
     {
 
-        // usually you'll want to make sure the user is authenticated first,
-        // see "Authorization" below
+        // Allow acces only to connected user
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         // returns your User object, or null if the user is not authenticated
