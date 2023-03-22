@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-Inscription
+	Inscription
 {% endblock %}
 
 {% block bonus_javascript %}
-<script defer src="{{ asset('js/search.js') }}"></script> 
+	<script defer src="{{ asset('js/geolocation_search.js') }}"></script>
 {% endblock bonus_javascript %}
 
 {% block nodashboard %}{% endblock nodashboard %}
@@ -18,33 +18,45 @@ Inscription
 			<fieldset class="mt-5">
 				<legend class="text-main-orange text-3xl">Mes informations</legend>
 				{{ form_row(registrationForm.last_name, {
-                                'attr': {'class': 'border'},
-                                label: 'Mon nom de famille'
+                                        'attr': {'class': 'border'},
+                                        label: 'Mon nom de famille'
                                 })
                         }}
 				{{ form_row(registrationForm.first_name, {'attr': {
-                                'class': 'border'},
-                                label: 'Mon prénom'
+                                        'class': 'border'},
+                                        label: 'Mon prénom'
                                 })
                         }}
 				{{ form_row(registrationForm.pseudo, {'attr': {
-                                'class': 'border m-5'},
-                                label: 'Mon pseudo'
+                                        'class': 'border m-5'},
+                                        label: 'Mon pseudo'
                                 })
                         }}
 				{{ form_row(registrationForm.gender_id, {'attr': {
-                                'class': 'border'},
-                                label: 'Mon genre'
+                                        'class': 'border'},
+                                        label: 'Mon genre'
                                 })
                         }}
 				{{ form_row(registrationForm.birthdate, {
-                                label: 'Mon anniversaire'
+                                        label: 'Mon anniversaire'
                                 })
                         }}
-				{{ form_row(registrationForm.city, {'attr': {'class': 'border'},
-                                label: 'Ville'
+				<div id="container_city_search_input" class="relative">
+					{{ form_row(registrationForm.city, {'attr': {'class': 'border'},
+                                        label: 'Ville',
+                                        id: 'city_search_input'
+                                        })
+                                }}
+					<div id="city_list" class="hidden absolute flex-col w-full h-fit"></div>
+					{{ form_row(registrationForm.city_GPS_lat, {
+                                        'attr': {'class': 'hidden'},
                                 })
-                        }}
+                                }}
+					{{ form_row(registrationForm.city_GPS_long, {
+                                        'attr': {'class': 'hidden'}
+                                })
+                                }}
+				</div>
 			</fieldset>
 			<fieldset class="mt-5">
 				<legend class="text-main-orange text-3xl">Mes informations de connexions</legend>
@@ -102,6 +114,6 @@ Inscription
 
                         <button type="submit" class="btn-orange">S'inscrire</button>
                         {{ form_end(registrationForm) }}
-		</div>
-	</section>
-{% endblock main_content %}
+			</div>
+		</section>
+	{% endblock main_content %}
