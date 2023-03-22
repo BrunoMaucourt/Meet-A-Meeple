@@ -12,7 +12,7 @@
         <div class="w-full lg:w-2/3 h-full">
             <h2 class="font-bold text-xl my-3">Et si vous faisiez le premier pas ?</h2>
             <ul>
-                <li class="ml-6 list-disc">Créer des parties pour rencontrer des gens</li>
+                <li class="ml-6 list-disc">Créer des parties pour rencontrer des joueurs</li>
                 <li class="ml-6 list-disc">Faite vous de nouveaux amis</li>                
                 <li class="ml-6 list-disc">Jouez !</li>
             </ul>
@@ -31,10 +31,10 @@
     </div>
 
 
-    <div class="flex justify-center w-full">
+    <div class="flex justify-center w-full mt-14">
         <h2 class="text-2xl font-bold uppercase underline">Résumé</h2>
     </div>
-    <div class="w-full max-w-4xl flex flex-col lg:flex-row justify-center items-center gap-8 "> 
+    <div class="w-full max-w-4xl xl:max-w-7xl flex flex-col lg:flex-row  lg:flex-wrap justify-center items-center gap-8 "> 
         <!--START Games Card -->
         <div class="w-full max-w-xs h-[436px] flex flex-col items-center justify-center rounded-lg shadow-around bg-gradient-to-br from-white via-white to-main-orange/10 p-3 gap-3">
             <div class="flex flex-col items-center">
@@ -135,7 +135,7 @@
                 <p>amis : 6</p>
                 <p>bloqués : 5</p>
                 <p>discussion en cours : 3</p>
-                <p>sodomie anticipée : 6</p>
+                <p>messages envoyés : 13</p>
             </div>
             
             <h3 class="font-bold">Derniers messages</h3>
@@ -192,8 +192,309 @@
         </div>
         <!--END MESSAGE Card -->
 
+        <!--START CALENDAR Card -->
+            <div class="max-w-xs w-full h-[436px] shadow-around rounded-lg">
+                <div class="md:p-8 p-5 h-[436px] bg-gradient-to-br from-white via-white to-main-orange/20 rounded-lg">
+                    <div class="px-4 flex items-center justify-between">
+                        <span  tabindex="0" class="focus:outline-none  text-base font-bold">Avril 2023</span>
+                        <div class="flex items-center">
+                            <button aria-label="calendar backward" class="focus:text-main-orange hover:text-main-orange-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <polyline points="15 6 9 12 15 18" />
+                            </svg>
+                        </button>
+                        <button aria-label="calendar forward" class="focus:text-main-orange hover:text-main-orange-dark"> 
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler  icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <polyline points="9 6 15 12 9 18" />
+                            </svg>
+                        </button>
+
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-12 overflow-x">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base font-medium text-center">Lu</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base font-medium text-center">Ma</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base font-medium text-center">Me</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base font-medium text-center">Je</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base font-medium text-center">Ve</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base font-medium text-center">Sa</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base font-medium text-center">Di</p>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="pt-6">
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center"></div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center"></div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center"></div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">1</p>
+                                        </div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">2</p>
+                                        </div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">3</p>
+                                        </div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">4</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">5</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">6</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">7</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a title="partie à rambouillet"  role="link" tabindex="0" class="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:bg-indigo-500 hover:bg-indigo-500 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-main-green rounded-full">8</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">9</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">10</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">11</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">12</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">13</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">14</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">15</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">16</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">17</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">18</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">19</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">20</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">21</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">22</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">23</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">24</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">25</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <a title="partie à Paris"  role="link" tabindex="0" class="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:bg-indigo-500 hover:bg-indigo-500 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-main-green rounded-full">26</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">27</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">28</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">29</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base font-medium">30</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <!--END CALENDAR Card -->
+
 
     </div>
+
+    <div class="flex justify-center w-full mt-14">
+        <h2 class="text-2xl font-bold uppercase underline">Joueurs recommandés</h2>
+    </div>
+    <!-- START PLAYER CARD -->
+    <div class="w-full max-w-4xl flex flex-col justify-center items-center">
+        <div class="w-full max-w-xs h-[436px] flex flex-col rounded-lg shadow-around bg-gradient-to-br from-white via-white to-main-orange/10 p-3 gap-3">
+            <div class="w-full h-1/2 flex bg-gradient-to-r from-main-green/10 to-main-orange/10 rounded-lg">
+                <div class="w-1/2 h-full flex justify-center items-center p-2">
+                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                </div>
+                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <span>Thomas</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+                        <span>30 ans</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+                        <span>Paris</span>
+                    </div>
+                </div>
+            </div>
+            <div class="h-1/2 w-full rounded-lg flex flex-col">
+                <div class="w-full h-3/4 rounded-lg flex flex-col justify-start items-center">
+                    <div class="w-full h-1/4 px-2 flex items-center justify-start gap-2">
+                        <span class="w-fit text-left font-bold">Avis :</span>
+                        <div class="w-auto h-full flex justify-center items-center">
+                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="w-full h-1/4 px-2 flex items-center justify-start gap-2">
+                        <span class="w-fit text-left font-bold ">Jeux :</span>
+                        <div class="w-auto h-full flex justify-center items-center">
+                            <span>Plateau, Stratégie, Coop</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-2/4 px-2 flex flex-col">
+                        <span class="font-bold ">Description :</span>
+                        <div class="w-auto h-full flex justify-center items-center overflow-y-scroll">
+                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, namLorem ipsum dolor sit amet consectetur adipisicing elit. A, namLorem ipsum dolor sit amet consectetur adipisicing elit. A, namLorem ipsum dolor sit amet consectetur adipisicing elit. A, namLorem ipsum dolor sit amet consectetur adipisicing elit. A, nam!</span>
+                        </div>
+                    </div>   
+                </div>
+                <div class="w-full h-full flex justify-center items-center">
+                    <a class="w-fit rounded-md p-1 bg-main-orange hover:bg-main-orange-dark transition-all duration-300" href="">Contacter</a>
+                </div>
+               
+            </div>
+        </div>
+        
+    </div>
+    <!-- END PLAYER CARD -->
     
    
 </section>
