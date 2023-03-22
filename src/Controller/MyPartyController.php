@@ -11,7 +11,6 @@ class MyPartyController extends AbstractController
     #[Route('/myparty', name: 'my_party')]
     public function index(): Response
     {
-
         // Allow acces only to connected user
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         

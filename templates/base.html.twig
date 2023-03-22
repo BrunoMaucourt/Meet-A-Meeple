@@ -63,7 +63,7 @@
 									<div class="w-1/6 p-1">
 										<img src="{{ asset('img/profil_menu/dashboard.svg') }}" alt="dashboard_logo">
 									</div>
-									<a href="{{ path('my profil') }}" class="w-full h-10 flex justify-start items-center ml-2">Tableau de Bord</a>
+									<a href="{{ path('dashboard') }}" class="w-full h-10 flex justify-start items-center ml-2">Tableau de Bord</a>
 								</div>
 								<hr class="border-t-1 border-main-grey">
 								<div class="flex items-center w-full h-14 px-4 hover:bg-main-orange hover:text-white">
@@ -130,7 +130,7 @@
 																				 icon on mobile and icon + text when not mobile
 																				 animation on hover
 																				 -->
-					<a href="{{ path('my profil') }}" title="Dashboard" class="group w-full h-12 flex justify-center items-center rounded hover:text-main-orange sm:hover:tr0nslate-x-2 hover:scale-125 sm:hover:scale-105 transition-all duration-500">
+					<a href="{{ path('dashboard') }}" title="Dashboard" class="group w-full h-12 flex justify-center items-center rounded hover:text-main-orange sm:hover:tr0nslate-x-2 hover:scale-125 sm:hover:scale-105 transition-all duration-500">
 						<div class="group-hover:bg-main-orange/60 group-hover:shadow-xl group-hover:shadow-main-orange/20 transition-all duration-500 rounded-lg w-full sm:w-1/3 sm:p-1 relative">
 							<img src="{{ asset('img/profil_menu/dashboard.svg') }}" alt="dashboard_logo">
 						</div>
@@ -204,7 +204,7 @@
 					<div class="w-full">
 					{% endblock withdashboard %}
 
-					<main class="main-mobile-section sm:main-small-section xl:main-xl-section mt-20 mb-20 xl:mt-20 px-4"> {% block main_content %}{% endblock main_content %}
+					<main class="main-mobile-section sm:main-small-section xl:main-xl-section mt-20 mb-20 xl:mt-20"> {% block main_content %}{% endblock main_content %}
 						</main>
 
 						{% block footer %}

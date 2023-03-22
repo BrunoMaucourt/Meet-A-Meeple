@@ -11,6 +11,9 @@ class MyMessageController extends AbstractController
     #[Route('/mymessage', name: 'my message')]
     public function myMessage(): Response
     {
+        // Allow acces only to connected user
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('myMessage.html.twig');
     }
 }

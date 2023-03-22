@@ -11,6 +11,9 @@ class MyProfilController extends AbstractController
     #[Route('/myProfil', name: 'my profil')]
     public function myProfil(): Response
     {
+        // Allow acces only to connected user
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('myProfil.html.twig');
     }
 }
