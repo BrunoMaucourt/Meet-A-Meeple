@@ -16,16 +16,47 @@ Chercher une partie ou un joueur
 	<h1 class="text-2xl font-bold text-center">
 		Recherchez rapidement des joueurs ou des parties autour de vous !
 	</h1>
+			{{ form_start(searchForm) }}	
+				{{ form_row(searchForm.search_type) }}
+				{{ form_row(searchForm.city_name) }}
+				{{ form_row(searchForm.distance) }}
+				{{ form_row(searchForm.send) }}
+			{{ form_end(searchForm) }}	
+
+<h2>filtré</h2>
+
+		{% for category in searchResult %}
+		    {{ category.game }}
+			{{ category.description }}
+			{{ category.player_number_needed }}
+			{{ category.address_location }}
+			<br>
+		{% endfor %}
+
+<h2>non filtré</h2>
+
+		{% for category in test %}
+		    {{ category.game }}
+			{{ category.description }}
+			{{ category.playerNumberNeeded }}
+			{{ category.addressLocation }}
+			<br>
+		{% endfor %}
+		
+	<!--
 	<form action="" method="" class="bg-gradient-to-br from-white via-white to-main-orange/20 w-full max-w-xl lg:w-2/3 h-fit p-6 shadow-around rounded flex flex-col gap-14">
-		<div class="flex justify-center gap-10">
-			<div>
+		<div class="flex flex-col justify-center gap-10">
+		 <div>
 				<input class="accent-main-emerald" type="radio" id="joueur" value="joueur" name="recherche" checked="checked">
 				<label for="recherche">Joueur</label>
 			</div>
 			<div>
 				<input class="accent-main-emerald" type="radio" id="partie" value="partie" name="recherche">
 				<label for="recherche">Partie</label>
-			</div>			
+			</div>
+		
+
+
 		</div>
 		<div class="flex flex-col items-center justify-center gap-16 lg:flex-row lg:justify-between ">
 			<div class="relative w-full lg:w-1/2 flex flex-col justify-center items-center">
@@ -50,6 +81,7 @@ Chercher une partie ou un joueur
 		</div>
 		<input type="submit" class="btn-orange" value="Rechercher">	
 	</form>
+		-->	
 </section>
 	
 {% endblock main_content %}
