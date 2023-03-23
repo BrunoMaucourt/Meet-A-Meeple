@@ -39,3 +39,8 @@
         @apply mt-5 rounded-md bg-main-grey-light text-black w-fit p-3 shadow-md hover:bg-main-grey transition-all duration-500 cursor-pointer
     }
 }
+
+#recommended_player_slider_container::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
