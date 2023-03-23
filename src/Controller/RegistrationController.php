@@ -42,7 +42,7 @@ class RegistrationController extends AbstractController
             // Add profil picture
             /** @var UploadedFile $uploaded_picture */
             $uploaded_picture = $form->get('picture_profil')->getData();
-            $newFilename = 'img/profil_picture/profil_picture_' . $user->getId() . '.' . $uploaded_picture->guessExtension();
+            $newFilename = 'img/profil_picture/profil_picture_' . uniqid() . '.' . $uploaded_picture->guessExtension();
 
             // Move the file to the directory where profil pictures are stored
             try {
