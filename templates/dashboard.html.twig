@@ -4,10 +4,12 @@
 {% block withdashboard %}
 {% endblock withdashboard %}
 
-
+{% block bonus_javascript %}
+<script defer src="{{ asset('js/dashboard.js') }}"></script> 
+{% endblock bonus_javascript %}
 
 {% block main_content %}
-<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center lg:flex-row flex-wrap lg:justify-center px-4">
+<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center lg:flex-row flex-wrap lg:justify-center px-1 sm:px-4">
     <div class="flex w-full max-w-4xl h-fit rounded-lg shadow-md bg-gradient-to-br from-white via-white to-main-orange/20 p-3">
         <div class="w-full lg:w-2/3 h-full">
             <h2 class="font-bold text-xl my-3">Et si vous faisiez le premier pas ?</h2>
@@ -439,15 +441,15 @@
     <div class="flex justify-between items-center w-full mt-14 border-b border-main-grey py-2">
         <h2 class="text-xl font-bold">Joueurs recommandés</h2>
         <div class="hidden sm:flex gap-5">
-            <div class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
-            <div class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
+            <div id="recommended_player_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
+            <div id="recommended_player_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
         </div>
     </div>
     
-    <div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-2 py-4">
+    <div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-1 sm:px-2 py-4">
         <!--START PLAYER CARD-->
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
-            <div class="h-2/5 bg-gradient-to-r from-main-orange/20 to-main-green/20 flex">
+        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
                 <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
                     <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
                 </div>
@@ -468,10 +470,10 @@
             </div>
             <div class="flex flex-col h-3/5 p-2">
                 <div class="w-full h-1/5 flex justify-between items-center">
-                    <div class="w-full flex justify-center items-center">
+                    <div class="w-full flex justify-start items-center pl-4">
                         <a href="">7 avis</a>
                     </div>
-                    <div class="flex w-full h-full justify-center items-center">
+                    <div class="flex w-full h-full justify-end items-center pr-4">
                         <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
                         <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
                         <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
@@ -480,31 +482,31 @@
                     </div>
                 </div>
                 
-                <div class="w-full h-1/5 flex justify-center items-center">
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
                     <span>Inscrit depuis le 12/02/2021</span>
                 </div>            
-                <div class="w-full h-1/5 flex justify-center items-center">
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
                     <span>Dernière connexion il y a 3 jours</span>
-                </div>        
+                </div>  
+                <div class="w-full h-1/5 flex items-center">
+                    <div class="w-full h-full flex justify-start items-center pl-4">
+                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+                    </div>
+                    <div class="w-full flex justify-end items-center gap-1 pr-4">
+                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
+                        <span>En ligne</span>
+                    </div>
+                </div> 
+                <div class="h-1/5 flex justify-center items-center">
+                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+                </div>     
             </div>
         </div>
         <!--END PLAYER CARD -->
-
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-        <div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0"></div>
-    </div>
-        <!-- START PLAYER CARD --><!--
-        <div class="border-b-4 w-72 h-80 flex flex-col rounded-lg shadow-around bg-gradient-to-br from-white via-white to-main-orange/10 p-3 gap-3">
-            <div class="w-full h-1/2 flex bg-gradient-to-r from-main-green/10 to-main-orange/10 rounded-lg">
-                <div class="w-1/2 h-full flex justify-center items-center p-2">
+        <!--START PLAYER CARD-->
+        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
+                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
                     <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
                 </div>
                 <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
@@ -522,41 +524,156 @@
                     </div>
                 </div>
             </div>
-            <div class="h-1/2 w-full rounded-lg flex flex-col">
-                <div class="w-full h-3/4 rounded-lg flex flex-col justify-start items-center">
-                    <div class="w-full h-1/4 px-2 flex items-center justify-start gap-2">
-                        <span class="w-fit text-left font-bold">Avis :</span>
-                        <div class="w-auto h-full flex justify-center items-center">
-                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
-                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
-                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
-                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
-                            <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
-                        </div>
+            <div class="flex flex-col h-3/5 p-2">
+                <div class="w-full h-1/5 flex justify-between items-center">
+                    <div class="w-full flex justify-start items-center pl-4">
+                        <a href="">7 avis</a>
                     </div>
-                    <div class="w-full h-1/4 px-2 flex items-center justify-start gap-2">
-                        <span class="w-fit text-left font-bold ">Jeux :</span>
-                        <div class="w-auto h-full flex justify-center items-center">
-                            <span>Plateau, Stratégie, Coop</span>
-                        </div>
+                    <div class="flex w-full h-full justify-end items-center pr-4">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
                     </div>
-                    <div class="w-full h-2/4 px-2 flex flex-col">
-                        <span class="font-bold ">Description :</span>
-                        <div class="w-auto h-full flex justify-center items-center overflow-y-scroll">
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, namLorem ipsum dolor sit amet consectetur adipisicing elit. A, namLorem ipsum dolor sit amet consectetur adipisicing elit. A, namLorem ipsum dolor sit amet consectetur adipisicing elit. A, namLorem ipsum dolor sit amet consectetur adipisicing elit. A, nam!</span>
-                        </div>
-                    </div>   
                 </div>
-                <div class="w-full h-full flex justify-center items-center">
-                    <a class="w-fit rounded-md p-1 bg-main-orange hover:bg-main-orange-dark transition-all duration-300" href="">Contacter</a>
+                
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Inscrit depuis le 12/02/2021</span>
+                </div>            
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Dernière connexion il y a 3 jours</span>
                 </div>  
+                <div class="w-full h-1/5 flex items-center">
+                    <div class="w-full h-full flex justify-start items-center pl-4">
+                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+                    </div>
+                    <div class="w-full flex justify-end items-center gap-1 pr-4">
+                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
+                        <span>En ligne</span>
+                    </div>
+                </div> 
+                <div class="h-1/5 flex justify-center items-center">
+                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+                </div>     
             </div>
-        </div>  -->
-        <!-- END PLAYER CARD -->      
-    
-    
-    
-   
+        </div>
+        <!--END PLAYER CARD -->
+        <!--START PLAYER CARD-->
+        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
+                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
+                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                </div>
+                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <span>Thomas</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+                        <span>30 ans</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+                        <span>Paris</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col h-3/5 p-2">
+                <div class="w-full h-1/5 flex justify-between items-center">
+                    <div class="w-full flex justify-start items-center pl-4">
+                        <a href="">7 avis</a>
+                    </div>
+                    <div class="flex w-full h-full justify-end items-center pr-4">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                    </div>
+                </div>
+                
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Inscrit depuis le 12/02/2021</span>
+                </div>            
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Dernière connexion il y a 3 jours</span>
+                </div>  
+                <div class="w-full h-1/5 flex items-center">
+                    <div class="w-full h-full flex justify-start items-center pl-4">
+                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+                    </div>
+                    <div class="w-full flex justify-end items-center gap-1 pr-4">
+                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
+                        <span>En ligne</span>
+                    </div>
+                </div> 
+                <div class="h-1/5 flex justify-center items-center">
+                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+                </div>     
+            </div>
+        </div>
+        <!--END PLAYER CARD -->
+        <!--START PLAYER CARD-->
+        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
+                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
+                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                </div>
+                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <span>Thomas</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+                        <span>30 ans</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+                        <span>Paris</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col h-3/5 p-2">
+                <div class="w-full h-1/5 flex justify-between items-center">
+                    <div class="w-full flex justify-start items-center pl-4">
+                        <a href="">7 avis</a>
+                    </div>
+                    <div class="flex w-full h-full justify-end items-center pr-4">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                    </div>
+                </div>
+                
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Inscrit depuis le 12/02/2021</span>
+                </div>            
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Dernière connexion il y a 3 jours</span>
+                </div>  
+                <div class="w-full h-1/5 flex items-center">
+                    <div class="w-full h-full flex justify-start items-center pl-4">
+                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+                    </div>
+                    <div class="w-full flex justify-end items-center gap-1 pr-4">
+                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
+                        <span>En ligne</span>
+                    </div>
+                </div> 
+                <div class="h-1/5 flex justify-center items-center">
+                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+                </div>     
+            </div>
+        </div>
+        <!--END PLAYER CARD -->
+
+        
+    </div>   
 </section>
 	
 {% endblock main_content %}

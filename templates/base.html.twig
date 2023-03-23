@@ -124,13 +124,13 @@
 			{% block nodashboard %}
 				<!--dashboard menu -->
 				<aside
-					id="dashboard" class="bg-gradient-to-b from-white via-main-emerald/20 to-main-orange/70 sticky top-[80px] xl:top-[64px] w-16 sm:w-64 aside-mobile-section xl:aside-xl-section bg-white border-main-grey shadow-2xl p-4 flex flex-col justify-start items-center gap-4 overflow-auto">
+					id="dashboard" class="bg-gradient-to-b from-white via-main-emerald/20 to-main-orange/70 sticky top-[80px] xl:top-[64px] min-w-[64px] w-16 sm:w-64 aside-mobile-section xl:aside-xl-section bg-white border-main-grey shadow-2xl p-4 flex flex-col justify-start items-center gap-4 overflow-auto">
 
 					<!--dashboard icon  :
-																				 icon on mobile and icon + text when not mobile
-																				 animation on hover
-																				 -->
-					<a href="{{ path('my profil') }}" title="Dashboard" class="group w-full h-12 flex justify-center items-center rounded hover:text-main-orange sm:hover:tr0nslate-x-2 hover:scale-125 sm:hover:scale-105 transition-all duration-500">
+					icon on mobile and icon + text when not mobile
+					animation on hover
+					-->
+					<a href="{{ path('dashboard') }}" title="Dashboard" class="group w-full h-12 flex justify-center items-center rounded hover:text-main-orange sm:hover:tr0nslate-x-2 hover:scale-125 sm:hover:scale-105 transition-all duration-500">
 						<div class="group-hover:bg-main-orange/60 group-hover:shadow-xl group-hover:shadow-main-orange/20 transition-all duration-500 rounded-lg w-full sm:w-1/3 sm:p-1 relative">
 							<img src="{{ asset('img/profil_menu/dashboard.svg') }}" alt="dashboard_logo">
 						</div>
@@ -144,7 +144,7 @@
 																				 icon on mobile and icon + text when not mobile
 																				 animation on hover
 																				 -->
-					<a href="{{ path('my profil') }}" title="Profil" class="group w-full h-12 flex justify-center items-center rounded hover:text-main-orange sm:hover:tr0nslate-x-2 hover:scale-125 sm:hover:scale-105 transition-all duration-500">
+					<a href="{{ path('my profil') }}" title="Profil" class="group w-full h-12 flex justify-center items-center rounded hover:text-main-orange sm:hover:translate-x-2 hover:scale-125 sm:hover:scale-105 transition-all duration-500">
 						<div class="group-hover:bg-main-orange/60 group-hover:shadow-xl group-hover:shadow-main-orange/20 transition-all duration-500 rounded-lg w-full sm:w-1/3 sm:p-3 p-0.5 relative">
 							<img src="{{ asset('img/profil_menu/person.svg') }}" alt="dashboard_logo">
 						</div>
@@ -204,7 +204,7 @@
 					<div class="w-full">
 					{% endblock withdashboard %}
 
-					<main class="main-mobile-section sm:main-small-section xl:main-xl-section mt-20 mb-20 xl:mt-20 px-4"> {% block main_content %}{% endblock main_content %}
+					<main class="main-mobile-section sm:main-small-section xl:main-xl-section mt-20 mb-20 xl:mt-20"> {% block main_content %}{% endblock main_content %}
 						</main>
 
 						{% block footer %}
