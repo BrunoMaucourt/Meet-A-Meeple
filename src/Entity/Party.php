@@ -156,9 +156,9 @@ class Party
         return $this->address_GPS_lat;
     }
 
-    public function setAddressGPSLat(float $addressGPSLat): self
+    public function setAddressGPSLat(float $address_GPS_Lat): self
     {
-        $this->address_GPS_lat = $address_GPS_lat;
+        $this->address_GPS_lat = $address_GPS_Lat;
 
         return $this;
     }
