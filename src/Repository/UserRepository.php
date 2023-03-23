@@ -62,7 +62,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $sql = '
             SELECT * FROM user U
             WHERE id NOT IN
-            (select user_banned_id from user_black_list where user_that_block_id = ' . $user_ID . ')
+            (select user_banned_id from user_black_list where user_that_block_id = ' . $user_ID . ') AND
+            id <> ' . $user_ID . '
             ';
 
         $stmt = $conn->prepare($sql);

@@ -51,33 +51,63 @@ class SearchController extends AbstractController
         $data = [];
         define("SEARCH_PARTY", "1");
         define("SEARCH_PLAYER", "0");
+        define("EARTH_RADIUS",6371);
 
         // Get ID of user
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
         $user_ID = $user->getId();
+        $user_ID_lat = $user->getCityGPSLat();
+        $user_ID_long = $user->getCityGPSLong();
 
         // Process form
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Recover data from form
             $data = $form->getData();
-            
+            $temp_result = [];
             // Check if user search player or party
             if($data['search_type'] == SEARCH_PARTY){
                 // Search in database
-                $product = $entityManager->getRepository(Party::class)->findAllAvailableParty();
+                $result = $entityManager->getRepository(Party::class)->findAllAvailableParty();
                 $rechercheNonFiltree = $entityManager->getRepository(Party::class)->findAll();
+        
+                
+                foreach ($result as $party) {
+                    $party_lat = $party['address_gps_lat'];
+                    $party_long = $party['address_gps_long'];
+                    $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$party_lat,$party_long);
+                    if($distance_between <= $data['distance']){
+                        array_push($temp_result,$party);
+                    }
+                }
+                $result = $temp_result;
+
+                
+
             }else if($data['search_type'] == SEARCH_PLAYER){
                 // Search in database
-                $product = $entityManager->getRepository(User::class)->findAllAvailableUser($user_ID);
+                $result = $entityManager->getRepository(User::class)->findAllAvailableUser($user_ID);
                 $rechercheNonFiltree = $entityManager->getRepository(User::class)->findAll();
+
+                foreach ($result as $player) {
+                    $player_lat = $player['city_gps_lat'];
+                    $player_long = $player['city_gps_long'];
+                    $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);
+                    if($distance_between <= $data['distance']){
+                        array_push($temp_result,$player);
+                    }
+                }
+                $result = $temp_result;
+                
             }
 
-            // Filter 
+            // Distance Filter 
+
+            
 
             // Stock data in array
-            $result = $product;
+            
 
             // Send a message if zero results are found
             if($result == []){
@@ -92,5 +122,20 @@ class SearchController extends AbstractController
             'error' => $error,
             'data' => $data,
         ]);
+    }
+
+    public function calculateDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo){
+        // convert from degrees to radians
+        $latFrom = deg2rad($latitudeFrom);
+        $lonFrom = deg2rad($longitudeFrom);
+        $latTo = deg2rad($latitudeTo);
+        $lonTo = deg2rad($longitudeTo);
+      
+        $latDelta = $latTo - $latFrom;
+        $lonDelta = $lonTo - $lonFrom;
+      
+        $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
+          cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+        return $angle * EARTH_RADIUS;
     }
 }
