@@ -50,10 +50,12 @@
 					<div id="city_list" class="hidden absolute flex-col w-full h-fit"></div>
 					{{ form_row(registrationForm.city_GPS_lat, {
                                         'attr': {'class': 'hidden'},
+					'id': 'form_city_GPS_lat'
                                 })
                                 }}
 					{{ form_row(registrationForm.city_GPS_long, {
-                                        'attr': {'class': 'hidden'}
+                                        'attr': {'class': 'hidden'},
+					'id': 'form_city_GPS_long',
                                 })
                                 }}
 				</div>

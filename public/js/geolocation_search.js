@@ -7,8 +7,8 @@ const city_input = document.getElementById("city_search_input");
 const city_list = document.getElementById("city_list");
 
 // 
-let input_lat = document.getElementById("registration_form_city_GPS_lat");
-let input_long = document.getElementById("registration_form_city_GPS_long");
+let input_lat = document.getElementById("form_city_GPS_lat");
+let input_long = document.getElementById("form_city_GPS_long");
 
 async function geolocation(city_name) {
     try {
@@ -71,3 +71,10 @@ city_input.addEventListener('input', function () {
         geolocation(city_name);
     }
 });
+
+document.addEventListener('click', (e) => {
+    if (e.target.id !== "city_list"){
+        city_list.classList.add("hidden");
+        city_list.classList.remove("flex");
+    }
+})

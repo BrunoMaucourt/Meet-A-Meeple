@@ -5,7 +5,8 @@ Chercher une partie ou un joueur
 {% endblock title %}
 
 {% block bonus_javascript %}
-<script defer src="{{ asset('build/js/search.js') }}"></script> 
+	<script defer src="{{ asset('js/search.js') }}"></script> 
+	<script defer src="{{ asset('js/geolocation_search.js') }}"></script> 
 {% endblock bonus_javascript %}
 
 {% block withdashboard %}
@@ -18,7 +19,27 @@ Chercher une partie ou un joueur
 	</h1>
 			{{ form_start(searchForm) }}	
 				{{ form_row(searchForm.search_type) }}
-				{{ form_row(searchForm.city_name) }}
+				<div>
+					<div id="location-choice" class="w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
+						<label class="text-sm" for="locate-my-position">Choisir ma position</label>
+						<input class="accent-main-emerald" type="checkbox" name="locate-my-position" id="locate-my-position" value="my-position">
+					</div>
+					{{ form_row(searchForm.city_name, {
+						'id': 'city_search_input'
+						})
+					}}
+					<div id="city_list" class="hidden absolute flex-col w-full h-fit"></div>
+				</div>
+				{{ form_row(searchForm.city_GPS_lat, {
+                    'attr': {'class': 'hidden'},
+					'id': 'form_city_GPS_lat'
+                    })
+                }}
+				{{ form_row(searchForm.city_GPS_long, {
+                    'attr': {'class': 'hidden'},
+					'id': 'form_city_GPS_long'
+                    })
+                }}
 				{{ form_row(searchForm.distance) }}
 				{{ form_row(searchForm.send) }}
 			{{ form_end(searchForm) }}	
