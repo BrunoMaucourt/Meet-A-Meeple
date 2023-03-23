@@ -65,6 +65,15 @@ class Party
     #[ORM\Column]
     private ?bool $canceled = null;
 
+    /**
+     * Add default values during construction of new user
+     */
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+        $this->canceled = 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
