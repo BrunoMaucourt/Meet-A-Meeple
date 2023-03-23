@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Party;
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,8 +22,7 @@ class SearchController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         // Create form
-        $defaultData = ['message' => 'Type your message here'];
-        $form = $this->createFormBuilder($defaultData)
+        $form = $this->createFormBuilder()
             ->add('search_type', ChoiceType::class, [
                 'choices'  => [
                     'Joueur' => 0,
@@ -43,8 +43,14 @@ class SearchController extends AbstractController
             ->add('send', SubmitType::class)
             ->getForm();
 
-        //
-        $result=['titi'];
+        // Variables declaration
+        $result=[];
+        $error = "";
+        $rechercheNonFiltree = [];
+        $product = [];
+        $data = [];
+        $search_party = 1;
+        $search_player = 0;
 
         // Process form
         $form->handleRequest($request);
@@ -52,19 +58,34 @@ class SearchController extends AbstractController
             // Recover data from form
             $data = $form->getData();
             
-            // Search in database
-            $product = $entityManager->getRepository(Party::class)->findAllAvailableParty();
-            $product2merde = $entityManager->getRepository(Party::class)->findAll();
+            // Check if user search player or party
+            if($data['search_type'] == $search_party){
+                // Search in database
+                $product = $entityManager->getRepository(Party::class)->findAllAvailableParty();
+                $rechercheNonFiltree = $entityManager->getRepository(Party::class)->findAll();
+            }else if($data['search_type'] == $search_player){
+                // Search in database
+                $product = $entityManager->getRepository(User::class)->findAllAvailableUser();
+                $rechercheNonFiltree = $entityManager->getRepository(User::class)->findAll();
+            }
+
             // Filter 
 
             // Stock data in array
             $result = $product;
+
+            // Send a message if zero results are found
+            if($result == []){
+                $error = "Aucun résultats pour votre recherche";
+            }
         }
 
         return $this->render('search.html.twig', [
             'searchForm' => $form->createView(),
             'searchResult' => $result,
-            'test' => $product2merde,
+            'test' => $rechercheNonFiltree,
+            'error' => $error,
+            'data' => $data,
         ]);
     }
 }
