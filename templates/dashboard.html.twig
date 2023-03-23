@@ -4,15 +4,17 @@
 {% block withdashboard %}
 {% endblock withdashboard %}
 
-
+{% block bonus_javascript %}
+<script defer src="{{ asset('js/dashboard.js') }}"></script> 
+{% endblock bonus_javascript %}
 
 {% block main_content %}
-<section class="w-full flex flex-col gap-8 items-center lg:flex-row flex-wrap lg:justify-center">
+<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center lg:flex-row flex-wrap lg:justify-center px-1 sm:px-4">
     <div class="flex w-full max-w-4xl h-fit rounded-lg shadow-md bg-gradient-to-br from-white via-white to-main-orange/20 p-3">
         <div class="w-full lg:w-2/3 h-full">
             <h2 class="font-bold text-xl my-3">Et si vous faisiez le premier pas ?</h2>
             <ul>
-                <li class="ml-6 list-disc">Créer des parties pour rencontrer des gens</li>
+                <li class="ml-6 list-disc">Créer des parties pour rencontrer des joueurs</li>
                 <li class="ml-6 list-disc">Faite vous de nouveaux amis</li>                
                 <li class="ml-6 list-disc">Jouez !</li>
             </ul>
@@ -31,10 +33,10 @@
     </div>
 
 
-    <div class="flex justify-center w-full">
-        <h2 class="text-2xl font-bold uppercase underline">Résumé</h2>
+    <div class="flex justify-start w-full mt-14 border-b border-main-grey py-2">
+        <h2 class="text-xl font-bold">Résumé</h2>
     </div>
-    <div class="w-full max-w-4xl flex flex-col lg:flex-row justify-center items-center gap-8 "> 
+    <div class="w-full max-w-4xl xl:max-w-7xl flex flex-col lg:flex-row  lg:flex-wrap justify-center items-center gap-8 "> 
         <!--START Games Card -->
         <div class="w-full max-w-xs h-[436px] flex flex-col items-center justify-center rounded-lg shadow-around bg-gradient-to-br from-white via-white to-main-orange/10 p-3 gap-3">
             <div class="flex flex-col items-center">
@@ -135,7 +137,7 @@
                 <p>amis : 6</p>
                 <p>bloqués : 5</p>
                 <p>discussion en cours : 3</p>
-                <p>sodomie anticipée : 6</p>
+                <p>messages envoyés : 13</p>
             </div>
             
             <h3 class="font-bold">Derniers messages</h3>
@@ -192,10 +194,486 @@
         </div>
         <!--END MESSAGE Card -->
 
+        <!--START CALENDAR Card -->
+            <div class="max-w-xs w-full h-[436px] shadow-around rounded-lg">
+                <div class="md:p-8 p-1 h-[436px] bg-gradient-to-br from-white via-white to-main-orange/20 rounded-lg">
+                    <div class="px-2 flex items-center justify-between">
+                        <span  tabindex="0" class="focus:outline-none  text-base font-bold">Avril 2023</span>
+                        <div class="flex items-center">
+                            <button aria-label="calendar backward" class="focus:text-main-orange hover:text-main-orange-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <polyline points="15 6 9 12 15 18" />
+                            </svg>
+                        </button>
+                        <button aria-label="calendar forward" class="focus:text-main-orange hover:text-main-orange-dark"> 
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler  icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <polyline points="9 6 15 12 9 18" />
+                            </svg>
+                        </button>
+
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-12 overflow-x">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base text-center">Lu</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base text-center">Ma</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base text-center">Me</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base text-center">Je</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base text-center">Ve</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base text-center">Sa</p>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="w-full flex justify-center">
+                                            <p class="text-base text-center">Di</p>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="pt-6">
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center"></div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center"></div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center"></div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">1</p>
+                                        </div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">2</p>
+                                        </div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">3</p>
+                                        </div>
+                                    </td>
+                                    <td class="pt-6">
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">4</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">5</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">6</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">7</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a title="partie à rambouillet"  role="link" tabindex="0" class="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:bg-indigo-500 hover:bg-indigo-500 text-base w-8 h-8 flex items-center justify-center text-white bg-main-green rounded-full">8</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">9</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">10</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">11</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">12</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">13</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">14</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">15</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">16</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">17</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">18</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">19</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">20</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">21</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">22</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">23</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">24</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">25</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <a title="partie à Paris"  role="link" tabindex="0" class="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:bg-indigo-500 hover:bg-indigo-500 text-base w-8 h-8 flex items-center justify-center text-white bg-main-green rounded-full">26</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">27</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">28</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">29</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="px-1.5 py-1.5 cursor-pointer flex w-full justify-center">
+                                            <p class="text-base">30</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <!--END CALENDAR Card -->
+
 
     </div>
+
+    <div class="flex justify-between items-center w-full mt-14 border-b border-main-grey py-2">
+        <h2 class="text-xl font-bold">Joueurs recommandés</h2>
+        <div class="hidden sm:flex gap-5">
+            <div id="recommended_player_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
+            <div id="recommended_player_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
+        </div>
+    </div>
     
-   
+    <div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-1 sm:px-2 py-4">
+        <!--START PLAYER CARD-->
+        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
+                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
+                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                </div>
+                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <span>Thomas</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+                        <span>30 ans</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+                        <span>Paris</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col h-3/5 p-2">
+                <div class="w-full h-1/5 flex justify-between items-center">
+                    <div class="w-full flex justify-start items-center pl-4">
+                        <a href="">7 avis</a>
+                    </div>
+                    <div class="flex w-full h-full justify-end items-center pr-4">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                    </div>
+                </div>
+                
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Inscrit depuis le 12/02/2021</span>
+                </div>            
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Dernière connexion il y a 3 jours</span>
+                </div>  
+                <div class="w-full h-1/5 flex items-center">
+                    <div class="w-full h-full flex justify-start items-center pl-4">
+                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+                    </div>
+                    <div class="w-full flex justify-end items-center gap-1 pr-4">
+                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
+                        <span>En ligne</span>
+                    </div>
+                </div> 
+                <div class="h-1/5 flex justify-center items-center">
+                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+                </div>     
+            </div>
+        </div>
+        <!--END PLAYER CARD -->
+        <!--START PLAYER CARD-->
+        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
+                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
+                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                </div>
+                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <span>Thomas</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+                        <span>30 ans</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+                        <span>Paris</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col h-3/5 p-2">
+                <div class="w-full h-1/5 flex justify-between items-center">
+                    <div class="w-full flex justify-start items-center pl-4">
+                        <a href="">7 avis</a>
+                    </div>
+                    <div class="flex w-full h-full justify-end items-center pr-4">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                    </div>
+                </div>
+                
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Inscrit depuis le 12/02/2021</span>
+                </div>            
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Dernière connexion il y a 3 jours</span>
+                </div>  
+                <div class="w-full h-1/5 flex items-center">
+                    <div class="w-full h-full flex justify-start items-center pl-4">
+                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+                    </div>
+                    <div class="w-full flex justify-end items-center gap-1 pr-4">
+                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
+                        <span>En ligne</span>
+                    </div>
+                </div> 
+                <div class="h-1/5 flex justify-center items-center">
+                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+                </div>     
+            </div>
+        </div>
+        <!--END PLAYER CARD -->
+        <!--START PLAYER CARD-->
+        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
+                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
+                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                </div>
+                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <span>Thomas</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+                        <span>30 ans</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+                        <span>Paris</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col h-3/5 p-2">
+                <div class="w-full h-1/5 flex justify-between items-center">
+                    <div class="w-full flex justify-start items-center pl-4">
+                        <a href="">7 avis</a>
+                    </div>
+                    <div class="flex w-full h-full justify-end items-center pr-4">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/favicon/favicon.svg') }}" alt="">
+                    </div>
+                </div>
+                
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Inscrit depuis le 12/02/2021</span>
+                </div>            
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Dernière connexion il y a 3 jours</span>
+                </div>  
+                <div class="w-full h-1/5 flex items-center">
+                    <div class="w-full h-full flex justify-start items-center pl-4">
+                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+                    </div>
+                    <div class="w-full flex justify-end items-center gap-1 pr-4">
+                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
+                        <span>En ligne</span>
+                    </div>
+                </div> 
+                <div class="h-1/5 flex justify-center items-center">
+                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+                </div>     
+            </div>
+        </div>
+        <!--END PLAYER CARD -->
+        <!--START PLAYER CARD-->
+        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
+                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
+                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                </div>
+                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+                        <span>Thomas</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+                        <span>30 ans</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+                        <span>Paris</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col h-3/5 p-2">
+                <div class="w-full h-1/5 flex justify-between items-center">
+                    <div class="w-full flex justify-start items-center pl-4">
+                        <a href="">7 avis</a>
+                    </div>
+                    <div class="flex w-full h-full justify-end items-center pr-4">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                        <img class="h-1/2" src="{{ asset('img/content/star.svg') }}" alt="">
+                    </div>
+                </div>
+                
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Inscrit depuis le 12/02/2021</span>
+                </div>            
+                <div class="w-full h-1/5 flex justify-start items-center pl-4">
+                    <span>Dernière connexion il y a 3 jours</span>
+                </div>  
+                <div class="w-full h-1/5 flex items-center">
+                    <div class="w-full h-full flex justify-start items-center pl-4">
+                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+                    </div>
+                    <div class="w-full flex justify-end items-center gap-1 pr-4">
+                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
+                        <span>En ligne</span>
+                    </div>
+                </div> 
+                <div class="h-1/5 flex justify-center items-center">
+                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+                </div>     
+            </div>
+        </div>
+        <!--END PLAYER CARD -->
+
+        
+    </div>   
 </section>
 	
 {% endblock main_content %}
