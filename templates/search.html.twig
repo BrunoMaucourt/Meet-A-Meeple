@@ -23,26 +23,24 @@ Chercher une partie ou un joueur
 				{{ form_row(searchForm.send) }}
 			{{ form_end(searchForm) }}	
 
-<h2>filtré</h2>
+	<h2>filtré</h2>
 
-		{% for category in searchResult %}
-		    {{ category.game }}
-			{{ category.description }}
-			{{ category.player_number_needed }}
-			{{ category.address_location }}
-			<br>
-		{% endfor %}
+	{{ dump(searchResult) }}
 
-<h2>non filtré</h2>
+	<h2>non filtré</h2>
 
-		{% for category in test %}
-		    {{ category.game }}
-			{{ category.description }}
-			{{ category.playerNumberNeeded }}
-			{{ category.addressLocation }}
-			<br>
-		{% endfor %}
-		
+	{{ dump(test) }}
+
+	<h2>Données</h2>
+
+		{% if data != [] %}
+			{{dump(data)}}
+		{% endif %}
+
+	<h2>Résultats</h2>
+
+	{{ error }}
+	
 	<!--
 	<form action="" method="" class="bg-gradient-to-br from-white via-white to-main-orange/20 w-full max-w-xl lg:w-2/3 h-fit p-6 shadow-around rounded flex flex-col gap-14">
 		<div class="flex flex-col justify-center gap-10">
