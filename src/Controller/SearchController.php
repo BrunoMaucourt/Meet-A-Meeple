@@ -45,6 +45,7 @@ class SearchController extends AbstractController
             'city_name' => $user_ID_city,
             'city_GPS_lat' => $user_ID_lat,
             'city_GPS_long' => $user_ID_long,
+            'search_type' => 0
         ];
 
         // Create form
