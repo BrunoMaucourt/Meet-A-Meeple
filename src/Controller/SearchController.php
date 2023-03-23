@@ -49,8 +49,13 @@ class SearchController extends AbstractController
         $rechercheNonFiltree = [];
         $product = [];
         $data = [];
-        $search_party = 1;
-        $search_player = 0;
+        define("SEARCH_PARTY", "1");
+        define("SEARCH_PLAYER", "0");
+
+        // Get ID of user
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $user_ID = $user->getId();
 
         // Process form
         $form->handleRequest($request);
@@ -59,13 +64,13 @@ class SearchController extends AbstractController
             $data = $form->getData();
             
             // Check if user search player or party
-            if($data['search_type'] == $search_party){
+            if($data['search_type'] == SEARCH_PARTY){
                 // Search in database
                 $product = $entityManager->getRepository(Party::class)->findAllAvailableParty();
                 $rechercheNonFiltree = $entityManager->getRepository(Party::class)->findAll();
-            }else if($data['search_type'] == $search_player){
+            }else if($data['search_type'] == SEARCH_PLAYER){
                 // Search in database
-                $product = $entityManager->getRepository(User::class)->findAllAvailableUser();
+                $product = $entityManager->getRepository(User::class)->findAllAvailableUser($user_ID);
                 $rechercheNonFiltree = $entityManager->getRepository(User::class)->findAll();
             }
 

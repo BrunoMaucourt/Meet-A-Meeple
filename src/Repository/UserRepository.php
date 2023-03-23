@@ -55,14 +55,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $this->save($user, true);
     }
-    public function findAllAvailableUser(): array
+    public function findAllAvailableUser($user_ID): array
     {
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
             SELECT * FROM user U
             WHERE id NOT IN
-            (select * from )
+            (select user_banned_id from user_black_list where user_that_block_id = ' . $user_ID . ')
             ';
 
         $stmt = $conn->prepare($sql);
