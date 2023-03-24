@@ -11,58 +11,333 @@ Détails de la partie
 	<h1 class="uppercase text-xl font-bold">Info partie</h1>
 
 
-		<div class="w-fit h-fit flex flex-col justify-center items-center gap-4">
-			<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
-				<h2 class="text-lg font-bold">Informations générales</h2>
+		<div class="w-full h-fit flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-4">
+			<div class="flex justify-between items-center w-full mt-6 border-b border-main-grey py-2">
+				<h2 class="text-base font-bold">Informations générales</h2>
 			</div>
 
-			<div class="w-60 h-32 rounded-md p-3 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
-				<div class="w-full h-1/2 flex">
+			<!-- START GENERAL INFO GAME CARD-->
+			<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+				<div class="w-full h-1/3 flex">
 					<div class="w-2/3 flex justify-center items-center">
-						<span class="w-full text-xl font-bold uppercase text-center">Jeu</span>
+						<span class="w-full text-base font-bold uppercase text-center">Jeu</span>
 					</div>
 					<div class="w-1/3 flex justify-center items-center ">
-						<img src="{{ asset('img/content/game.svg') }}" alt="">
+						<img class="h-full max-w-full" src="{{ asset('img/profil_menu/game.svg') }}" alt="">
 					</div>	
 				</div>
-				<div class="w-full h-1/2 flex justify-center items-center ">
+				<div class="w-full h-2/3 flex justify-center items-center ">
 					<span class="capitalize text-main-brown font-bold text-lg text-center">age of champagne</span>
 				</div>		
 			</div>
+			<!-- END GENERAL INFO GAME CARD-->
+			<!-- START GENERAL INFO GAME CARD-->
+			<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+				<div class="w-full h-1/3 flex">
+					<div class="w-2/3 flex justify-center items-center">
+						<span class="w-full text-base font-bold uppercase text-center">Date</span>
+					</div>
+					<div class="w-1/3 flex justify-center items-center ">
+						<img class="h-full max-w-full" src="{{ asset('img/content/calendar.svg') }}" alt="">
+					</div>	
+				</div>
+				<div class="w-full h-2/3 flex justify-center items-center ">
+					<span class="capitalize text-main-brown font-bold text-xl text-center">26/06/2023</span>
+				</div>		
+			</div>
+			<!-- END GENERAL INFO GAME CARD-->
+			<!-- START GENERAL INFO GAME CARD-->
+			<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+				<div class="w-full h-1/3 flex">
+					<div class="w-2/3 flex justify-center items-center">
+						<span class="w-full text-base font-bold uppercase text-center">Joueur max</span>
+					</div>
+					<div class="w-1/3 flex justify-center items-center ">
+						<img class="h-full max-w-full" src="{{ asset('img/content/player_max.svg') }}" alt="">
+					</div>	
+				</div>
+				<div class="w-full h-2/3 flex justify-center items-center ">
+					<span class="capitalize text-main-brown font-bold text-3xl text-center">4</span>
+				</div>		
+			</div>
+			<!-- END GENERAL INFO GAME CARD-->
+			<!-- START GENERAL INFO GAME CARD-->
+			<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+				<div class="w-full h-1/3 flex">
+					<div class="w-2/3 flex justify-center items-center">
+						<span class="w-full text-base font-bold uppercase text-center">Joueur inscrit</span>
+					</div>
+					<div class="w-1/3 flex justify-center items-center ">
+						<img class="h-full max-w-full" src="{{ asset('img/content/player_registered.svg') }}" alt="">
+					</div>	
+				</div>
+				<div class="w-full h-2/3 flex justify-center items-center ">
+					<span class="capitalize text-main-brown font-bold text-3xl text-center">2</span>
+				</div>		
+			</div>
+			<!-- END GENERAL INFO GAME CARD-->
+			<!-- START GENERAL INFO GAME CARD-->
+			<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+				<div class="w-full h-1/3 flex">
+					<div class="w-2/3 flex justify-center items-center">
+						<span class="w-full text-base font-bold uppercase text-center">Lieu</span>
+					</div>
+					<div class="w-1/3 flex justify-center items-center ">
+						<img class="h-full max-w-full" src="{{ asset('img/content/location.svg') }}" alt="">
+					</div>	
+				</div>
+				<div class="w-full h-2/3 flex justify-center items-center ">
+					<span class="capitalize text-main-brown font-bold text-sm text-center">8 boulevard de ma bite et mon cul 75015</span>
+				</div>		
+			</div>
+			<!-- END GENERAL INFO GAME CARD-->
+		</div>
 
-			<div class="w-60 sm:w-72 h-96 flex flex-col rounded-lg bg-gradient-to-br from-main-orange/20 to-main-green/20 border-b-4 border-main-brown p-2 sm:p-4 gap-4 shadow-md">
-				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
-					<span class="w-full uppercase flex justify-center font-bold">jeu :</span>
-					<span class="w-full uppercase flex justify-center text-center">Age of Champagne</span>
+		<div class="w-full h-fit flex flex-col md:flex-row md:flex-wrap justify-center items-center gap-4">
+			<div class="flex justify-between items-center w-full mt-6 border-b border-main-grey py-2">
+				<h2 class="text-base font-bold">Détails</h2>
+			</div>
+			
+			<div class="flex flex-col gap-4 xl:gap-6 2xl:gap-10justify-center items-center">
+				<!-- START DESCRIPTION GAME CARD-->
+				<div class="w-60 sm:w-full max-w-xs h-fit rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col gap-2">
+					<div class="w-full h-1/3 flex">
+						<div class="w-2/3 flex justify-center items-center">
+							<span class="w-full text-base font-bold uppercase text-center">Description</span>
+						</div>
+						<div class="w-1/3 flex justify-center items-center ">
+							<img class="h-full max-w-full" src="{{ asset('img/content/description.svg') }}" alt="">
+						</div>	
+					</div>
+					<div class="w-full h-2/3 flex justify-center items-center ">
+						<p class="capitalize text-main-brown font-bold text-sm text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed accusamus laboriosam, tempore, unde placeat minus ratione explicabo est adipisci voluptas facere voluptatem provident fugiat nesciunt nam! Distinctio magnam temporibus facere!</p>
+					</div>		
 				</div>
-				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
-					<span class="w-full uppercase flex justify-center font-bold">date :</span>
-					<span class="w-full uppercase flex justify-center">25/06/2023</span>
-				</div>
-				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
-					<span class="w-full uppercase flex justify-center font-bold">joueur max :</span>
-					<span class="w-full uppercase flex justify-center">4</span>
-				</div>
-				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
-					<span class="w-full uppercase flex justify-center font-bold">joueur inscrit :</span>
-					<span class="w-full uppercase flex justify-center">2</span>
-				</div>
-				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
-					<span class="w-full uppercase flex justify-center font-bold">Lieu :</span>
-					<span class="w-full uppercase flex justify-center text-center">3 boulevard du car entre neuf et troyes 75015</span>
-				</div>
-				<div class="w-full flex justify-center items-center h-1/6">
-					<span class="w-1/2 uppercase">description :</span>
+				<!-- END DESCRIPTION GAME CARD-->
+
+				<div class="w-60 sm:w-72 h-96 rounded-md border-b-4 border-main-brown p-4 bg-gradient-to-br from-main-orange/20 to-main-green/20">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.031284938393!2d2.3740984!3d48.8385419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672171102bf9f%3A0x882186e7de0d990c!2s8%20Bd%20de%20Bercy%2C%2075012%20Paris!5e0!3m2!1sfr!2sfr!4v1679656826427!5m2!1sfr!2sfr" height="100%" width="100%"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
-48.8385419
-2.3740984
-			<div class="w-60 sm:w-72 h-96 rounded-md border-b-4 border-main-brown">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.031284938393!2d2.3740984!3d48.8385419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672171102bf9f%3A0x882186e7de0d990c!2s8%20Bd%20de%20Bercy%2C%2075012%20Paris!5e0!3m2!1sfr!2sfr!4v1679656826427!5m2!1sfr!2sfr" height="100%" width="100%"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+			<div class="w-full sm:w-1/2 h-fit flex flex-col md:flex-row md:flex-wrap justify-center items-center gap-4 xl:gap-6 2xl:gap-10">
+				<!-- START DESCRIPTION GAME CARD-->
+				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+					<div class="w-full h-1/3 flex">
+						<div class="w-2/3 flex justify-center items-center">
+							<span class="w-full text-base font-bold uppercase text-center">Créée le :</span>
+						</div>
+						<div class="w-1/3 flex justify-center items-center ">
+							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
+						</div>	
+					</div>
+					<div class="w-full h-2/3 flex justify-center items-center ">
+						<span class="capitalize text-main-brown font-bold text-xl text-center">12/04/2023</span>
+					</div>		
+				</div>
+				<!-- END DESCRIPTION GAME CARD-->
+				<!-- START DESCRIPTION GAME CARD-->
+				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+					<div class="w-full h-1/3 flex">
+						<div class="w-2/3 flex justify-center items-center">
+							<span class="w-full text-base font-bold uppercase text-center">Limite d'inscription :</span>
+						</div>
+						<div class="w-1/3 flex justify-center items-center ">
+							<img class="h-full max-w-full" src="{{ asset('img/content/limit_date.svg') }}" alt="">
+						</div>	
+					</div>
+					<div class="w-full h-2/3 flex justify-center items-center ">
+						<span class="capitalize text-main-brown font-bold text-xl text-center">20/06/2023</span>
+					</div>		
+				</div>
+				<!-- END DESCRIPTION GAME CARD-->
+				<!-- START DESCRIPTION GAME CARD-->
+				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+					<div class="w-full h-1/3 flex">
+						<div class="w-2/3 flex justify-center items-center">
+							<span class="w-full text-base font-bold uppercase text-center">TRAIT 1 :</span>
+						</div>
+						<div class="w-1/3 flex justify-center items-center ">
+							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
+						</div>	
+					</div>
+					<div class="w-full h-2/3 flex justify-center items-center ">
+						<span class="capitalize text-main-brown font-bold text-base text-center">details trait 1</span>
+					</div>		
+				</div>
+				<!-- END DESCRIPTION GAME CARD-->
+				<!-- START DESCRIPTION GAME CARD-->
+				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+					<div class="w-full h-1/3 flex">
+						<div class="w-2/3 flex justify-center items-center">
+							<span class="w-full text-base font-bold uppercase text-center">TRAIT 2 :</span>
+						</div>
+						<div class="w-1/3 flex justify-center items-center ">
+							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
+						</div>	
+					</div>
+					<div class="w-full h-2/3 flex justify-center items-center ">
+						<span class="capitalize text-main-brown font-bold text-base text-center">details trait 2</span>
+					</div>		
+				</div>
+				<!-- END DESCRIPTION GAME CARD-->
+				<!-- START DESCRIPTION GAME CARD-->
+				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+					<div class="w-full h-1/3 flex">
+						<div class="w-2/3 flex justify-center items-center">
+							<span class="w-full text-base font-bold uppercase text-center">TRAIT 3 :</span>
+						</div>
+						<div class="w-1/3 flex justify-center items-center ">
+							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
+						</div>	
+					</div>
+					<div class="w-full h-2/3 flex justify-center items-center ">
+						<span class="capitalize text-main-brown font-bold text-base text-center">details trait 3</span>
+					</div>		
+				</div>
+				<!-- END DESCRIPTION GAME CARD-->
+				<!-- START DESCRIPTION GAME CARD-->
+				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+					<div class="w-full h-1/3 flex">
+						<div class="w-2/3 flex justify-center items-center">
+							<span class="w-full text-base font-bold uppercase text-center">TRAIT 4 :</span>
+						</div>
+						<div class="w-1/3 flex justify-center items-center ">
+							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
+						</div>	
+					</div>
+					<div class="w-full h-2/3 flex justify-center items-center ">
+						<span class="capitalize text-main-brown font-bold text-base text-center">details trait 4</span>
+					</div>		
+				</div>
+				<!-- END DESCRIPTION GAME CARD-->
+			</div>
+		</div>
+
+		<div class="w-full h-fit flex flex-col sm:flex-row sm:flex-wrap justify-center items-start gap-4">
+			<div class="w-full md:w-1/2 md:max-w-sm flex flex-col justify-center items-center gap-4">
+				<div class="flex justify-between items-center w-full mt-6 border-b border-main-grey py-2">
+					<h2 class="text-base font-bold">Organisateur</h2>
+				</div>
+
+				<!--START ORGANIZER CARD-->
+				<div class="w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md overflow-hidden border-b-4 border-main-emerald">
+					<div class="h-2/5 bg-gradient-to-r from-main-orange/20 to-main-green/20 flex">
+						<div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
+							<img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+						</div>
+						<div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+							<div class="flex items-center gap-2">
+								<img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+								<span>Thomas</span>
+							</div>
+							<div class="flex items-center gap-2">
+								<img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+								<span>30 ans</span>
+							</div>
+							<div class="flex items-center gap-2">
+								<img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+								<span>Paris</span>
+							</div>
+						</div>
+					</div>
+					<div class="flex flex-col h-3/5 p-2">
+						<div class="w-full h-1/5 flex justify-between items-center">
+							<div class="w-full flex justify-start items-center pl-4">
+								<a href="">7 avis</a>
+							</div>
+							<div class="flex w-full h-full justify-end items-center pr-4">
+								<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+								<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+								<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+								<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+								<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+							</div>
+						</div>
+						
+						<div class="w-full h-1/5 flex justify-start items-center pl-4">
+							<span>Inscrit depuis le 12/02/2021</span>
+						</div>            
+						<div class="w-full h-1/5 flex justify-start items-center pl-4">
+							<span>Dernière connexion il y a 3 jours</span>
+						</div>  
+						<div class="w-full h-1/5 flex items-center">
+							<div class="w-full h-full flex justify-start items-center pl-4">
+								<img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
+							</div>
+							<div class="w-full flex justify-end items-center gap-1 pr-4">
+								<div class="h-2 w-2 bg-main-green rounded-full"></div>
+								<span>En ligne</span>
+							</div>
+						</div> 
+						<div class="h-1/5 flex justify-center items-center">
+							<a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+						</div>     
+					</div>
+				</div>
+				<!--END ORGANIZER CARD -->
+			</div>
+
+
+			<div class="w-full md:w-1/2 md:max-w-sm flex flex-col gap-4 justify-center items-center">
+				<div class="flex justify-between items-center w-full mt-6 border-b border-main-grey py-2">
+					<h2 class="text-base font-bold">Participants</h2>
+				</div>
+
+				<div class="w-60 sm:w-72 h-fit shadow-xl bg-gradient-to-br from-main-orange/20 to-main-brown/20 rounded-md border-b-4 border-main-brown flex justify-center items-center ">
+					<span class="p-2 text-center">Il n'y a aucun joueurs inscrits pour le moment</span>
+				</div>
+
+				<!--START REGISTERED PLAYER CARD-->				
+				<a class="w-60 sm:w-72 h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
+					<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+					</div>
+
+					<div class="w-fit h-full flex justify-center items-center">
+						<span class="font-bold text-main-brown">Thomas</span>
+					</div>
+
+					<div class="w-fit h-full flex justify-center items-center">
+						<span class="font-bold text-main-brown">32 ans</span>
+					</div>
+				</a>
+				<!--END REGISTERED PLAYER CARD -->
+				<!--START REGISTERED PLAYER CARD-->				
+				<a class="cursor-pointer w-60 sm:w-72 h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
+					<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+					</div>
+
+					<div class="w-fit h-full flex justify-center items-center">
+						<span class="font-bold text-main-brown">Thomas</span>
+					</div>
+
+					<div class="w-fit h-full flex justify-center items-center">
+						<span class="font-bold text-main-brown">32 ans</span>
+					</div>
+				</a>
+				<!--END REGISTERED PLAYER CARD -->
+				<!--START REGISTERED PLAYER CARD-->				
+				<a class="w-60 sm:w-72 h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
+					<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+					</div>
+
+					<div class="w-fit h-full flex justify-center items-center">
+						<span class="font-bold text-main-brown">Thomas</span>
+					</div>
+
+					<div class="w-fit h-full flex justify-center items-center">
+						<span class="font-bold text-main-brown">32 ans</span>
+					</div>
+				</a>
+				<!--END REGISTERED PLAYER CARD -->
+
 			</div>
 			
 
+
+
 		</div>
+
 		
 		
 	</section>
