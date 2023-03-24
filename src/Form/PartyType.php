@@ -1,5 +1,5 @@
 <?php
-//CHEMIN D'ACCES
+//CHEMIN ÉVITANT DES INCOHÉRENCES
 namespace App\Form;
 //CLASS UTILISER POUR LA PAGE PARTYTYPE.PHP
 use App\Entity\Party;
@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PartyType extends AbstractType
 {   //APPEL DE LA FONCTION BUILDFORM
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {   //CRÉATION DES NOM COLONNES DE LA TABLE PARTY
+    {   //CRÉATION DES NOMS COLONNES DE LA TABLE PARTY
         $builder
             //->add('user_host_ID')
             ->add('description')
