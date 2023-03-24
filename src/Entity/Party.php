@@ -1,11 +1,11 @@
 <?php
-
+//CHEMIN ÉVITANT DES INCOHÉRENCES
 namespace App\Entity;
-
+//CLASS UTILISER POUR LA PAGE PARTY.PHP
 use App\Repository\PartyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+//CRÉATION ET DÉFINITIONS DES COLONES POUR LA TABLE PARTY
 #[ORM\Entity(repositoryClass: PartyRepository::class)]
 class Party
 {

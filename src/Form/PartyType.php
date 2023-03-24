@@ -1,18 +1,18 @@
 <?php
-
+//CHEMIN D'ACCES
 namespace App\Form;
-
+//CLASS UTILISER POUR LA PAGE PARTYTYPE.PHP
 use App\Entity\Party;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+//CLASS PARTYTYPE ENFANT DE LA CLASS ABSTRACTYPE
 class PartyType extends AbstractType
-{
+{   //APPEL DE LA FONCTION BUILDFORM
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    {   //CRÉATION DES NOM COLONNES DE LA TABLE PARTY
         $builder
             //->add('user_host_ID')
             ->add('description')
@@ -39,7 +39,7 @@ class PartyType extends AbstractType
             //->add('canceled')
         ;
     }
-
+    //APPEL DE LA FONCTION CONFIGUREOPTIONS
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
