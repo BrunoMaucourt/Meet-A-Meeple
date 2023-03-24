@@ -39,6 +39,21 @@ class UserCommentRepository extends ServiceEntityRepository
         }
     }
 
+    public function numberOfComment($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT COUNT(id) FROM user_comment
+            WHERE concerned_user_id = '.$user_ID.' ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return UserComment[] Returns an array of UserComment objects
 //     */

@@ -45,20 +45,6 @@ Chercher une partie ou un joueur
 					{{ form_row(searchForm.send) }}
 				{{ form_end(searchForm) }}	
 
-		<h2>filtré</h2>
-
-		{{ dump(searchResult) }}
-
-		<h2>non filtré</h2>
-
-		{{ dump(test) }}
-
-		<h2>Données</h2>
-
-			{% if data != [] %}
-				{{dump(data)}}
-			{% endif %}
-
 		<h2>Résultats</h2>
 
 		{{ error }}
@@ -104,13 +90,15 @@ Chercher une partie ou un joueur
 			-->	
 	</div>
 
-	<!-- DEBUT BRUNO-->
-	<div class="w-full flex flex-col sm:flex-row flex-wrap sm:justify-center items-center gap-4 lg:gap-6">
-	
-	<!-- ICI POUR TOI BRUNO-->
 
+	<div class="w-full flex flex-col sm:flex-row flex-wrap sm:justify-center items-center gap-4 lg:gap-6">
+	{% if userResult != [] %}
+		{% for user in userResult %}
+			{% include('/cards/player_card.html.twig') %}
+		{% endfor %}
+	{% endif %}
 	</div>
-	<!-- FIB BRUNO-->
+
 	
 </section>
 	
