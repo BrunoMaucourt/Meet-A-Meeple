@@ -17,9 +17,7 @@ for (let i = 0; i < tabs_btns.length; i++) {
             games_container[i].classList.toggle('hidden');
             games_container[i].classList.toggle('flex');
 
-            default_btn = i;
-            
+            default_btn = i;  
         }
-    })
-    
+    }) 
 }
