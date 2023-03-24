@@ -1,7 +1,7 @@
 <?PHP
-
+//CHEMIN ÉVITANT DES INCOHÉRENCES
 namespace App\Controller;
-
+//CLASS UTILISER POUR LA PAGE ADDPARTYCONTROLLER.PHP
 use App\Entity\Party;
 use App\Form\PartyType;
 use Doctrine\ORM\EntityManager;
@@ -11,10 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\String\Slugger\SluggerInterface;
-
+//CLASS ADDPARTYCONTROLLER ENFANT DE LA CLASS ABSTRACTCONTROLLER
 class AddPartyController extends AbstractController
-{
+{   //CHEMIN D'ACCCES (ROUTE)
     #[Route('/addparty', name: 'add party')]
+    //APPEL DE LA FONCTION ADDPARTY
     public function addParty(Request $request, EntityManagerInterface $entityManager): Response
     {
         // Allow acces only to connected user
@@ -22,7 +23,7 @@ class AddPartyController extends AbstractController
         $party = new Party();
         $form = $this->createForm(PartyType::class, $party);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $party = $form->getData(); 
             // Get ID of user
