@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,10 +33,6 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            // Add last connexion date
-            date_default_timezone_set('Europe/Paris');
-            $last_connexion_date = new DateTime();
-            $user->setLastConnexion($last_connexion_date);
 
             // Add profil picture
             /** @var UploadedFile $uploaded_picture */

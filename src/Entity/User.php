@@ -96,6 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
+        $this->last_connexion = new \DateTime();
         $this->rate = 0;
         $this->user_level_ID = 0;
         $this->absence = 0;
