@@ -4,11 +4,45 @@
 Mes parties
 {% endblock title %}
 
+{% block bonus_javascript %}
+<script defer src="{{ asset('js/my_party.js') }}"></script> 
+{% endblock bonus_javascript %}
+
 {% block withdashboard %}{% endblock withdashboard %}
 
 {% block main_content %}
-	<h1 class="text-3xl font-bold underline bg-slate-300">
-		Hello world!
-	</h1>
-	<div class="w-full bg-main-orange h-3/4">test</div>
+	<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
+
+		<!-- START GAMES MENU CARD -->
+		<div class="w-fit max-w-3xl h-96 shadow-md rounded-lg bg-gradient-to-br from-main-green/20 to-main-orange/20 p-2 flex flex-col">
+			<ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 items-center justify-center">
+				<li class="mr-2">
+					<button id="incomming_game_btn" aria-current="page" class="tab_btn sinline-block p-4 active bg-main-orange/70 text-white hover:text-white hover:bg-main-orange/70">A venir</button>
+				</li>
+				<li class="mr-2">
+					<button id="finished_game_btn" class="tab_btn sinline-block p-4 hover:text-white hover:bg-main-orange/70">Terminée</button>
+				</li>
+				<li class="mr-2">
+					<button id="created_game_btn" class="tab_btn sinline-block p-4 hover:text-white hover:bg-main-orange/70">Créées</button>
+				</li>
+				<li class="mr-2">
+					<button id="canceled_game_btn" class="tab_btn sinline-block p-4 hover:text-white hover:bg-main-orange/70">Annulées</button>
+				</li>
+			</ul>
+			<div class="h-full w-full relative">
+				<div id="incomming_game_container" class="games_container shadow-inset-xl absolute flex flex-col w-full h-full rounded-md">
+				</div>
+				<div id="finished_game_container" class="games_container shadow-inner absolute hidden flex-col w-full h-full rounded-md">
+				</div>
+				<div id="created_game_container" class="games_container shadow-inner absolute hidden flex-col w-full h-full rounded-md">
+				</div>
+				<div id="canceled_game_container" class="games_container shadow-inner absolute hidden flex-col w-full h-full rounded-md">
+				</div>
+			</div>
+			
+		</div>
+		<!-- END GAMES MENU CARD -->
+
+
+	</section>
 {% endblock main_content %}

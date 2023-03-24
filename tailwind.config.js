@@ -40,6 +40,7 @@ module.exports = {
       },
       boxShadow: {
         'around': '0 -1px 4px 0 rgba(26, 26, 26, 0.3),0 4px 8px 0 rgba(26, 26, 26, 0.3)',
+        'inset-xl': 'inset 0px 0px 10px rgba(0,0,0,0.1)'
       }  
     },
     keyframes:{

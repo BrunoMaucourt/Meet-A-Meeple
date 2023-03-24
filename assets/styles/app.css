@@ -16,10 +16,10 @@
     }
 
     .main-width{
-        width: calc(100vw - 256px);
+        width: calc(100% - 256px);
     }
     .main-mobile-width{
-        width: calc(100vw - 64px);
+        width: calc(100% - 64px);
     }
 
     .aside-xl-section{
@@ -41,6 +41,10 @@
 }
 
 #recommended_player_slider_container::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+#incomming_event_slider_container::-webkit-scrollbar{
     width: 0;
     height: 0;
 }
