@@ -53,6 +53,22 @@ class PartyUserRepository extends ServiceEntityRepository
 
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
+    }
+
+    public function findPartyID($partyID, $user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT id FROM party_user
+            WHERE party_id = '. $partyID .' AND
+            user_id = '.$user_ID.' ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
     } 
 
 //    /**
