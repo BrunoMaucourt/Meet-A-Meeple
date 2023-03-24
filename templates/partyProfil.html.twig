@@ -7,8 +7,63 @@ Détails de la partie
 {% block withdashboard %}{% endblock withdashboard %}
 
 {% block main_content %}
-	<h1 class="text-3xl font-bold underline bg-slate-300">
-		Hello world!
-	</h1>
-	<div class="w-full bg-main-orange h-3/4">test</div>
+	<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
+	<h1 class="uppercase text-xl font-bold">Info partie</h1>
+
+
+		<div class="w-fit h-fit flex flex-col justify-center items-center gap-4">
+			<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
+				<h2 class="text-lg font-bold">Informations générales</h2>
+			</div>
+
+			<div class="w-60 h-32 rounded-md p-3 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
+				<div class="w-full h-1/2 flex">
+					<div class="w-2/3 flex justify-center items-center">
+						<span class="w-full text-xl font-bold uppercase text-center">Jeu</span>
+					</div>
+					<div class="w-1/3 flex justify-center items-center ">
+						<img src="{{ asset('img/content/game.svg') }}" alt="">
+					</div>	
+				</div>
+				<div class="w-full h-1/2 flex justify-center items-center ">
+					<span class="capitalize text-main-brown font-bold text-lg text-center">age of champagne</span>
+				</div>		
+			</div>
+
+			<div class="w-60 sm:w-72 h-96 flex flex-col rounded-lg bg-gradient-to-br from-main-orange/20 to-main-green/20 border-b-4 border-main-brown p-2 sm:p-4 gap-4 shadow-md">
+				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
+					<span class="w-full uppercase flex justify-center font-bold">jeu :</span>
+					<span class="w-full uppercase flex justify-center text-center">Age of Champagne</span>
+				</div>
+				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
+					<span class="w-full uppercase flex justify-center font-bold">date :</span>
+					<span class="w-full uppercase flex justify-center">25/06/2023</span>
+				</div>
+				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
+					<span class="w-full uppercase flex justify-center font-bold">joueur max :</span>
+					<span class="w-full uppercase flex justify-center">4</span>
+				</div>
+				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
+					<span class="w-full uppercase flex justify-center font-bold">joueur inscrit :</span>
+					<span class="w-full uppercase flex justify-center">2</span>
+				</div>
+				<div class="w-full flex flex-col justify-center items-center h-1/6 text-main-brown">
+					<span class="w-full uppercase flex justify-center font-bold">Lieu :</span>
+					<span class="w-full uppercase flex justify-center text-center">3 boulevard du car entre neuf et troyes 75015</span>
+				</div>
+				<div class="w-full flex justify-center items-center h-1/6">
+					<span class="w-1/2 uppercase">description :</span>
+				</div>
+			</div>
+48.8385419
+2.3740984
+			<div class="w-60 sm:w-72 h-96 rounded-md border-b-4 border-main-brown">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.031284938393!2d2.3740984!3d48.8385419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672171102bf9f%3A0x882186e7de0d990c!2s8%20Bd%20de%20Bercy%2C%2075012%20Paris!5e0!3m2!1sfr!2sfr!4v1679656826427!5m2!1sfr!2sfr" height="100%" width="100%"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+			
+
+		</div>
+		
+		
+	</section>
 {% endblock main_content %}
