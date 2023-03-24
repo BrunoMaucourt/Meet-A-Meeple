@@ -13,94 +13,105 @@ Chercher une partie ou un joueur
 {% endblock withdashboard %}
 
 {% block main_content %}
-<section class="w-full flex flex-col items-center gap-10">
-	<h1 class="text-2xl font-bold text-center">
-		Recherchez rapidement des joueurs ou des parties autour de vous !
-	</h1>
-			{{ form_start(searchForm) }}	
-				{{ form_row(searchForm.search_type) }}
+<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
+	<div class="w-full h-fit">
+		<h1 class="text-2xl font-bold text-center">
+			Recherchez rapidement des joueurs ou des parties autour de vous !
+		</h1>
+				{{ form_start(searchForm) }}	
+					{{ form_row(searchForm.search_type) }}
+					<div>
+						<div id="location-choice" class="w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
+							<label class="text-sm" for="locate-my-position">Choisir ma position</label>
+							<input class="accent-main-emerald" type="checkbox" name="locate-my-position" id="locate-my-position" value="my-position">
+						</div>
+						{{ form_row(searchForm.city_name, {
+							'id': 'city_search_input'
+							})
+						}}
+						<div id="city_list" class="hidden absolute flex-col w-full h-fit"></div>
+					</div>
+					{{ form_row(searchForm.city_GPS_lat, {
+						'attr': {'class': 'hidden'},
+						'id': 'form_city_GPS_lat'
+						})
+					}}
+					{{ form_row(searchForm.city_GPS_long, {
+						'attr': {'class': 'hidden'},
+						'id': 'form_city_GPS_long'
+						})
+					}}
+					{{ form_row(searchForm.distance) }}
+					{{ form_row(searchForm.send) }}
+				{{ form_end(searchForm) }}	
+
+		<h2>filtré</h2>
+
+		{{ dump(searchResult) }}
+
+		<h2>non filtré</h2>
+
+		{{ dump(test) }}
+
+		<h2>Données</h2>
+
+			{% if data != [] %}
+				{{dump(data)}}
+			{% endif %}
+
+		<h2>Résultats</h2>
+
+		{{ error }}
+		
+		<!--
+		<form action="" method="" class="bg-gradient-to-br from-white via-white to-main-orange/20 w-full max-w-xl lg:w-2/3 h-fit p-6 shadow-around rounded flex flex-col gap-14">
+			<div class="flex flex-col justify-center gap-10">
+			<div>
+					<input class="accent-main-emerald" type="radio" id="joueur" value="joueur" name="recherche" checked="checked">
+					<label for="recherche">Joueur</label>
+				</div>
 				<div>
-					<div id="location-choice" class="w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
+					<input class="accent-main-emerald" type="radio" id="partie" value="partie" name="recherche">
+					<label for="recherche">Partie</label>
+				</div>
+			
+
+
+			</div>
+			<div class="flex flex-col items-center justify-center gap-16 lg:flex-row lg:justify-between ">
+				<div class="relative w-full lg:w-1/2 flex flex-col justify-center items-center">
+					<input class="w-full border max-w-[400px] rounded p-1 outline-main-green disabled:bg-black/5 disabled:placeholder:text-black" type="text" name="location" id="location" placeholder="Saisissez une ville">
+					<div id="location-choice" class="absolute -top-5 w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
 						<label class="text-sm" for="locate-my-position">Choisir ma position</label>
 						<input class="accent-main-emerald" type="checkbox" name="locate-my-position" id="locate-my-position" value="my-position">
 					</div>
-					{{ form_row(searchForm.city_name, {
-						'id': 'city_search_input'
-						})
-					}}
-					<div id="city_list" class="hidden absolute flex-col w-full h-fit"></div>
+					<input class="hidden" type="text" name="lat" id="latitude_input">
+					<input class="hidden" type="text" name="long" id="longitude_input">
+					<div id="city-list" class="hidden z-20 absolute top-9 bg-white w-full max-w-[400px] rounded border border-main-grey shadow-2xl h-fit  flex-col gap-1 overflow-hidden">
+						<div class="w-full h-full p-1 hover:bg-main-green/10 hover:shadow cursor-pointer">RAmbouillet</div>
+						<div class="w-full h-full p-1 hover:bg-main-green/10 hover:shadow">RAmbouillet</div>
+						<div class="w-full h-full p-1 hover:bg-main-green/10">RAmbouillet</div>
+					</div>
 				</div>
-				{{ form_row(searchForm.city_GPS_lat, {
-                    'attr': {'class': 'hidden'},
-					'id': 'form_city_GPS_lat'
-                    })
-                }}
-				{{ form_row(searchForm.city_GPS_long, {
-                    'attr': {'class': 'hidden'},
-					'id': 'form_city_GPS_long'
-                    })
-                }}
-				{{ form_row(searchForm.distance) }}
-				{{ form_row(searchForm.send) }}
-			{{ form_end(searchForm) }}	
+				
+				<div class="w-full md:w-1/2 max-w-[300px] relative flex justify-center z-10">
+					<input class="accent-main-green w-full before:h-8 before:w-8 before:rounded-lg before:left-0 before:top-5 before:absolute before:content-['5km'] after:h-8 after:w-8 after:rounded-lg after:right-0 after:top-5 after:absolute after:content-['25km']" type="range" name="range" id"range" min="5" max="25" step="5" value="5">
+				</div>
+				
+			</div>
+			<input type="submit" class="btn-orange" value="Rechercher">	
+		</form>
+			-->	
+	</div>
 
-	<h2>filtré</h2>
-
-	{{ dump(searchResult) }}
-
-	<h2>non filtré</h2>
-
-	{{ dump(test) }}
-
-	<h2>Données</h2>
-
-		{% if data != [] %}
-			{{dump(data)}}
-		{% endif %}
-
-	<h2>Résultats</h2>
-
-	{{ error }}
+	<!-- DEBUT BRUNO-->
+	<div class="w-full flex flex-col sm:flex-row flex-wrap sm:justify-center items-center gap-4 lg:gap-6">
 	
-	<!--
-	<form action="" method="" class="bg-gradient-to-br from-white via-white to-main-orange/20 w-full max-w-xl lg:w-2/3 h-fit p-6 shadow-around rounded flex flex-col gap-14">
-		<div class="flex flex-col justify-center gap-10">
-		 <div>
-				<input class="accent-main-emerald" type="radio" id="joueur" value="joueur" name="recherche" checked="checked">
-				<label for="recherche">Joueur</label>
-			</div>
-			<div>
-				<input class="accent-main-emerald" type="radio" id="partie" value="partie" name="recherche">
-				<label for="recherche">Partie</label>
-			</div>
-		
+	<!-- ICI POUR TOI BRUNO-->
 
-
-		</div>
-		<div class="flex flex-col items-center justify-center gap-16 lg:flex-row lg:justify-between ">
-			<div class="relative w-full lg:w-1/2 flex flex-col justify-center items-center">
-				<input class="w-full border max-w-[400px] rounded p-1 outline-main-green disabled:bg-black/5 disabled:placeholder:text-black" type="text" name="location" id="location" placeholder="Saisissez une ville">
-				<div id="location-choice" class="absolute -top-5 w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
-					<label class="text-sm" for="locate-my-position">Choisir ma position</label>
-					<input class="accent-main-emerald" type="checkbox" name="locate-my-position" id="locate-my-position" value="my-position">
-				</div>
-				<input class="hidden" type="text" name="lat" id="latitude_input">
-				<input class="hidden" type="text" name="long" id="longitude_input">
-				<div id="city-list" class="hidden z-20 absolute top-9 bg-white w-full max-w-[400px] rounded border border-main-grey shadow-2xl h-fit  flex-col gap-1 overflow-hidden">
-					<div class="w-full h-full p-1 hover:bg-main-green/10 hover:shadow cursor-pointer">RAmbouillet</div>
-					<div class="w-full h-full p-1 hover:bg-main-green/10 hover:shadow">RAmbouillet</div>
-					<div class="w-full h-full p-1 hover:bg-main-green/10">RAmbouillet</div>
-				</div>
-			</div>
-			
-			<div class="w-full md:w-1/2 max-w-[300px] relative flex justify-center z-10">
-				<input class="accent-main-green w-full before:h-8 before:w-8 before:rounded-lg before:left-0 before:top-5 before:absolute before:content-['5km'] after:h-8 after:w-8 after:rounded-lg after:right-0 after:top-5 after:absolute after:content-['25km']" type="range" name="range" id"range" min="5" max="25" step="5" value="5">
-			</div>
-			
-		</div>
-		<input type="submit" class="btn-orange" value="Rechercher">	
-	</form>
-		-->	
+	</div>
+	<!-- FIB BRUNO-->
+	
 </section>
 	
 {% endblock main_content %}
