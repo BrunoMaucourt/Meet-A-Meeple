@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Party;
 use App\Entity\User;
+use App\Entity\UserComment;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,9 +25,9 @@ class SearchController extends AbstractController
 
         // Variables declaration
         $result=[];
+        $result_party=[];
+        $result_user=[];
         $error = "";
-        $rechercheNonFiltree = [];
-        $product = [];
         $data = [];
         define("SEARCH_PARTY", "1");
         define("SEARCH_PLAYER", "0");
@@ -90,8 +91,6 @@ class SearchController extends AbstractController
             if($data['search_type'] == SEARCH_PARTY){
                 // Search in database
                 $result = $entityManager->getRepository(Party::class)->findAllAvailableParty();
-                $rechercheNonFiltree = $entityManager->getRepository(Party::class)->findAll();
-        
                 
                 foreach ($result as $party) {
                     $party_lat = $party['address_gps_lat'];
@@ -101,33 +100,29 @@ class SearchController extends AbstractController
                         array_push($temp_result,$party);
                     }
                 }
-                $result = $temp_result;
-
-                
+                $result_party = $temp_result;
 
             }else if($data['search_type'] == SEARCH_PLAYER){
                 // Search in database
                 $result = $entityManager->getRepository(User::class)->findAllAvailableUser($user_ID);
-                $rechercheNonFiltree = $entityManager->getRepository(User::class)->findAll();
 
-                foreach ($result as $player) {
-                    $player_lat = $player['city_gps_lat'];
-                    $player_long = $player['city_gps_long'];
-                    $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);
+                for ($i=0; $i < sizeof($result); $i++) { 
+                    $player_lat = $result[$i]['city_gps_lat'];
+                    $player_long = $result[$i]['city_gps_long'];
+                    $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);              
                     if($distance_between <= $data['distance']){
-                        array_push($temp_result,$player);
+                        $result[$i]['distance'] = round($distance_between,1);
+                        array_push($temp_result,$result[$i]);
                     }
                 }
-                $result = $temp_result;
-                
+
+                // Edit data before export to TWIG
+                $temp_result_date_created = SearchController::editDateCreatedAt($temp_result);
+                $temp_result_last_connexion = SearchController::editLastConnexion($temp_result_date_created);
+                $temp_result_age = SearchController::calculateAge($temp_result_last_connexion);
+                $temp_result_comment = SearchController::numberOfComment($temp_result_age, $entityManager);
+                $result_user = $temp_result_comment;
             }
-
-            // Distance Filter 
-
-            
-
-            // Stock data in array
-            
 
             // Send a message if zero results are found
             if($result == []){
@@ -137,8 +132,8 @@ class SearchController extends AbstractController
 
         return $this->render('search.html.twig', [
             'searchForm' => $form->createView(),
-            'searchResult' => $result,
-            'test' => $rechercheNonFiltree,
+            'partyResult' => $result_party,
+            'userResult' => $result_user,
             'error' => $error,
             'data' => $data,
         ]);
@@ -157,5 +152,60 @@ class SearchController extends AbstractController
         $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
           cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
         return $angle * EARTH_RADIUS;
+    }
+
+    public function calculateAge($result){
+        // Get current year
+        $current_year = date("Y");
+        for ($i=0; $i < sizeof($result); $i++) { 
+            #// Get year of birthdate
+            $spliter_string =  str_split($result[$i]['birthdate'], 4);
+            $birthdate_year = $spliter_string[0];
+
+            // Calculate age
+            $age = $current_year - $birthdate_year;
+
+            // Edit age in array
+            $result[$i]['birthdate'] = strval($age);
+        }
+        return $result;
+    }
+
+    public function editDateCreatedAt($result){
+        for ($i=0; $i < sizeof($result); $i++) { 
+            $spliter_string =  str_split($result[$i]['created_at'], 10);
+            $result[$i]['created_at'] = $spliter_string[0];
+        }
+        return $result;
+    }
+
+    public function editLastConnexion($result){
+        // Get current date
+        date_default_timezone_set('Europe/Paris');
+        $current_date_string = date('Y/m/d', time());
+        $current_date = strtotime($current_date_string);
+        for ($i=0; $i < sizeof($result); $i++) { 
+            $spliter_string =  str_split($result[$i]['created_at'], 10);
+            $last_connexion_date  = strtotime($spliter_string[0]);
+            $last_connexion_date = strtotime($spliter_string[0]);
+            $timeDiff = abs($current_date - $last_connexion_date);
+            $numberDays = $timeDiff/86400;
+            $result[$i]['last_connexion'] = $numberDays;
+        }
+        return $result;
+    }
+
+    public function numberOfComment($result, EntityManagerInterface $entityManager){
+        for ($i=0; $i < sizeof($result); $i++) { 
+            // Get ID of user
+            $userID = $result[$i]['id'];
+
+            // Get number of comments
+            $number = $entityManager->getRepository(UserComment::class)->numberOfComment($userID);
+
+            // Store in array
+            $result[$i]['number_comment'] = $number[0] ["COUNT(id)"];
+        }
+        return $result;
     }
 }
