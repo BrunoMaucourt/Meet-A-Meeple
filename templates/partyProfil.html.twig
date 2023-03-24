@@ -16,6 +16,8 @@ Détails de la partie
 				<h2 class="text-base font-bold">Informations générales</h2>
 			</div>
 
+		<div class="w-fit h-fit flex justify-center items-center rounded-lg flex-wrap gap-4 p-5 bg-main-grey/10 shadow-inset-xl">
+		
 			<!-- START GENERAL INFO GAME CARD-->
 			<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
 				<div class="w-full h-1/3 flex">
@@ -91,35 +93,40 @@ Détails de la partie
 				</div>		
 			</div>
 			<!-- END GENERAL INFO GAME CARD-->
+
 		</div>
+
+		</div>
+
 
 		<div class="w-full h-fit flex flex-col md:flex-row md:flex-wrap justify-center items-center gap-4">
 			<div class="flex justify-between items-center w-full mt-6 border-b border-main-grey py-2">
 				<h2 class="text-base font-bold">Détails</h2>
 			</div>
-			
-			<div class="flex flex-col gap-4 xl:gap-6 2xl:gap-10justify-center items-center">
-				<!-- START DESCRIPTION GAME CARD-->
-				<div class="w-60 sm:w-full max-w-xs h-fit rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col gap-2">
-					<div class="w-full h-1/3 flex">
-						<div class="w-2/3 flex justify-center items-center">
-							<span class="w-full text-base font-bold uppercase text-center">Description</span>
+			<div class="w-fit h-fit flex justify-center items-center rounded-lg flex-wrap gap-4 p-5 bg-main-grey/10 shadow-inset-xl">
+				<div class="flex flex-col gap-4 xl:gap-6 2xl:gap-10justify-center items-center">
+					<!-- START DESCRIPTION GAME CARD-->
+					<div class="w-60 sm:w-full max-w-xs h-fit rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col gap-2">
+						<div class="w-full h-1/3 flex">
+							<div class="w-2/3 flex justify-center items-center">
+								<span class="w-full text-base font-bold uppercase text-center">Description</span>
+							</div>
+							<div class="w-1/3 flex justify-center items-center ">
+								<img class="h-full max-w-full" src="{{ asset('img/content/description.svg') }}" alt="">
+							</div>	
 						</div>
-						<div class="w-1/3 flex justify-center items-center ">
-							<img class="h-full max-w-full" src="{{ asset('img/content/description.svg') }}" alt="">
-						</div>	
+						<div class="w-full h-2/3 flex justify-center items-center ">
+							<p class="capitalize text-main-brown font-bold text-sm text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed accusamus laboriosam, tempore, unde placeat minus ratione explicabo est adipisci voluptas facere voluptatem provident fugiat nesciunt nam! Distinctio magnam temporibus facere!</p>
+						</div>		
 					</div>
-					<div class="w-full h-2/3 flex justify-center items-center ">
-						<p class="capitalize text-main-brown font-bold text-sm text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed accusamus laboriosam, tempore, unde placeat minus ratione explicabo est adipisci voluptas facere voluptatem provident fugiat nesciunt nam! Distinctio magnam temporibus facere!</p>
-					</div>		
-				</div>
-				<!-- END DESCRIPTION GAME CARD-->
+					<!-- END DESCRIPTION GAME CARD-->
 
-				<div class="w-60 sm:w-72 h-96 rounded-md border-b-4 border-main-brown p-4 bg-gradient-to-br from-main-orange/20 to-main-green/20">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.031284938393!2d2.3740984!3d48.8385419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672171102bf9f%3A0x882186e7de0d990c!2s8%20Bd%20de%20Bercy%2C%2075012%20Paris!5e0!3m2!1sfr!2sfr!4v1679656826427!5m2!1sfr!2sfr" height="100%" width="100%"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					<div class="w-60 sm:w-full max-w-xs h-96 rounded-md border-b-4 border-main-brown p-4 bg-gradient-to-br from-main-orange/20 to-main-green/20">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.031284938393!2d2.3740984!3d48.8385419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672171102bf9f%3A0x882186e7de0d990c!2s8%20Bd%20de%20Bercy%2C%2075012%20Paris!5e0!3m2!1sfr!2sfr!4v1679656826427!5m2!1sfr!2sfr" height="100%" width="100%"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					</div>
 				</div>
-			</div>
-
+			</div>	
+			
 			<div class="w-full sm:w-1/2 h-fit flex flex-col md:flex-row md:flex-wrap justify-center items-center gap-4 xl:gap-6 2xl:gap-10">
 				<!-- START DESCRIPTION GAME CARD-->
 				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
@@ -284,52 +291,99 @@ Détails de la partie
 					<h2 class="text-base font-bold">Participants</h2>
 				</div>
 
-				<div class="w-60 sm:w-72 h-fit shadow-xl bg-gradient-to-br from-main-orange/20 to-main-brown/20 rounded-md border-b-4 border-main-brown flex justify-center items-center ">
+				<div class="hidden <!--flex--> w-60 sm:w-72 h-fit shadow-xl bg-gradient-to-br from-main-orange/20 to-main-brown/20 rounded-md border-b-4 border-main-brown justify-center items-center ">
 					<span class="p-2 text-center">Il n'y a aucun joueurs inscrits pour le moment</span>
 				</div>
 
-				<!--START REGISTERED PLAYER CARD-->				
-				<a class="w-60 sm:w-72 h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
-					<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
-					</div>
 
-					<div class="w-fit h-full flex justify-center items-center">
-						<span class="font-bold text-main-brown">Thomas</span>
-					</div>
+				<div id="dd" class="flex flex-col items-center w-60 sm:w-72 h-96 rounded-md shadow-inset-xl gap-2 overflow-y-scroll">
+			
+			
+					<!--START REGISTERED PLAYER CARD-->				
+					<a class="w-[95%] h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-y-105 hover:w-full transition-all duration-300 flex justify-between items-center p-2">
+						<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+						</div>
 
-					<div class="w-fit h-full flex justify-center items-center">
-						<span class="font-bold text-main-brown">32 ans</span>
-					</div>
-				</a>
-				<!--END REGISTERED PLAYER CARD -->
-				<!--START REGISTERED PLAYER CARD-->				
-				<a class="cursor-pointer w-60 sm:w-72 h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
-					<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
-					</div>
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">Thomas</span>
+						</div>
 
-					<div class="w-fit h-full flex justify-center items-center">
-						<span class="font-bold text-main-brown">Thomas</span>
-					</div>
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">32 ans</span>
+						</div>
+					</a>
+					<!--END REGISTERED PLAYER CARD -->
+					<!--START REGISTERED PLAYER CARD-->				
+					<a class="w-[95%] h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
+						<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+						</div>
 
-					<div class="w-fit h-full flex justify-center items-center">
-						<span class="font-bold text-main-brown">32 ans</span>
-					</div>
-				</a>
-				<!--END REGISTERED PLAYER CARD -->
-				<!--START REGISTERED PLAYER CARD-->				
-				<a class="w-60 sm:w-72 h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
-					<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
-					</div>
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">Thomas</span>
+						</div>
 
-					<div class="w-fit h-full flex justify-center items-center">
-						<span class="font-bold text-main-brown">Thomas</span>
-					</div>
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">32 ans</span>
+						</div>
+					</a>
+					<!--END REGISTERED PLAYER CARD -->
+					<!--START REGISTERED PLAYER CARD-->				
+					<a class="w-[95%] h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
+						<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+						</div>
 
-					<div class="w-fit h-full flex justify-center items-center">
-						<span class="font-bold text-main-brown">32 ans</span>
-					</div>
-				</a>
-				<!--END REGISTERED PLAYER CARD -->
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">Thomas</span>
+						</div>
+
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">32 ans</span>
+						</div>
+					</a>
+					<!--END REGISTERED PLAYER CARD -->
+					<!--START REGISTERED PLAYER CARD-->				
+					<a class="w-[95%] h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
+						<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+						</div>
+
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">Thomas</span>
+						</div>
+
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">32 ans</span>
+						</div>
+					</a>
+					<!--END REGISTERED PLAYER CARD -->
+					<!--START REGISTERED PLAYER CARD-->				
+					<a class="w-[95%] h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
+						<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+						</div>
+
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">Thomas</span>
+						</div>
+
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">32 ans</span>
+						</div>
+					</a>
+					<!--END REGISTERED PLAYER CARD -->
+					<!--START REGISTERED PLAYER CARD-->				
+					<a class="w-[95%] h-20 shadow-xl bg-gradient-to-br from-main-orange/20 to-main-green/20 rounded-md border-b-4 border-main-emerald hover:scale-105 transition-all duration-300 flex justify-between items-center p-2">
+						<div class="h-16 w-16 rounded-full bg-cover bg-center " style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
+						</div>
+
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">Thomas</span>
+						</div>
+
+						<div class="w-fit h-full flex justify-center items-center">
+							<span class="font-bold text-main-brown">32 ans</span>
+						</div>
+					</a>
+					<!--END REGISTERED PLAYER CARD -->
+				</div>
 
 			</div>
 			
