@@ -8,55 +8,66 @@
 {% endblock nodashboard %}
 
 {% block main_content %}
+<section class="w-full h-full px-2 sm:px-4 flex flex-col items-center gap-8">
 	<h1 class="text-3xl font-bold underline bg-slate-300">
 		Se connecter
 	</h1>
 
-	<div class="w-full p-5">
-		<form method="post" class="bg-main-grey-light w-3/4 max-w-md flex flex-col justify-center mx-auto">
-			{% if error %}
-				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-			{% endif %}
+	<form method="post" class=" w-full max-w-md flex flex-col justify-center mx-auto rounded-lg p-3 shadow-inset-xl bg-main-grey/20">
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
 
-			{% if app.user %}
-				<div class="mb-3">
-					Je suis connecté en tant que
-					{{ app.user.userIdentifier }},
-					<a href="{{ path('app_logout') }}">Me déconnecter</a>
-				</div>
-			{% endif %}
-
-			<h1 class="h3 mb-3">Se connecter</h1>
+		{% if app.user %}
+			<div class="mb-3">
+				Je suis connecté en tant que
+				{{ app.user.userIdentifier }},
+				<a href="{{ path('app_logout') }}">Me déconnecter</a>
+			</div>
+		{% endif %}
+		
+		<div class="flex flex-col gap-1">
 			<label for="inputEmail" class="mt-5">Mon email</label>
-			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="border rounded" autocomplete="email" required autofocus>
-			<label for="inputPassword class=" mt-5">Mon mot de passe</label>
-			<input type="password" name="password" id="inputPassword" class="border rounded" autocomplete="current-password" required>
+			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange" autocomplete="email" required autofocus placeholder=" ">
+		</div>
+		<div class="flex flex-col gap-1">
+			<label for="inputPassword" class=" mt-5">Mon mot de passe</label>
+			<input type="password" name="password" id="inputPassword" class="px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange" autocomplete="current-password" required placeholder=" ">
+		</div>
+		
+		<input
+		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+		{#
+								            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+								            See https://symfony.com/doc/current/security/remember_me.html
+								
+								            <div class="checkbox mb-3">
+								                <label>
+								                    <input type="checkbox" name="_remember_me"> Remember me
+								                </label>
+								            </div>
+								        #}
+		<button class="btn-orange" type="submit">
+			Se connecter
+		</button>
 
-			<input
-			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-			{#
-									            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-									            See https://symfony.com/doc/current/security/remember_me.html
-									
-									            <div class="checkbox mb-3">
-									                <label>
-									                    <input type="checkbox" name="_remember_me"> Remember me
-									                </label>
-									            </div>
-									        #}
-
-			<button class="btn-orange" type="submit">
-				Se connecter
-			</button>
-		</form>
-		<div class="flex flex-row justify-center">
-			<a class="btn-grey" href="{{ path('app_register') }}">
-				S'inscrire
-			</a>
-			<a class="btn-grey" href="">
+		<div class="flex justify-between mt-2">
+			<a class="text-xs uppercase font-bold text-main-grey hover:text-main-orange after:block after:h-[1px] after:w-0 after:bg-main-orange hover:after:w-full after:transition-all after:duration-300" href="">
 				Mot de passe oublié
 			</a>
+			<a class="text-xs uppercase font-bold text-main-grey hover:text-main-orange after:block after:h-[1px] after:w-0 after:bg-main-orange hover:after:w-full after:transition-all after:duration-300" href="{{ path('app_register') }}">
+				S'inscrire
+			</a>	
 		</div>
-	</div>
+			
+	</form>
+
+		
+	
+</section>
+	
+
+	
 {% endblock main_content %}
