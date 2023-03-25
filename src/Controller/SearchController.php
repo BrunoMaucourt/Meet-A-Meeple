@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Party;
 use App\Entity\User;
 use App\Entity\UserComment;
+use App\Entity\PartyUser;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,6 +86,7 @@ class SearchController extends AbstractController
             $user_ID_lat = $data['city_GPS_lat'];
             $user_ID_long = $data['city_GPS_long'];
             
+            // Variables declaration
             $temp_result = [];
 
             // Check if user search player or party
@@ -92,15 +94,21 @@ class SearchController extends AbstractController
                 // Search in database
                 $result = $entityManager->getRepository(Party::class)->findAllAvailableParty();
                 
-                foreach ($result as $party) {
-                    $party_lat = $party['address_gps_lat'];
-                    $party_long = $party['address_gps_long'];
-                    $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$party_lat,$party_long);
+                for ($i=0; $i < sizeof($result); $i++) { 
+                    $player_lat = $result[$i]['address_gps_lat'];
+                    $player_long = $result[$i]['address_gps_long'];
+                    $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);              
                     if($distance_between <= $data['distance']){
-                        array_push($temp_result,$party);
+                        $result[$i]['distance'] = round($distance_between,1);
+                        array_push($temp_result,$result[$i]);
                     }
                 }
-                $result_party = $temp_result;
+                
+                // Edit data before export to TWIG
+                $result_party_host = SearchController::checkHostInformation($temp_result, $entityManager);
+                $result_party_player = SearchController::checkUserInformation($result_party_host, $entityManager);
+                $result_party_player_register = SearchController::checkIfUserRegistered($result_party_player, $user_ID, $entityManager);
+                $result_party =$result_party_player_register;
 
             }else if($data['search_type'] == SEARCH_PLAYER){
                 // Search in database
@@ -139,7 +147,8 @@ class SearchController extends AbstractController
         ]);
     }
 
-    public function calculateDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo){
+    public function calculateDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
+    {
         // convert from degrees to radians
         $latFrom = deg2rad($latitudeFrom);
         $lonFrom = deg2rad($longitudeFrom);
@@ -154,7 +163,8 @@ class SearchController extends AbstractController
         return $angle * EARTH_RADIUS;
     }
 
-    public function calculateAge($result){
+    public function calculateAge($result)
+    {
         // Get current year
         $current_year = date("Y");
         for ($i=0; $i < sizeof($result); $i++) { 
@@ -171,7 +181,8 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function editDateCreatedAt($result){
+    public function editDateCreatedAt($result)
+    {
         for ($i=0; $i < sizeof($result); $i++) { 
             $spliter_string =  str_split($result[$i]['created_at'], 10);
             $result[$i]['created_at'] = $spliter_string[0];
@@ -179,7 +190,8 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function editLastConnexion($result){
+    public function editLastConnexion($result)
+    {
         // Get current date
         date_default_timezone_set('Europe/Paris');
         $current_date_string = date('Y/m/d', time());
@@ -195,7 +207,8 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function numberOfComment($result, EntityManagerInterface $entityManager){
+    public function numberOfComment($result, EntityManagerInterface $entityManager)
+    {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of user
             $userID = $result[$i]['id'];
@@ -205,6 +218,58 @@ class SearchController extends AbstractController
 
             // Store in array
             $result[$i]['number_comment'] = $number[0] ["COUNT(id)"];
+        }
+        return $result;
+    }
+
+    public function checkIfUserRegistered($result, $user_ID,  EntityManagerInterface $entityManager)
+    {
+        for ($i=0; $i < sizeof($result); $i++) { 
+            // Get ID of party
+            $partyID = $result[$i]['id'];
+
+            // Chek if already registered
+            $checkIfAlreadyRegister = $entityManager->getRepository(PartyUser::class)->checkIfAlreadyRegister($partyID, $user_ID);
+
+            // Store in array
+            if($checkIfAlreadyRegister[0]["COUNT(id)"] == 1 ){
+                $result[$i]['current_user_registered'] = true;
+            }else{
+                $result[$i]['current_user_registered'] = false;
+            }
+        }
+        return $result;
+    }
+
+    public function checkHostInformation($result, EntityManagerInterface $entityManager)
+    {
+        for ($i=0; $i < sizeof($result); $i++) { 
+            // Get ID of party
+            $host_user_ID = $result[$i]['user_host_id'];
+
+            // Chek if already registered
+            $party_host_name = $entityManager->getRepository(User::class)->find($host_user_ID);
+
+            // Store in array
+            $result[$i]['party_host_name'] = $party_host_name->getFirstName() . ' ' . $party_host_name->getLastName() ;
+            $result[$i]['party_host_picture'] = $party_host_name->getPictureProfil();
+        }
+        return $result;
+    }
+
+    public function checkUserInformation($result, EntityManagerInterface $entityManager)
+    {
+        for ($i=0; $i < sizeof($result); $i++) { 
+            // Get ID of party
+            $partyID = $result[$i]['id'];
+
+            // Chek if already registered
+            $party_user_list = $entityManager->getRepository(PartyUser::class)->find($partyID);
+            var_dump($party_user_list);
+
+            // Store in array
+            //$result[$i]['party_host_name'] = $party_host_name->getFirstName() . ' ' . $party_host_name->getLastName() ;
+            //$result[$i]['party_host_picture'] = $party_host_name->getPictureProfil();
         }
         return $result;
     }
