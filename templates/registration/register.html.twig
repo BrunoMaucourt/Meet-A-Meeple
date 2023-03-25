@@ -179,8 +179,8 @@
                         }}
 			</fieldset>
 
-			<fieldset class="">
-				<legend class="text-main-orange text-3xl">Traitement de mes données</legend>
+			<fieldset class="flex flex-col gap-2 [&>*]:flex [&>*]:flex-row [&>*]:gap-4">
+				<legend class="text-main-orange text-3xl text-center mb-6">Traitement de mes données</legend>
 				{{ form_row(registrationForm.RGPDconsent, {
                                 label: 'J\'accèpte que mes données soient traitées'
                                 })
