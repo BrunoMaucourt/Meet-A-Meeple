@@ -13,7 +13,7 @@
 		Se connecter
 	</h1>
 
-	<form method="post" class=" w-full max-w-md flex flex-col justify-center mx-auto rounded-lg p-3 shadow-inset-xl bg-main-grey/20">
+	<form method="post" class="w-full max-w-md flex flex-col justify-center rounded-lg p-3 shadow-inset-xl bg-main-grey/20">
 		{% if error %}
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}

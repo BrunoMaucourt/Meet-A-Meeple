@@ -28,7 +28,7 @@ async function geolocation(city_name) {
 
                 // Add box with city name
                 let box = document.createElement('div');
-                box.classList.add("border", "left-0", "h-fit", "w-full", "bg-white", "hover:bg-main-orange", "hover:text-white");
+                box.classList.add("px-1", "left-0", "h-fit", "w-full", "bg-white", "hover:bg-main-orange", "hover:text-white");
                 box.innerHTML = city_name;
                 box.setAttribute('onClick', 'replace_city_name(this)');
                 box.setAttribute('lat', city_lat);
