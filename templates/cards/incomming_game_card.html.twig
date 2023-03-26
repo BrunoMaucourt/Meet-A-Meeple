@@ -1,0 +1,96 @@
+<div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+	<div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
+		<div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
+            <div class="h-20 w-20 sm:w-28 sm:h-28 border rounded-full bg-center bg-cover" style="background-image: url('{{ asset(user['picture_profil']) }}');"></div>
+		</div>
+		<div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
+			<div class="flex items-center gap-2">
+				<img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
+				<span>{{ user['last_name'] }} {{ user['first_name'] }}</span>
+			</div>
+			<div class="flex items-center gap-2">
+				<img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
+				<span>
+                    {{ user['birthdate'] }}
+                </span>
+			</div>
+			<div class="flex items-center gap-2">
+				<img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
+				<span>
+                    {{ user['city'] }}
+                </span>
+			</div>
+		</div>
+	</div>
+	<div class="flex flex-col h-3/5 p-2">
+		<div class="w-full h-1/5 flex justify-between items-center">
+			<div class="w-full flex justify-start items-center pl-4">
+				<a href="">{{ user['number_comment'] }} avis</a>
+			</div>
+			<div class="flex w-full h-full justify-end items-center pr-4">
+
+            {% if user['rate'] >= 0 and user['rate'] < 1 %}
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+            {% endif %}
+            {% if user['rate'] >= 1 and user['rate'] < 2 %}
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+            {% endif %}
+            {% if user['rate'] >= 2 and user['rate'] < 3 %}
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+            {% endif %}
+            {% if user['rate'] >= 3 and user['rate'] < 4 %}
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+            {% endif %}
+            {% if user['rate'] >= 4 and user['rate'] < 5 %}
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
+            {% endif %}
+            {% if user['rate'] == 5 %}
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+				<img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
+            {% endif %}
+			</div>
+		</div>
+
+		<div class="w-full h-1/5 flex justify-start items-center pl-4">
+			<span>Inscrit depuis le {{ user['created_at'] }} </span>
+		</div>
+		<div class="w-full h-1/5 flex justify-start items-center pl-4">
+			<span>Dernière connexion il y a {{ user['last_connexion'] }} jours</span>
+		</div>
+		<div class="w-full h-1/5 flex items-center">
+			<div class="w-full h-full flex justify-start items-center pl-4">
+				<img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>{{ user['distance'] }} km</span>
+			</div>
+			<!--<div class="w-full flex justify-end items-center gap-1 pr-4">
+				<div class="h-2 w-2 bg-main-green rounded-full"></div>
+				<span>En ligne</span>
+			</div>-->
+		</div>
+		<div class="h-1/5 flex justify-center items-center">
+			<a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+		</div>
+	</div>
+</div>
