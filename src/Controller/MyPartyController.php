@@ -37,7 +37,29 @@ class MyPartyController extends AbstractController
 
 
         // Creating finalized result array
-        $incomming_game[0]['test'] = 'bonjour';
+
+        for ($i=0; $i < sizeof($incomming_game) ; $i++) { 
+            $party_ID = $incomming_game[$i]['id'];
+            $incomming_game[$i]['date'] = str_split($incomming_game[$i]['date'], 10)[0];
+            $incomming_game[$i]['participants'] = $entityManager->getRepository(PartyUser::class)->findAllParticipantExceptUser($user_ID,$party_ID);
+        }
+        for ($i=0; $i < sizeof($finished_game) ; $i++) { 
+            $party_ID = $finished_game[$i]['id'];
+            $finished_game[$i]['date'] = str_split($finished_game[$i]['date'], 10)[0];
+            $finished_game[$i]['participants'] = $entityManager->getRepository(PartyUser::class)->findAllParticipantExceptUser($user_ID,$party_ID);
+        }
+        for ($i=0; $i < sizeof($created_game) ; $i++) { 
+            $party_ID = $created_game[$i]['id'];
+            $created_game[$i]['date'] = str_split($created_game[$i]['date'], 10)[0];
+            $created_game[$i]['participants'] = $entityManager->getRepository(PartyUser::class)->findAllParticipantExceptUser($user_ID,$party_ID);
+        }
+        for ($i=0; $i < sizeof($canceled_game) ; $i++) { 
+            $party_ID = $canceled_game[$i]['id'];
+            $canceled_game[$i]['date'] = str_split($canceled_game[$i]['date'], 10)[0];
+            $canceled_game[$i]['participants'] = $entityManager->getRepository(PartyUser::class)->findAllParticipantExceptUser($user_ID,$party_ID);
+        }
+       
+        
         
         return $this->render('myParty.html.twig',[
             'incommingGame' => $incomming_game,

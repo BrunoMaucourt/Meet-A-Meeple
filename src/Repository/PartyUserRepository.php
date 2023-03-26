@@ -92,7 +92,7 @@ class PartyUserRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            SELECT p.id FROM party p 
+            SELECT p.id, p.game, p.date FROM party p 
             INNER JOIN party_user PU 
             WHERE p.id = PU.party_id AND 
             PU.user_id = '. $user_ID .' AND 
@@ -113,7 +113,7 @@ class PartyUserRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            SELECT p.id FROM party p 
+            SELECT p.id, p.game, p.date FROM party p 
             INNER JOIN party_user PU 
             WHERE p.id = PU.party_id AND 
             PU.user_id = '. $user_ID .' AND 
@@ -135,7 +135,7 @@ class PartyUserRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            SELECT p.id FROM party p 
+            SELECT p.id, p.game, p.date FROM party p 
             INNER JOIN party_user PU 
             WHERE p.id = PU.party_id AND 
             PU.user_id = '. $user_ID .' AND 
@@ -157,11 +157,31 @@ class PartyUserRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            SELECT p.id FROM party p 
+            SELECT p.id, p.game, p.date FROM party p 
             INNER JOIN party_user PU 
             WHERE p.id = PU.party_id AND 
             PU.user_id = '. $user_ID .' AND 
             p.canceled = 1 
+            ';
+
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function findAllParticipantExceptUser($user_ID,$party_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT pu.user_id, u.picture_profil FROM party_user pu
+            INNER JOIN user u
+            WHERE u.id = pu.user_id AND
+            pu.party_id = '. $party_ID .' AND 
+            pu.user_id <> '. $user_ID .'
             ';
 
 
