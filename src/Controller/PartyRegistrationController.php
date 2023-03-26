@@ -48,15 +48,17 @@ class PartyRegistrationController extends AbstractController
                 $entityManager->persist($party);
                 $entityManager->flush();
             }else{
-                //return new Response('Vous êtes déjà inscrit à la partie '. $partyID .' nest pas disponible');
-                return $this->redirectToRoute('my_party');
+                return $this->redirectToRoute('my_party', [
+                    'message' => 'Vous êtes déjà inscrit à la partie.',
+                ]);
             }
-
         }else{
-            //return new Response('La partie '. $partyID .' nest pas disponible');
-            return $this->redirectToRoute('my_party');
+            return $this->redirectToRoute('my_party', [
+                'message' => 'La partie n\'est pas disponible',
+            ]);
         }
-        //return new Response('La partie '. $partyID .' est disponible, le joueur ' .$user_ID. ' est inscrit');
-        return $this->redirectToRoute('my_party');
+        return $this->redirectToRoute('my_party', [
+            'message' => 'Vous êtes bien inscrit à la partie.',
+        ]);
     }
 }
