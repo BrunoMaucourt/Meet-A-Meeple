@@ -32,7 +32,6 @@ class SearchController extends AbstractController
         $data = [];
         define("SEARCH_PARTY", "1");
         define("SEARCH_PLAYER", "0");
-        define("EARTH_RADIUS",6371);
 
         // Get ID of user
         /** @var \App\Entity\User $user */
@@ -147,8 +146,11 @@ class SearchController extends AbstractController
         ]);
     }
 
-    public function calculateDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
+    public static function calculateDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
     {
+        // Define constants
+        $earth_radius = 6371;
+
         // convert from degrees to radians
         $latFrom = deg2rad($latitudeFrom);
         $lonFrom = deg2rad($longitudeFrom);
@@ -160,10 +162,10 @@ class SearchController extends AbstractController
       
         $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
           cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
-        return $angle * EARTH_RADIUS;
+        return $angle * $earth_radius;
     }
 
-    public function calculateAge($result)
+    public static function calculateAge($result)
     {
         // Get current year
         $current_year = date("Y");
@@ -181,7 +183,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function editDateCreatedAt($result)
+    public static function editDateCreatedAt($result)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             $spliter_string =  str_split($result[$i]['created_at'], 10);
@@ -190,7 +192,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function editLastConnexion($result)
+    public static function editLastConnexion($result)
     {
         // Get current date
         date_default_timezone_set('Europe/Paris');
@@ -207,7 +209,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function numberOfComment($result, EntityManagerInterface $entityManager)
+    public static function numberOfComment($result, EntityManagerInterface $entityManager)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of user
@@ -222,7 +224,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function checkIfUserRegistered($result, $user_ID,  EntityManagerInterface $entityManager)
+    public static function checkIfUserRegistered($result, $user_ID,  EntityManagerInterface $entityManager)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of party
@@ -241,7 +243,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function checkHostInformation($result, EntityManagerInterface $entityManager)
+    public static function checkHostInformation($result, EntityManagerInterface $entityManager)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of party
@@ -257,7 +259,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function checkUserInformation($result, EntityManagerInterface $entityManager)
+    public static function checkUserInformation($result, EntityManagerInterface $entityManager)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of party

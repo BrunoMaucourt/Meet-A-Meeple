@@ -39,6 +39,22 @@ class UserFriendRepository extends ServiceEntityRepository
         }
     }
 
+    public function findFriendNumber($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT count(*) FROM `user_friend`
+        WHERE user_id ='. $user_ID .';
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return UserFriend[] Returns an array of UserFriend objects
 //     */

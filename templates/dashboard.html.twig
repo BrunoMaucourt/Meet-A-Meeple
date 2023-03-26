@@ -45,7 +45,7 @@
             <div class="h-2/3 flex">
                 <div class="w-2/3 h-full flex flex-col">
                     <span class="uppercase text-main-brown font-bold">Amis</span>
-                    <span class="text-2xl font-bold ml-10">8</span>
+                    <span class="text-2xl font-bold ml-10">{{ userInformations['numberOfFriend'][0]['count(*)'] }}</span>
                 </div>
                 <div class="w-1/3 h-full">
                     <img src="{{ asset('img/content/friend.svg') }}" alt="">
@@ -77,7 +77,7 @@
             <div class="h-2/3 flex">
                 <div class="w-2/3 h-full flex flex-col">
                     <span class="uppercase text-main-brown font-bold">Parties créées</span>
-                    <span class="text-2xl font-bold ml-10">4</span>
+                    <span class="text-2xl font-bold ml-10">{{ userInformations['hostedParty'][0]['COUNT(id)'] }}</span>
                 </div>
                 <div class="w-1/3 h-full">
                     <img src="{{ asset('img/content/tool.svg') }}" alt="">
@@ -230,10 +230,9 @@
     </div>
     <!-- END EVENT -->
     
-  
     <!-- START RECOMMENDED PLAYER-->
     <div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
-        <h2 class="text-xl font-bold">Joueurs recommandés</h2>
+        <h2 class="text-xl font-bold">Joueurs inscrits récemment</h2>
         <div class="hidden sm:flex gap-5">
             <div id="recommended_player_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
             <div id="recommended_player_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
@@ -241,349 +240,17 @@
     </div>
     
     <div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
-        <!--START PLAYER CARD-->
-        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
-            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
-                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
-                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                </div>
-                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                        <span>Thomas</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
-                        <span>30 ans</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
-                        <span>Paris</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col h-3/5 p-2">
-                <div class="w-full h-1/5 flex justify-between items-center">
-                    <div class="w-full flex justify-start items-center pl-4">
-                        <a href="">7 avis</a>
-                    </div>
-                    <div class="flex w-full h-full justify-end items-center pr-4">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                    </div>
-                </div>
-                
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Inscrit depuis le 12/02/2021</span>
-                </div>            
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Dernière connexion il y a 3 jours</span>
-                </div>  
-                <div class="w-full h-1/5 flex items-center">
-                    <div class="w-full h-full flex justify-start items-center pl-4">
-                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
-                    </div>
-                    <div class="w-full flex justify-end items-center gap-1 pr-4">
-                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
-                        <span>En ligne</span>
-                    </div>
-                </div> 
-                <div class="h-1/5 flex justify-center items-center">
-                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
-                </div>     
-            </div>
-        </div>
-        <!--END PLAYER CARD -->
-        <!--START PLAYER CARD-->
-        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
-            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
-                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
-                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                </div>
-                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                        <span>Thomas</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
-                        <span>30 ans</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
-                        <span>Paris</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col h-3/5 p-2">
-                <div class="w-full h-1/5 flex justify-between items-center">
-                    <div class="w-full flex justify-start items-center pl-4">
-                        <a href="">7 avis</a>
-                    </div>
-                    <div class="flex w-full h-full justify-end items-center pr-4">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                    </div>
-                </div>
-                
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Inscrit depuis le 12/02/2021</span>
-                </div>            
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Dernière connexion il y a 3 jours</span>
-                </div>  
-                <div class="w-full h-1/5 flex items-center">
-                    <div class="w-full h-full flex justify-start items-center pl-4">
-                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
-                    </div>
-                    <div class="w-full flex justify-end items-center gap-1 pr-4">
-                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
-                        <span>En ligne</span>
-                    </div>
-                </div> 
-                <div class="h-1/5 flex justify-center items-center">
-                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
-                </div>     
-            </div>
-        </div>
-        <!--END PLAYER CARD -->
-        <!--START PLAYER CARD-->
-        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
-            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
-                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
-                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                </div>
-                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                        <span>Thomas</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
-                        <span>30 ans</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
-                        <span>Paris</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col h-3/5 p-2">
-                <div class="w-full h-1/5 flex justify-between items-center">
-                    <div class="w-full flex justify-start items-center pl-4">
-                        <a href="">7 avis</a>
-                    </div>
-                    <div class="flex w-full h-full justify-end items-center pr-4">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                    </div>
-                </div>
-                
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Inscrit depuis le 12/02/2021</span>
-                </div>            
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Dernière connexion il y a 3 jours</span>
-                </div>  
-                <div class="w-full h-1/5 flex items-center">
-                    <div class="w-full h-full flex justify-start items-center pl-4">
-                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>49.3km</span>
-                    </div>
-                    <div class="w-full flex justify-end items-center gap-1 pr-4">
-                        <div class="h-2 w-2 bg-red rounded-full"></div>
-                        <span>Hors ligne</span>
-                    </div>
-                </div> 
-                <div class="h-1/5 flex justify-center items-center">
-                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
-                </div>     
-            </div>
-        </div>
-        <!--END PLAYER CARD -->
-        <!--START PLAYER CARD-->
-        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
-            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
-                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
-                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                </div>
-                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                        <span>Thomas</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
-                        <span>30 ans</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
-                        <span>Paris</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col h-3/5 p-2">
-                <div class="w-full h-1/5 flex justify-between items-center">
-                    <div class="w-full flex justify-start items-center pl-4">
-                        <a href="">7 avis</a>
-                    </div>
-                    <div class="flex w-full h-full justify-end items-center pr-4">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                    </div>
-                </div>
-                
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Inscrit depuis le 12/02/2021</span>
-                </div>            
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Dernière connexion il y a 3 jours</span>
-                </div>  
-                <div class="w-full h-1/5 flex items-center">
-                    <div class="w-full h-full flex justify-start items-center pl-4">
-                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
-                    </div>
-                    <div class="w-full flex justify-end items-center gap-1 pr-4">
-                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
-                        <span>En ligne</span>
-                    </div>
-                </div> 
-                <div class="h-1/5 flex justify-center items-center">
-                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
-                </div>     
-            </div>
-        </div>
-        <!--END PLAYER CARD -->
-        <!--START PLAYER CARD-->
-        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
-            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
-                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
-                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                </div>
-                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                        <span>Thomas</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
-                        <span>30 ans</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
-                        <span>Paris</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col h-3/5 p-2">
-                <div class="w-full h-1/5 flex justify-between items-center">
-                    <div class="w-full flex justify-start items-center pl-4">
-                        <a href="">7 avis</a>
-                    </div>
-                    <div class="flex w-full h-full justify-end items-center pr-4">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                    </div>
-                </div>
-                
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Inscrit depuis le 12/02/2021</span>
-                </div>            
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Dernière connexion il y a 3 jours</span>
-                </div>  
-                <div class="w-full h-1/5 flex items-center">
-                    <div class="w-full h-full flex justify-start items-center pl-4">
-                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
-                    </div>
-                    <div class="w-full flex justify-end items-center gap-1 pr-4">
-                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
-                        <span>En ligne</span>
-                    </div>
-                </div> 
-                <div class="h-1/5 flex justify-center items-center">
-                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
-                </div>     
-            </div>
-        </div>
-        <!--END PLAYER CARD -->
-        <!--START PLAYER CARD-->
-        <div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
-            <div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
-                <div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
-                    <img class="w-full border rounded-full" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                </div>
-                <div class="w-1/2 h-full flex flex-col gap-2 justify-center p-2">
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/profil_menu/person.svg') }}" alt="">
-                        <span>Thomas</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/birthday.svg') }}" alt="">
-                        <span>30 ans</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <img class="w-1/6" src="{{ asset('img/content/location.svg') }}" alt="">
-                        <span>Paris</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col h-3/5 p-2">
-                <div class="w-full h-1/5 flex justify-between items-center">
-                    <div class="w-full flex justify-start items-center pl-4">
-                        <a href="">7 avis</a>
-                    </div>
-                    <div class="flex w-full h-full justify-end items-center pr-4">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                    </div>
-                </div>
-                
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Inscrit depuis le 12/02/2021</span>
-                </div>            
-                <div class="w-full h-1/5 flex justify-start items-center pl-4">
-                    <span>Dernière connexion il y a 3 jours</span>
-                </div>  
-                <div class="w-full h-1/5 flex items-center">
-                    <div class="w-full h-full flex justify-start items-center pl-4">
-                        <img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span>5.2km</span>
-                    </div>
-                    <div class="w-full flex justify-end items-center gap-1 pr-4">
-                        <div class="h-2 w-2 bg-main-green rounded-full"></div>
-                        <span>En ligne</span>
-                    </div>
-                </div> 
-                <div class="h-1/5 flex justify-center items-center">
-                    <a href="" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
-                </div>     
-            </div>
-        </div>
-        <!--END PLAYER CARD --> 
+		{% if userResult != [] %}
+			{% for user in userResult %}
+				{% include('/cards/player_card.html.twig') %}
+			{% endfor %}
+		{% endif %}
     </div> 
     <!-- END RECOMMENDED PLAYER -->  
 
-
     <!-- START RECOMMENDED GAME-->
     <div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
-        <h2 class="text-xl font-bold">Parties recommandées</h2>
+        <h2 class="text-xl font-bold">Parties ajoutées récemment</h2>
         <div class="hidden sm:flex gap-5">
             <div id="recommended_player_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
             <div id="recommended_player_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
@@ -591,56 +258,11 @@
     </div>
     
     <div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
-        <!--START GAME CARD-->
-        <div class="group relative recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-brown sm:hover:scale-105 transition-all duration-300">
-            <div class="h-2/5 flex flex-col justify-between group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-brown/20 p-4">
-                <div class="w-full h-full flex flex-col gap-2 justify-start items-center font-bold text-sm mt-2">
-                    <span class="border p-0.5 rounded text-main-brown">31/03/2023</span>
-                    <span class="uppercase font-bold text-main-brown text-center text-lg">Age of champagne</span>
-                </div>
-            </div>
-            <div class="absolute h-20 w-20 border-2 rounded-full overflow-hidden left-[5rem] sm:left-[6.5rem] top-[7rem] bg-main-brown bg-cover bg-center" style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
-            </div>
-            <div class="w-full h-3/5 p-2 pt-12 flex flex-col gap-2">
-                <div class="w-full flex justify-center items-center gap-1">
-                    <span class="text-xs">Organisateur :</span><span class="text-lg font-bold">Thomas</span>
-                </div>
-                <div class="w-full flex h-1/5 justify-center px-4">
-                    <div class="flex w-1/2 justify-start items-center">
-                        <span class="text-xs">Nombre de joueur :</span>
-                    </div>
-                    <div class="flex w-1/2 justify-end items-center pr-4">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_full.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                        <img class="h-1/2" src="{{ asset('img/content/meeple_rate_empty.svg') }}" alt="">
-                    </div>
-                </div>
-                <div class="w-full flex h-1/5 justify-center px-4">
-                    <div class="flex w-1/2  justify-start items-center">
-                        <span class="text-xs">Inscrits :</span>
-                    </div>
-                    <div class="flex w-1/2 justify-end items-center gap-1 pr-4">
-                        <a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
-                        </a>
-                        <a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
-                        </a>
-                        <a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_test.jpg') }}');">
-                        </a>
-                        
-                    </div>
-                </div>
-                <div class="w-full h-12 flex justify-center items-center">
-                    <a class="p-2 bg-main-orange rounded-md hover:bg-main-orange-dark hover:shadow-md transition-all duration-300" href="">S'inscrire</a>
-                </div>
-            </div>
-            <div class="absolute w-8 h-8 rounded-full bottom-5 left-5 hover:scale-110 transition-all duration-300">
-                <a href="">
-                    <img class="max-w-full w-full" src="{{ asset('img/profil_menu/search.svg') }}" alt="">
-                </a>
-            </div>
-        </div>
-        <!--END GAME CARD-->
+       {% if partyResult != [] %}
+			{% for party in partyResult %}
+				{% include('/cards/party_card.html.twig') %}
+			{% endfor %}
+		{% endif %}
     </div>
     <!-- END RECOMMENDED GAME-->
 </section>
