@@ -31,6 +31,7 @@ module.exports = {
       },
       'red': {
         DEFAULT: '#ff0000',
+        dark: '#D70000',
       },
     },
     extend: {
