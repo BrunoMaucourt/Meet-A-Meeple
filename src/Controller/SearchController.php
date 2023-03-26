@@ -105,7 +105,8 @@ class SearchController extends AbstractController
                 
                 // Edit data before export to TWIG
                 $result_party_host = SearchController::checkHostInformation($temp_result, $entityManager);
-                $result_party_player = SearchController::checkUserInformation($result_party_host, $entityManager);
+                $result_party_date = SearchController::editDate($result_party_host, $entityManager);
+                $result_party_player = SearchController::checkUserInformation($result_party_date, $entityManager);
                 $result_party_player_register = SearchController::checkIfUserRegistered($result_party_player, $user_ID, $entityManager);
                 $result_party =$result_party_player_register;
 
@@ -139,6 +140,7 @@ class SearchController extends AbstractController
 
         return $this->render('search.html.twig', [
             'searchForm' => $form->createView(),
+            'current_user' => $user_ID,
             'partyResult' => $result_party,
             'userResult' => $result_user,
             'error' => $error,
@@ -179,6 +181,15 @@ class SearchController extends AbstractController
 
             // Edit age in array
             $result[$i]['birthdate'] = strval($age);
+        }
+        return $result;
+    }
+
+    public static function editDate($result)
+    {
+        for ($i=0; $i < sizeof($result); $i++) { 
+            $spliter_string =  str_split($result[$i]['created_at'], 10);
+            $result[$i]['date'] = $spliter_string[0];
         }
         return $result;
     }
@@ -268,13 +279,13 @@ class SearchController extends AbstractController
             // Chek if already registered
             $party_user_list = $entityManager->getRepository(PartyUser::class)->findPartyWithID($partyID);
 
-
             $result[$i]['user_registered'] = null;
             for ($y=0; $y < sizeof($party_user_list); $y++) { 
                 $party_user_information = $entityManager->getRepository(User::class)->find($party_user_list[$y]["user_id"]);
 
                 // Store in array
                 $result[$i]['user_registered'][$y]["user_id"] = $party_user_information->getId();
+                $result[$i]['user_registered'][$y]["user_name"] = $party_user_information->getFirstName();
                 $result[$i]['user_registered'][$y]["user_profil_picture"] = $party_user_information->getPictureProfil();
             }
         }

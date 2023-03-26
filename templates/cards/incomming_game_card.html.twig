@@ -22,9 +22,11 @@
 		<div class="h-1/2 w-full flex justify-center items-center">
 			<a class="h-6 w-6 hover:bg-main-green rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_menu/search.svg') }}');"></a>							
 		</div>
+		{% if item['user_host_id'] != userID %}
 		<div class="h-1/2 w-full flex justify-center items-center">
-			<a class="h-6 w-6 hover:bg-red rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/content/cancel.svg') }}');"></a>
+			<a class="h-6 w-6 hover:bg-red rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="{{ path('app_party_unsubscribe', {'partyID': item['id']}) }}" title="Se désinscrire" style="background-image: url('{{ asset('img/content/cancel.svg') }}');"></a>
 		</div>
+		{% endif %}
 	</div>
 </div>
 <!--END INCOMMING GAME CARD-->

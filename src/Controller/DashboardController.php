@@ -50,7 +50,8 @@ class DashboardController extends AbstractController
         
         // Edit data before export to TWIG
         $result_party_host = SearchController::checkHostInformation($result, $entityManager);
-        $result_party_player = SearchController::checkUserInformation($result_party_host, $entityManager);
+        $result_party_date = SearchController::editDate($result_party_host, $entityManager);
+        $result_party_player = SearchController::checkUserInformation($result_party_date, $entityManager);
         $result_party_player_register = SearchController::checkIfUserRegistered($result_party_player, $user_ID, $entityManager);
         $result_party =$result_party_player_register;
 
@@ -86,6 +87,7 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard.html.twig', [
             'userInformations' => $userInformations,
+            'current_user' => $user_ID,
             'partyResult' => $result_party,
             'userResult' => $result_user,           
         ]);
