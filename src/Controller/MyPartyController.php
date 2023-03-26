@@ -62,6 +62,7 @@ class MyPartyController extends AbstractController
         
         
         return $this->render('myParty.html.twig',[
+            'userID' => $user_ID,
             'incommingGame' => $incomming_game,
             'finishedGame' => $finished_game,
             'createdGame' => $created_game,
