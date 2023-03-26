@@ -13,31 +13,173 @@ Mes parties
 {% block main_content %}
 	<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
 
-		<!-- START GAMES MENU CARD -->
-		<div class="w-fit max-w-3xl h-96 shadow-md rounded-lg bg-gradient-to-br from-main-green/20 to-main-orange/20 p-2 flex flex-col">
-			<ul class="flex flex-wrap text-sm font-medium text-center border-b items-center justify-center">
+		<h1 class="text-2xl sm:text-3xl font-bold underline bg-slate-300">
+			Mes parties
+		</h1>
+		<!-- START GAMES MENU CARD -->		
+		<div class="w-fit max-w-3xl h-[28rem] shadow-md rounded-lg bg-gradient-to-br from-main-green/20 to-main-orange/20 p-2 flex flex-col">
+			<ul class="flex h-1/4 flex-wrap text-sm font-medium text-center border-b items-center justify-center">
 				<li class="mr-2">
-					<button id="incomming_game_btn" aria-current="page" class="tab_btn sinline-block p-4 active bg-main-orange/70 text-white hover:text-white hover:bg-main-orange/70">A venir</button>
+					<button id="incomming_game_btn" aria-current="page" class="tab_btn sinline-block p-4 active bg-main-orange/70 text-white hover:text-white hover:bg-main-orange/70 rounded">A venir</button>
 				</li>
 				<li class="mr-2">
-					<button id="finished_game_btn" class="tab_btn sinline-block p-4 hover:text-white hover:bg-main-orange/70">Terminée</button>
+					<button id="finished_game_btn" class="tab_btn inline-block p-4 hover:text-white hover:bg-main-orange/70 rounded">Terminées</button>
 				</li>
 				<li class="mr-2">
-					<button id="created_game_btn" class="tab_btn sinline-block p-4 hover:text-white hover:bg-main-orange/70">Créées</button>
+					<button id="created_game_btn" class="tab_btn inline-block p-4 hover:text-white hover:bg-main-orange/70 rounded">Créées</button>
 				</li>
 				<li class="mr-2">
-					<button id="canceled_game_btn" class="tab_btn sinline-block p-4 hover:text-white hover:bg-main-orange/70">Annulées</button>
+					<button id="canceled_game_btn" class="tab_btn inline-block p-4 hover:text-white hover:bg-main-orange/70 rounded">Annulées</button>
 				</li>
 			</ul>
-			<div class="h-full w-full relative">
-				<div id="incomming_game_container" class="games_container shadow-inset-xl absolute flex flex-col w-full h-full rounded-md">
+			<div class="h-3/4 w-full">
+
+				<!-- START INCOMMING GAME CONTAINER -->
+				<div id="incomming_game_container" class="games_container shadow-inset-xl flex flex-col w-full h-full rounded-md items-center p-1 gap-2 overflow-y-scroll">
+
+					<!--START RESUME GAME CARD-->
+					<div class="flex w-full min-h-[6rem] border-b-4 border-main-green rounded-md shadow-lg bg-gradient-to-r from-white to-main-orange/30">
+						<div class="w-3/4 flex flex-col items-center justify-between py-1 px-2">
+							<div class="flex w-full h-1/3 justify-start items-center gap-4">
+								<img class="h-6" src="{{ asset('img/profil_menu/game.svg') }}" alt="">
+								<span class="uppercase text-sm font-bold font-main-brown">Age of champagne</span>
+							</div>
+							<div class="flex w-full h-1/3 justify-start items-center gap-4">
+								<img class="h-6" src="{{ asset('img/content/calendar.svg') }}" alt="">
+								<span class="uppercase text-sm font-bold font-main-brown">12/05/2023</span>
+							</div>
+							<div class="flex w-full h-1/3 items-center justify-start gap-4">
+								<img class="h-6" src="{{ asset('img/content/player_max.svg') }}" alt="">
+								<div class="flex w-full justify-start items-center">
+									<a class="h-7 w-7 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+								</div>
+							</div>
+						</div>
+						<div class="w-1/4 flex flex-col ">
+							<div class="h-1/2 w-full flex justify-center items-center">
+								<a class="h-6 w-6 hover:bg-main-green rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_menu/search.svg') }}');"></a>
+								
+							</div>
+
+							<div class="h-1/2 w-full flex justify-center items-center">
+								<a class="h-6 w-6 hover:bg-red rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/content/cancel.svg') }}');"></a>
+							</div>
+						</div>
+					</div>
+					<!--END RESUME GAME CARD-->
+					
+					<span class="h-full uppercase text-center font-bold text-main-grey mt-8">Vous n'êtes inscrits à aucune partie</span>
+
 				</div>
-				<div id="finished_game_container" class="games_container shadow-inner absolute hidden flex-col w-full h-full rounded-md">
+				<!-- END INCOMMING GAME CONTAINER -->
+
+				<!-- START FINISHED GAME CONTAINER -->
+				<div id="finished_game_container" class="games_container shadow-inset-xl hidden flex-col w-full h-full rounded-md items-center p-1 gap-1 overflow-y-scroll">
+					<!--START RESUME GAME CARD-->
+					<div class="flex w-full min-h-[6rem] border-b-4 border-main-brown rounded-md shadow-lg bg-gradient-to-r from-white to-main-orange/30">
+						<div class="w-3/4 flex flex-col items-center justify-between py-1 px-2">
+							<div class="flex w-full h-1/3 justify-start items-center gap-4">
+								<img class="h-6" src="{{ asset('img/profil_menu/game.svg') }}" alt="">
+								<span class="uppercase text-sm font-bold font-main-brown">Risk</span>
+							</div>
+							<div class="flex w-full h-1/3 justify-start items-center gap-4">
+								<img class="h-6" src="{{ asset('img/content/calendar.svg') }}" alt="">
+								<span class="uppercase text-sm font-bold font-main-brown">14/06/2023</span>
+							</div>
+							<div class="flex w-full h-1/3 items-center justify-start gap-4">
+								<img class="h-6" src="{{ asset('img/content/player_max.svg') }}" alt="">
+								<div class="flex w-full justify-start items-center">
+									<a class="h-7 w-7 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+								</div>
+							</div>
+						</div>
+						<div class="w-1/4 flex flex-col">
+							<div class="h-full w-full flex justify-center items-center">
+								<a class="h-6 w-6 hover:bg-main-brown/60 rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_menu/search.svg') }}');"></a>
+								
+							</div>
+						</div>
+					</div>
+					<!--END RESUME GAME CARD-->
+					<span class="h-full uppercase text-center font-bold text-main-grey mt-8">Vous n'avez fini aucune partie</span>
 				</div>
-				<div id="created_game_container" class="games_container shadow-inner absolute hidden flex-col w-full h-full rounded-md">
+				<!-- END FINISHED GAME CONTAINER -->
+
+				<!-- START CREATED GAME CONTAINER -->
+				<div id="created_game_container" class="games_container shadow-inset-xl hidden flex-col w-full h-full rounded-md items-center p-1 gap-1 overflow-y-scroll">
+					<!--START RESUME GAME CARD-->
+					<div class="flex w-full min-h-[6rem] border-b-4 border-main-orange rounded-md shadow-lg bg-gradient-to-r from-white to-main-orange/30">
+						<div class="w-3/4 flex flex-col items-center justify-between py-1 px-2">
+							<div class="flex w-full h-1/3 justify-start items-center gap-4">
+								<img class="h-6" src="{{ asset('img/profil_menu/game.svg') }}" alt="">
+								<span class="uppercase text-sm font-bold font-main-brown">Twin it</span>
+							</div>
+							<div class="flex w-full h-1/3 justify-start items-center gap-4">
+								<img class="h-6" src="{{ asset('img/content/calendar.svg') }}" alt="">
+								<span class="uppercase text-sm font-bold font-main-brown">22/04/2023</span>
+							</div>
+							<div class="flex w-full h-1/3 items-center justify-start gap-4">
+								<img class="h-6" src="{{ asset('img/content/player_max.svg') }}" alt="">
+								<div class="flex w-full justify-start items-center">
+									<a class="h-7 w-7 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+								</div>
+							</div>
+						</div>
+						<div class="w-1/4 flex flex-col">
+							<div class="h-full w-full flex justify-center items-center">
+								<a class="h-6 w-6 hover:bg-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/content/setting.svg') }}');"></a>
+								
+							</div>
+						</div>
+					</div>
+					<!--END RESUME GAME CARD-->
+					<span class="h-full uppercase text-center font-bold text-main-grey mt-8">Vous n'avez créé aucune partie</span>
 				</div>
-				<div id="canceled_game_container" class="games_container shadow-inner absolute hidden flex-col w-full h-full rounded-md">
+				<!-- END CREATED GAME CONTAINER -->
+
+				<!-- START CANCELED GAME CONTAINER -->
+				<div id="canceled_game_container" class="games_container shadow-inset-xl hidden flex-col w-full h-full rounded-md items-center p-1 gap-1 overflow-y-scroll">
+					<!--START RESUME GAME CARD-->
+					<div class="flex w-full min-h-[6rem] border-b-4 border-red rounded-md shadow-lg bg-gradient-to-r from-white to-main-orange/30">
+						<div class="w-3/4 flex flex-col items-center justify-between py-1 px-2">
+							<div class="flex w-full h-1/3 justify-start items-center gap-4">
+								<img class="h-6" src="{{ asset('img/profil_menu/game.svg') }}" alt="">
+								<span class="uppercase text-sm font-bold font-main-brown">Twin it</span>
+							</div>
+							<div class="flex w-full h-1/3 justify-start items-center gap-4">
+								<img class="h-6" src="{{ asset('img/content/calendar.svg') }}" alt="">
+								<span class="uppercase text-sm font-bold font-main-brown">22/04/2023</span>
+							</div>
+							<div class="flex w-full h-1/3 items-center justify-start gap-4">
+								<img class="h-6" src="{{ asset('img/content/player_max.svg') }}" alt="">
+								<div class="flex w-full justify-start items-center">
+									<a class="h-7 w-7 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+									<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_picture/profil_picture_641eb5da93584.jpg') }}');"></a>
+								</div>
+							</div>
+						</div>
+						<div class="w-1/4 flex flex-col">
+							<div class="h-full w-full flex justify-center items-center">
+								<a class="h-6 w-6 hover:bg-main-emerald rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_menu/search.svg') }}');"></a>
+								
+							</div>
+						</div>
+					</div>
+					<!--END RESUME GAME CARD-->
+					<span class="h-full uppercase text-center font-bold text-main-grey mt-8">Vous n'avez aucune partie annulée</span>
 				</div>
+				<!-- END CANCELED GAME CONTAINER -->
 			</div>
 			
 		</div>
