@@ -264,12 +264,17 @@ class SearchController extends AbstractController
             $partyID = $result[$i]['id'];
 
             // Chek if already registered
-            $party_user_list = $entityManager->getRepository(PartyUser::class)->find($partyID);
-            var_dump($party_user_list);
+            $party_user_list = $entityManager->getRepository(PartyUser::class)->findPartyWithID($partyID);
 
-            // Store in array
-            //$result[$i]['party_host_name'] = $party_host_name->getFirstName() . ' ' . $party_host_name->getLastName() ;
-            //$result[$i]['party_host_picture'] = $party_host_name->getPictureProfil();
+
+            $result[$i]['user_registered'] = null;
+            for ($y=0; $y < sizeof($party_user_list); $y++) { 
+                $party_user_information = $entityManager->getRepository(User::class)->find($party_user_list[$y]["user_id"]);
+
+                // Store in array
+                $result[$i]['user_registered'][$y]["user_id"] = $party_user_information->getId();
+                $result[$i]['user_registered'][$y]["user_profil_picture"] = $party_user_information->getPictureProfil();
+            }
         }
         return $result;
     }
