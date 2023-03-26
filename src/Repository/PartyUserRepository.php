@@ -177,7 +177,7 @@ class PartyUserRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            SELECT pu.user_id, u.picture_profil FROM party_user pu
+            SELECT pu.user_id,u.first_name, u.picture_profil FROM party_user pu
             INNER JOIN user u
             WHERE u.id = pu.user_id AND
             pu.party_id = '. $party_ID .' AND 

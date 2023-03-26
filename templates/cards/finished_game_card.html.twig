@@ -13,7 +13,7 @@
 			<img class="h-6" src="{{ asset('img/content/player_max.svg') }}" alt="">
 			<div class="flex w-full justify-start items-center">
 				{% for user in item['participants'] %}
-					<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href=" " style="background-image: url('{{ asset(user['picture_profil']) }}');"></a>
+					<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href=" " title="{{ user['first_name'] }}" style="background-image: url('{{ asset(user['picture_profil']) }}');"></a>
 				{% endfor %}
 			</div>
 		</div>
