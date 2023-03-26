@@ -92,7 +92,7 @@ class PartyUserRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            SELECT p.id, p.game, p.date FROM party p 
+            SELECT p.id,p.user_host_id, p.game, p.date FROM party p 
             INNER JOIN party_user PU 
             WHERE p.id = PU.party_id AND 
             PU.user_id = '. $user_ID .' AND 
