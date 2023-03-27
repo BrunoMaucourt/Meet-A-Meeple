@@ -77,7 +77,7 @@ Meet A Meeple
 				<div id="container_city_search_input" class="block uppercase tracking-wide text-gray-700 text-xs font-bold relative [&>:first-child]:flex [&>:first-child]:flex-col">
                     {{ form_row(party.address_location, {
                                                 'attr': {
-                                                'class': 'w-5/5 mr-48 font-normal appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white',
+                                                'class': 'text-base font-normal appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white',
                                                 'placeholder' : ' '
                                         },
                                                 label: 'localisation de la partie:',
@@ -85,7 +85,7 @@ Meet A Meeple
                                         })
                                 }}
                     <div id="city_list" class="hidden absolute top-12 flex-col w-full h-fit rounded-b-lg overflow-hidden border border-main-grey-light"></div>
-
+					<p class="text-red-500 text-xs italic font-normal lowercase">Veuillez remplir ce champ.</p>
                     {{ form_row(party.address_GPS_lat, {
                                         'attr': {'class': 'hidden'},
                     'id': 'form_city_GPS_lat'
@@ -98,46 +98,47 @@ Meet A Meeple
                                 }}
                 </div>
 				{#OPTION LIEU DE LA PARTIE (BAR, HABITATION...#}
-				<div>
+				<div class="w-full items-center mx-auto">
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.type_location_ID, {
-							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':''},
+							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-base rounded flex flex-wrap','min':''},
 							label: 'Type de lieu:',
                             })
                         }}
 					</label>
-					{{tomorrow}}
 					<p class="text-red-500 text-xs italic">Veuillez selectionner un champ.</p>
 				</div>
 				{#DATE DE LA PARTIE#}
-				<div>
-					<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
-						{{ form_row(party.date, {
-							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
-									'value': ''~tomorrow~'', 'min': ''~tomorrow~'',
-									},
-							label: 'Date de la partie:',
-                            })
-                        }}
-					</label>
-					<p class="text-red-500 text-xs italic">Veuillez selectionner la date.</p>
-				</div>
-				{#DATE LIMITE D'INSCRIPTION POUR LA PARTIE#}
-				<div>
-					<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
-						{{ form_row(party.last_sign_in, {
-							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded', 'format': ''},
-							label: 'Date limite d\'inscription:',
-                            })
-                        }}
-					</label>
-					<p class="text-red-500 text-xs italic">Veuillez selectionner la date.</p>
+				<div class="flex flex-row gap-x-16 w-full justify-center mx-auto">
+					<div>
+						<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+							{{ form_row(party.date, {
+								'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
+										'value': ''~tomorrow~'', 'min': ''~tomorrow~'',
+										},
+								label: 'Date de la partie:',
+								})
+							}}
+						</label>
+						<p class="text-red-500 text-xs italic">Veuillez selectionner la date.</p>
+					</div>
+					{#DATE LIMITE D'INSCRIPTION POUR LA PARTIE#}
+					<div>
+						<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+							{{ form_row(party.last_sign_in, {
+								'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap'},
+								label: 'Date limite d\'inscription:',
+								})
+							}}
+						</label>
+						<p class="text-red-500 text-xs italic">Veuillez selectionner la date.</p>
+					</div>
 				</div>
 				{#OPTION POUR LA PARTIE#}
-				<div>
+				<div class="flex flex-col w-full items-center mx-auto">
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.trait1_ID, {
-							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded','min':'0'},
+							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':'0'},
 							label: 'Option 1',
                             })
                         }}
@@ -145,7 +146,7 @@ Meet A Meeple
 					{#OPTION POUR LA PARTIE#}
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.trait2_ID, {
-							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded','min':'0'},
+							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':'0'},
 							label: 'Option 2',
                             })
                         }}
@@ -153,7 +154,7 @@ Meet A Meeple
 					{#OPTION POUR LA PARTIE#}
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.trait3_ID, {
-							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded','min':'0'},
+							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':'0'},
 							label: 'Option 3',
                             })
                         }}
@@ -161,7 +162,7 @@ Meet A Meeple
 					{#OPTION POUR LA PARTIE#}
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.trait4_ID, {
-							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded','min':'0'},
+							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':'0'},
 							label: 'Option 4',
                             })
                         }}
