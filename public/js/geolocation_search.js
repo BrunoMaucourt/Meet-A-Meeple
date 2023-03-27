@@ -73,7 +73,7 @@ city_input.addEventListener('input', function () {
 });
 
 document.addEventListener('click', (e) => {
-    if (e.target.id !== "city_list"){
+    if (e.target.id !== "city_list") {
         city_list.classList.add("hidden");
         city_list.classList.remove("flex");
     }
