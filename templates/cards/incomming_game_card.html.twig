@@ -1,0 +1,32 @@
+<!--START INCOMMING GAME CARD-->
+<div class="flex w-full min-h-[6rem] border-b-4 border-main-green rounded-md shadow-lg bg-gradient-to-r from-white to-main-orange/30">
+	<div class="w-3/4 flex flex-col items-center justify-between py-1 px-2">
+		<div class="flex w-full h-1/3 justify-start items-center gap-4">
+			<img class="h-6" src="{{ asset('img/profil_menu/game.svg') }}" alt="">
+			<span class="uppercase text-sm font-bold font-main-brown">{{ item['game'] }}</span>
+		</div>
+		<div class="flex w-full h-1/3 justify-start items-center gap-4">
+			<img class="h-6" src="{{ asset('img/content/calendar.svg') }}" alt="">
+			<span class="uppercase text-sm font-bold font-main-brown">{{ item['date'] }}</span>
+		</div>
+		<div class="flex w-full h-1/3 items-center justify-start gap-4">
+			<img class="h-6" src="{{ asset('img/content/player_max.svg') }}" alt="">
+			<div class="flex w-full justify-start items-center">
+				{% for user in item['participants'] %}
+					<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href=" " title="{{ user['first_name'] }}"  style="background-image: url('{{ asset(user['picture_profil']) }}');"></a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="w-1/4 flex flex-col ">
+		<div class="h-1/2 w-full flex justify-center items-center">
+			<a class="h-6 w-6 hover:bg-main-green rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="" style="background-image: url('{{ asset('img/profil_menu/search.svg') }}');"></a>							
+		</div>
+		{% if item['user_host_id'] != userID %}
+		<div class="h-1/2 w-full flex justify-center items-center">
+			<a class="h-6 w-6 hover:bg-red rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center" href="{{ path('app_party_unsubscribe', {'partyID': item['id']}) }}" title="Se désinscrire" style="background-image: url('{{ asset('img/content/cancel.svg') }}');"></a>
+		</div>
+		{% endif %}
+	</div>
+</div>
+<!--END INCOMMING GAME CARD-->

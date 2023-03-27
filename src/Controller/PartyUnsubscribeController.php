@@ -39,9 +39,13 @@ class PartyUnsubscribeController extends AbstractController
             $party->setPlayerNumberNeeded($party->getPlayerNumberNeeded()+1);
             $entityManager->persist($party);
             $entityManager->flush(); 
-            return new Response('Vous êtes désinscrit de la partie');    
+            return $this->redirectToRoute('my_party', [
+                'message' => 'Vous êtes désinscrit de la partie.',
+            ]);
         }else{
-            return new Response('Vous n êtes pas inscrit à la partie');
+            return $this->redirectToRoute('my_party', [
+                'message' => 'Vous n êtes pas inscrit à la partie.',
+            ]);
         }
     }
 }

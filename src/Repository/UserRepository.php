@@ -73,6 +73,27 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $resultSet->fetchAllAssociative();
     }
 
+    public function findLastAvailableUser($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * FROM user U
+            WHERE id NOT IN
+            (select user_banned_id from user_black_list where user_that_block_id = ' . $user_ID . ') AND
+            id <> ' . $user_ID . '
+            ORDER BY
+            created_at DESC
+            LIMIT 5;
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
     public function findAllFriendUser(): array
     {
         $conn = $this->getEntityManager()->getConnection();

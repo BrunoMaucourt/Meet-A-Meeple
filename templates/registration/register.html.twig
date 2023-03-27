@@ -11,43 +11,76 @@
 {% block nodashboard %}{% endblock nodashboard %}
 
 {% block main_content %}
-	<section>
-		<h1>Inscription</h1>
-		<div class="flex justify-center items-center w-1/2">
-			{{ form_start(registrationForm) }}
-			<fieldset class="mt-5">
-				<legend class="text-main-orange text-3xl">Mes informations</legend>
+	<section class="w-full h-full px-2 sm:px-4 flex flex-col items-center gap-8">
+	        <h1 class="text-3xl font-bold underline bg-slate-300">Inscription</h1>
+                
+			{{ form_start(registrationForm, {
+                                'attr':{'class':'w-full max-w-lg flex flex-col justify-center gap-10 rounded-lg p-3 shadow-inset-xl bg-main-grey/20'}
+                        }) }}
+			<fieldset class="flex flex-col gap-2 [&>*]:flex [&>*]:flex-col">
+				<legend class="text-main-orange text-3xl text-center mb-6">Mes informations</legend>
+
 				{{ form_row(registrationForm.last_name, {
-                                        'attr': {'class': 'border'},
-                                        label: 'Mon nom de famille'
+                                        'attr': {
+                                                'class': 'px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Nom :'
                                 })
                         }}
-				{{ form_row(registrationForm.first_name, {'attr': {
-                                        'class': 'border'},
-                                        label: 'Mon prénom'
+				{{ form_row(registrationForm.first_name, {
+                                        'attr': {
+                                                'class': 'px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Prénom :',
                                 })
                         }}
-				{{ form_row(registrationForm.pseudo, {'attr': {
-                                        'class': 'border m-5'},
-                                        label: 'Mon pseudo'
+                                
+				{{ form_row(registrationForm.pseudo, {
+                                        'attr': {
+                                                'class': 'px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Pseudo :',
+                                        'label_attr': {'class':''}
+                                     
                                 })
                         }}
-				{{ form_row(registrationForm.gender_id, {'attr': {
-                                        'class': 'border'},
-                                        label: 'Mon genre'
+				{{ form_row(registrationForm.gender_id, {
+                                        'attr': {
+                                                'class': 'w-fit px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Genre :'
                                 })
                         }}
 				{{ form_row(registrationForm.birthdate, {
-                                        label: 'Mon anniversaire'
+                                        'attr': {
+                                                'class': 'w-fit px-1 focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Date de naissance :'
                                 })
                         }}
-				<div id="container_city_search_input" class="relative">
-					{{ form_row(registrationForm.city, {'attr': {'class': 'border'},
-                                        label: 'Ville',
-                                        id: 'city_search_input'
+				<div id="container_city_search_input" class="relative [&>*:first-child]:flex [&>*:first-child]:flex-col">
+					{{ form_row(registrationForm.city, {
+                                                'attr': {
+                                                'class': 'px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                                label: 'Ville :',
+                                                id: 'city_search_input'
                                         })
                                 }}
-					<div id="city_list" class="hidden absolute flex-col w-full h-fit"></div>
+					<div id="city_list" class="hidden absolute top-12 flex-col w-full h-fit rounded-b-lg overflow-hidden border border-main-grey-light"></div>
+                                        
 					{{ form_row(registrationForm.city_GPS_lat, {
                                         'attr': {'class': 'hidden'},
 					'id': 'form_city_GPS_lat'
@@ -60,54 +93,94 @@
                                 }}
 				</div>
 			</fieldset>
-			<fieldset class="mt-5">
-				<legend class="text-main-orange text-3xl">Mes informations de connexions</legend>
-				{{ form_row(registrationForm.email, {'attr': {'class': 'border'},
-                                label: 'Mon adresse email'
+			<fieldset class="flex flex-col gap-2 [&>*]:flex [&>*]:flex-col">
+				<legend class="text-main-orange text-3xl text-center mb-6">Mes informations de connexions</legend>
+
+				{{ form_row(registrationForm.email, {
+                                        attr: {
+                                                'class': 'px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Mon adresse email :'
                                 })
                         }}
 				{{ form_row(registrationForm.plainPassword, {
-                        label: 'Mon mot de passe',
-                        attr: {'class': 'border'}
+                                        label: 'Mon mot de passe',
+                                        attr: {
+                                                'class': 'px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        }
                         }) }}
 			</fieldset>
-			<fieldset class="mt-5">
-				<legend class="text-main-orange text-3xl">Mon profil</legend>
+			<fieldset class="flex flex-col gap-2 [&>*]:flex [&>*]:flex-col">
+				<legend class="text-main-orange text-3xl text-center mb-6">Mon profil</legend>
 				{{ form_row(registrationForm.picture_profil, {
-                                label: 'Ma photo de profil'
+                                        label: 'Ma photo de profil :'
                                 })
                         }}
-				{{ form_row(registrationForm.description, {'attr': {'class': 'border'},
-                                label: 'Ma description'
+				{{ form_row(registrationForm.description, {
+                                        attr: {
+                                                'class': 'px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' ',
+                                                'rows' : '5'
+                                        },
+                                        label: 'Ma description :'
                                 })
                         }}
-				{{ form_row(registrationForm.favorite_game, {'attr': {'class': 'border'},
-                                label: 'Mon jeu préféré'
+				{{ form_row(registrationForm.favorite_game, {
+                                        'attr': {
+                                                'class': 'px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' ',},
+                                        label: 'Mon jeu préféré :'
                                 })
                         }}
 			</fieldset>
-			<fieldset class="mt-5">
-				<legend class="text-main-orange text-3xl">Mes préfèrences</legend>
+			<fieldset class="flex flex-col gap-2 [&>*]:flex [&>*]:flex-col">
+				<legend class="text-main-orange text-3xl text-center mb-6">Mes préfèrences</legend>
 				{{ form_row(registrationForm.trait1_id, {
-                                label: 'Mes préfèrences'
+                                        'attr': {
+                                                'class': 'w-fit px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Mes préfèrences :'
                                 })
                         }}
 				{{ form_row(registrationForm.trait2_id, {
-                                label: 'Mes préfèrences'
+                                        'attr': {
+                                                'class': 'w-fit px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Mes préfèrences :'
                                 })
                         }}
 				{{ form_row(registrationForm.trait3_id, {
-                                label: 'Mes préfèrences'
+                                        'attr': {
+                                                'class': 'w-fit px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Mes préfèrences :'
                                 })
                         }}
 				{{ form_row(registrationForm.trait4_id, {
-                                label: 'Mes préfèrences'
+                                        'attr': {
+                                                'class': 'w-fit px-1 border border-main-brown focus:outline-main-orange rounded
+		[&:not(:placeholder-shown)]:border-main-orange',
+                                                'placeholder' : ' '
+                                        },
+                                        label: 'Mes préfèrences :'
                                 })
                         }}
 			</fieldset>
 
-			<fieldset class="mt-5">
-				<legend class="text-main-orange text-3xl">Traitement de mes données</legend>
+			<fieldset class="flex flex-col gap-2 [&>*]:flex [&>*]:flex-row [&>*]:gap-4">
+				<legend class="text-main-orange text-3xl text-center mb-6">Traitement de mes données</legend>
 				{{ form_row(registrationForm.RGPDconsent, {
                                 label: 'J\'accèpte que mes données soient traitées'
                                 })
@@ -116,6 +189,5 @@
 
                         <button type="submit" class="btn-orange">S'inscrire</button>
                         {{ form_end(registrationForm) }}
-			</div>
-		</section>
+	</section>
 	{% endblock main_content %}

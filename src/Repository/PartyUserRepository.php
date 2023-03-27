@@ -71,6 +71,127 @@ class PartyUserRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     } 
 
+    public function findPartyWithID($partyID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT user_id FROM party_user
+            WHERE party_id = '. $partyID .'
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    } 
+
+    public function findAllIncommingUserParty($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT p.id,p.user_host_id, p.game, p.date FROM party p 
+            INNER JOIN party_user PU 
+            WHERE p.id = PU.party_id AND 
+            PU.user_id = '. $user_ID .' AND 
+            p.canceled = 0 AND 
+            p.date > NOW()
+            ';
+
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function findAllFinishedUserParty($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT p.id, p.game, p.date FROM party p 
+            INNER JOIN party_user PU 
+            WHERE p.id = PU.party_id AND 
+            PU.user_id = '. $user_ID .' AND 
+            p.canceled = 0 AND 
+            p.date < NOW()
+            ';
+
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+
+    }
+
+    public function findAllCreatedUserParty($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT p.id, p.game, p.date FROM party p 
+            INNER JOIN party_user PU 
+            WHERE p.id = PU.party_id AND 
+            PU.user_id = '. $user_ID .' AND 
+            p.canceled = 0 AND 
+            p.user_host_id = '. $user_ID .'
+            ';
+
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+
+    }
+
+    public function findAllCanceledUserParty($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT p.id, p.game, p.date FROM party p 
+            INNER JOIN party_user PU 
+            WHERE p.id = PU.party_id AND 
+            PU.user_id = '. $user_ID .' AND 
+            p.canceled = 1 
+            ';
+
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function findAllParticipantExceptUser($user_ID,$party_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT pu.user_id,u.first_name, u.picture_profil FROM party_user pu
+            INNER JOIN user u
+            WHERE u.id = pu.user_id AND
+            pu.party_id = '. $party_ID .' AND 
+            pu.user_id <> '. $user_ID .'
+            ';
+
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return PartyUser[] Returns an array of PartyUser objects
 //     */

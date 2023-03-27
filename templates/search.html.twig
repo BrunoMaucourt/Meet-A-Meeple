@@ -57,7 +57,6 @@ Chercher une partie ou un joueur
 			{% endfor %}
 		{% endif %}
 		{% if partyResult != [] %}
-			{{ dump(partyResult) }}
 			{% for party in partyResult %}
 				{% include('/cards/party_card.html.twig') %}
 			{% endfor %}

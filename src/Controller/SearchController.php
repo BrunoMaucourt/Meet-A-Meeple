@@ -32,7 +32,6 @@ class SearchController extends AbstractController
         $data = [];
         define("SEARCH_PARTY", "1");
         define("SEARCH_PLAYER", "0");
-        define("EARTH_RADIUS",6371);
 
         // Get ID of user
         /** @var \App\Entity\User $user */
@@ -106,7 +105,8 @@ class SearchController extends AbstractController
                 
                 // Edit data before export to TWIG
                 $result_party_host = SearchController::checkHostInformation($temp_result, $entityManager);
-                $result_party_player = SearchController::checkUserInformation($result_party_host, $entityManager);
+                $result_party_date = SearchController::editDate($result_party_host, $entityManager);
+                $result_party_player = SearchController::checkUserInformation($result_party_date, $entityManager);
                 $result_party_player_register = SearchController::checkIfUserRegistered($result_party_player, $user_ID, $entityManager);
                 $result_party =$result_party_player_register;
 
@@ -140,6 +140,7 @@ class SearchController extends AbstractController
 
         return $this->render('search.html.twig', [
             'searchForm' => $form->createView(),
+            'current_user' => $user_ID,
             'partyResult' => $result_party,
             'userResult' => $result_user,
             'error' => $error,
@@ -147,8 +148,11 @@ class SearchController extends AbstractController
         ]);
     }
 
-    public function calculateDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
+    public static function calculateDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
     {
+        // Define constants
+        $earth_radius = 6371;
+
         // convert from degrees to radians
         $latFrom = deg2rad($latitudeFrom);
         $lonFrom = deg2rad($longitudeFrom);
@@ -160,10 +164,10 @@ class SearchController extends AbstractController
       
         $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
           cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
-        return $angle * EARTH_RADIUS;
+        return $angle * $earth_radius;
     }
 
-    public function calculateAge($result)
+    public static function calculateAge($result)
     {
         // Get current year
         $current_year = date("Y");
@@ -181,7 +185,16 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function editDateCreatedAt($result)
+    public static function editDate($result)
+    {
+        for ($i=0; $i < sizeof($result); $i++) { 
+            $spliter_string =  str_split($result[$i]['created_at'], 10);
+            $result[$i]['date'] = $spliter_string[0];
+        }
+        return $result;
+    }
+
+    public static function editDateCreatedAt($result)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             $spliter_string =  str_split($result[$i]['created_at'], 10);
@@ -190,7 +203,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function editLastConnexion($result)
+    public static function editLastConnexion($result)
     {
         // Get current date
         date_default_timezone_set('Europe/Paris');
@@ -207,7 +220,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function numberOfComment($result, EntityManagerInterface $entityManager)
+    public static function numberOfComment($result, EntityManagerInterface $entityManager)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of user
@@ -222,7 +235,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function checkIfUserRegistered($result, $user_ID,  EntityManagerInterface $entityManager)
+    public static function checkIfUserRegistered($result, $user_ID,  EntityManagerInterface $entityManager)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of party
@@ -241,7 +254,7 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function checkHostInformation($result, EntityManagerInterface $entityManager)
+    public static function checkHostInformation($result, EntityManagerInterface $entityManager)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of party
@@ -257,19 +270,24 @@ class SearchController extends AbstractController
         return $result;
     }
 
-    public function checkUserInformation($result, EntityManagerInterface $entityManager)
+    public static function checkUserInformation($result, EntityManagerInterface $entityManager)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
             // Get ID of party
             $partyID = $result[$i]['id'];
 
             // Chek if already registered
-            $party_user_list = $entityManager->getRepository(PartyUser::class)->find($partyID);
-            var_dump($party_user_list);
+            $party_user_list = $entityManager->getRepository(PartyUser::class)->findPartyWithID($partyID);
 
-            // Store in array
-            //$result[$i]['party_host_name'] = $party_host_name->getFirstName() . ' ' . $party_host_name->getLastName() ;
-            //$result[$i]['party_host_picture'] = $party_host_name->getPictureProfil();
+            $result[$i]['user_registered'] = null;
+            for ($y=0; $y < sizeof($party_user_list); $y++) { 
+                $party_user_information = $entityManager->getRepository(User::class)->find($party_user_list[$y]["user_id"]);
+
+                // Store in array
+                $result[$i]['user_registered'][$y]["user_id"] = $party_user_information->getId();
+                $result[$i]['user_registered'][$y]["user_name"] = $party_user_information->getFirstName();
+                $result[$i]['user_registered'][$y]["user_profil_picture"] = $party_user_information->getPictureProfil();
+            }
         }
         return $result;
     }

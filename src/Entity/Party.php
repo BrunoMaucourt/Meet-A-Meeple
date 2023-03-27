@@ -42,13 +42,13 @@ class Party
     #[ORM\Column]
     private ?int $type_location_ID = null;
 
-    //#[ORM\Column(type: Types::DATE_MUTABLE)]
-    //private ?\DateTimeInterface $date = null;
-    #[ORM\Column (type: Types::DATETIMETZ_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
     private ?\DateTimeInterface $date = null;
     
     //#[ORM\Column(type: Types::DATE_MUTABLE)]
     //private ?\DateTimeInterface $last_sign_in = null;
+    #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
+
     #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
     private ?\DateTimeInterface $last_sign_in = null;
 
