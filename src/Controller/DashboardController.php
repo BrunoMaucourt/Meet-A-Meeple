@@ -48,6 +48,13 @@ class DashboardController extends AbstractController
         // Search in database
         $result = $entityManager->getRepository(Party::class)->findLastAvailableParty();
         
+        for ($i=0; $i < sizeof($result); $i++) { 
+            $player_lat = $result[$i]['address_gps_lat'];
+            $player_long = $result[$i]['address_gps_long'];
+            $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);              
+            $result[$i]['distance'] = round($distance_between,1);
+        }
+
         // Edit data before export to TWIG
         $result_party_host = SearchController::checkHostInformation($result, $entityManager);
         $result_party_date = SearchController::editDate($result_party_host, $entityManager);

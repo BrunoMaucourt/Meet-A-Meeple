@@ -9,82 +9,47 @@ Meet A Meeple
 {% block main_content %}
     <section class="flex flex-col justify-center items-center w-full relative overflow-hidden gap-4">
         <h1 class="font-bold text-3xl sm:text-4xl my-3 text-center px-2 sm:px-4">Trouvez des joueurs de jeux de sociétés proches de chez vous</h1>
-        <a href="" class="btn-orange top-32">Consulter les parties</a>
+        <a href="{{ path('search') }}" class="btn-orange top-32">Consulter les parties</a>
         <img class="-translate-y-20 sm:-translate-y-32 min-w-[1000px] sm:min-w-[1500px]" src="{{ asset('img/content/banner.svg') }}" alt="Bannière de Meet a meeple">
     </section>
 
 
-    <section class="flex">
-        <div class="w-1/2 flex justify-center items-center">
-            <img class="w-1/2" src="{{ asset('img/profil_menu/friend.svg') }}" alt="">
+    <section class="flex flex-col lg:flex-row items-center justify-center my-10">
+        <div class="w-75 lg:w-1/2 flex justify-center items-center">
+            <img class="w-75" src="{{ asset('img/content/home_table.svg') }}" alt="">
         </div>
-        <div class="w-1/2 flex flex-col justify-center items-center">
-            <h2 class="font-bold text-xl my-3">Et si vous faisiez le premier pas ?</h2>
-            <p>
+        <div class="w-75 md:w-50 lg:w-1/2 flex flex-col justify-center items-center p-5">
+            <h2 class="font-bold text-3xl my-3 text-main-orange">Et si vous faisiez le premier pas ?</h2>
+            <p class="text-xl">
                 Êtes-vous fatigué de jouer seul à vos jeux de société préférés ? Imaginez-vous pouvoir jouer à votre jeu de société préféré avec des personnes partageant les mêmes intérêts que vous, peu importe où vous vous trouvez dans le monde. 
             </p>
         </div>
     </section>
-    <section class="flex">
-            <div class="w-1/2 flex flex-col justify-center items-center">
-            <h2 class="font-bold text-xl my-3">Et si vous faisiez le premier pas ?</h2>
-            <p>
-                Êtes-vous fatigué de jouer seul à vos jeux de société préférés ? Imaginez-vous pouvoir jouer à votre jeu de société préféré avec des personnes partageant les mêmes intérêts que vous, peu importe où vous vous trouvez dans le monde. 
-            </p>
+    <section class="flex flex-col-reverse lg:flex-row items-center justify-center my-10">
+        <div class="w-75 md:w-50 lg:w-1/2 flex flex-col justify-center items-center p-5">
+        <h2 class="font-bold text-3xl my-3 text-main-orange">Meet a meeple</h2>
+        <p class="text-xl">
+            Meet a meeple est là pour vous aider que vous souhaitiez organiser une soirée de jeux chez vous ou trouver des joueurs dans votre quartier, notre plateforme facilite les rencontres et les échanges entre joueurs de tous horizons. Rejoignez notre communauté de joueurs de jeux de société passionnés et découvrez de nouveaux jeux et de nouvelles personnes.
+        </p>
         </div>
-        <div class="w-1/2 flex justify-center items-center">
-            <img class="w-1/2" src="{{ asset('img/profil_menu/friend.svg') }}" alt="">
+        <div class="w-75 lg:w-1/2 flex justify-center items-center">
+            <img class="w-75" src="{{ asset('img/content/home_meeple.svg') }}" alt="">
         </div>
+    </section>
+    <section class="flex flex-col lg:flex-row items-center justify-center my-10">
+    <div class="w-75 lg:w-1/2 flex justify-center items-center">
+        <img class="w-75" src="{{ asset('img/content/home_map_meeple.svg') }}" alt="">
+    </div>
+    <div class="w-75 md:w-50 lg:w-1/2 flex flex-col justify-center items-center p-5">
+        <h2 class="font-bold text-3xl my-3 text-main-orange">Rencontrer des joueurs près de chez vous</h2>
+        <p class="text-xl">
+            Grâce à notre système de recherche et de géolocalisation, vous pouvez trouver des joueurs à proximité et organiser des rencontres pour jouer ensemble.  
+        </p>
+    </div>
+    </section>
 
-    </section>
-    <section class="flex">
-        <div class="w-1/2 flex justify-center items-center">
-            <img class="w-1/2" src="{{ asset('img/profil_menu/friend.svg') }}" alt="">
-        </div>
-        <div class="w-1/2 flex flex-col justify-center items-center">
-            <h2 class="font-bold text-xl my-3">Et si vous faisiez le premier pas ?</h2>
-            <p>
-                Êtes-vous fatigué de jouer seul à vos jeux de société préférés ? Imaginez-vous pouvoir jouer à votre jeu de société préféré avec des personnes partageant les mêmes intérêts que vous, peu importe où vous vous trouvez dans le monde. 
-            </p>
-        </div>
-    </section>
     <section>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
-        <div class="bg-main-orange h-20 w-20">
-        P
-        </div>
     
     </section>
+    
 {% endblock main_content %}

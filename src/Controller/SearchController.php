@@ -215,7 +215,7 @@ class SearchController extends AbstractController
             $last_connexion_date = strtotime($spliter_string[0]);
             $timeDiff = abs($current_date - $last_connexion_date);
             $numberDays = $timeDiff/86400;
-            $result[$i]['last_connexion'] = $numberDays;
+            $result[$i]['last_connexion'] = round($numberDays,0);
         }
         return $result;
     }
