@@ -2,15 +2,17 @@
 //CHEMIN ÉVITANT DES INCOHÉRENCES
 namespace App\Controller;
 //CLASS UTILISER POUR LA PAGE ADDPARTYCONTROLLER.PHP
+use App\Entity\User;
 use App\Entity\Party;
 use App\Form\PartyType;
-use Doctrine\ORM\EntityManager;
+//use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+//use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\String\Slugger\SluggerInterface;
+
 //CLASS ADDPARTYCONTROLLER ENFANT DE LA CLASS ABSTRACTCONTROLLER
 class AddPartyController extends AbstractController
 {   //CHEMIN D'ACCCES (ROUTE)
@@ -23,9 +25,15 @@ class AddPartyController extends AbstractController
         $party = new Party();
         $form = $this->createForm(PartyType::class, $party);
         $form->handleRequest($request);
+
+        //DEFAUT VALUE DATE INPUTS
+        $today = date("Y-m-d H:i:s");
+        $tomorrow = date("Y-m-d H:i:s", strtotime('tomorrow'));
+       
+
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $party = $form->getData(); 
+            $party = $form->getData();
             // Get ID of user
         /** @var \App\Entity\User $user */
             $user = $this->getUser();
@@ -33,17 +41,21 @@ class AddPartyController extends AbstractController
 
             $party->setUserHostID($user_ID);
             
-            $party->setAddressGPSLat(49.366669);
-            $party->setAddressGPSLong(6.16667);
-            
             $entityManager->persist($party);
             $entityManager->flush();
+            // generate a URL with route arguments
+            $url = $this->generateUrl('app_party_registration', [
+                'partyID' => $party->getId(),
+            ]);
+            return $this->redirect($url);
         }
 
         //dd($party);
 
         return $this->render('addParty.html.twig', [
             'party' => $form->createView(),
+            'today'=> $today,
+            'tomorrow' => $tomorrow,
         ]);
     }
 }

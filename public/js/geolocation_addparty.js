@@ -3,8 +3,10 @@
  */
 
 //
-const city_input = document.getElementById("city_search_input");
+const city_input = document.getElementById("address_location");
 const city_list = document.getElementById("city_list");
+//const adress_location_input = document.getElementById("address_location");
+console.log(city_input);
 
 // 
 let input_lat = document.getElementById("form_city_GPS_lat");
@@ -12,8 +14,9 @@ let input_long = document.getElementById("form_city_GPS_long");
 
 async function geolocation(city_name) {
     try {
-        const reponseJSON = await fetch('https://api-adresse.data.gouv.fr/search/?q=' + city_name + '&limit=5&type=municipality');
+        const reponseJSON = await fetch('https://api-adresse.data.gouv.fr/search/?q=' + city_name + '&limit=5');
         const reponseJS = await reponseJSON.json();
+        
 
         if (reponseJS.features.length == 0) {
             input_lat.value = 0;
@@ -28,7 +31,7 @@ async function geolocation(city_name) {
 
                 // Add box with city name
                 let box = document.createElement('div');
-                box.classList.add("px-1", "left-0", "h-fit", "w-full", "bg-white", "hover:bg-main-orange", "hover:text-white");
+                box.classList.add("border", "left-0", "h-fit", "w-full", "bg-white", "hover:bg-main-orange", "hover:text-white");
                 box.innerHTML = city_name;
                 box.setAttribute('onClick', 'replace_city_name(this)');
                 box.setAttribute('lat', city_lat);
@@ -54,6 +57,8 @@ function replace_city_name(element) {
     // Edit GPS position
     input_lat.value = element.getAttribute('lat');
     input_long.value = element.getAttribute('long');
+    console.log(input_lat.value);
+    console.log(input_long.value);
 
     city_list.classList.add("hidden");
     city_list.classList.remove("flex");
@@ -73,7 +78,7 @@ city_input.addEventListener('input', function () {
 });
 
 document.addEventListener('click', (e) => {
-    if (e.target.id !== "city_list") {
+    if (e.target.id !== "city_list"){
         city_list.classList.add("hidden");
         city_list.classList.remove("flex");
     }
