@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PartyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+
 //CRÉATION ET DÉFINITIONS DES COLONES POUR LA TABLE PARTY
 #[ORM\Entity(repositoryClass: PartyRepository::class)]
 class Party
