@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PartyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+
 //CRÉATION ET DÉFINITIONS DES COLONES POUR LA TABLE PARTY
 #[ORM\Entity(repositoryClass: PartyRepository::class)]
 class Party
@@ -41,10 +42,14 @@ class Party
     #[ORM\Column]
     private ?int $type_location_ID = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    //#[ORM\Column(type: Types::DATE_MUTABLE)]
+    //private ?\DateTimeInterface $date = null;
+    #[ORM\Column (type: Types::DATETIMETZ_MUTABLE)]
     private ?\DateTimeInterface $date = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    
+    //#[ORM\Column(type: Types::DATE_MUTABLE)]
+    //private ?\DateTimeInterface $last_sign_in = null;
+    #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
     private ?\DateTimeInterface $last_sign_in = null;
 
     #[ORM\Column]
