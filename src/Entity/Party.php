@@ -71,6 +71,7 @@ class Party
      */
     public function __construct()
     {
+        date_default_timezone_set('Europe/Paris');
         $this->created_at = new \DateTimeImmutable();
         $this->canceled = 0;
     }
