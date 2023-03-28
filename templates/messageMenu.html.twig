@@ -24,7 +24,7 @@ Mes conversations
 				{% endfor %}							
 			</div>
 			<div id="user_message_container" class="w-full h-[70%] sm:h-full sm:w-2/3 md:w-1/2 lg:w-3/4 rounded-lg flex flex-col justify-between gap-2 p-1 shadow-inset-xl">
-				<div id="scroll_div" class="sm:overflow-y-scroll h-full">
+				<div id="scroll_div" class="overflow-y-scroll h-full">
 					{% if discussion != null %}
 						{% for message in discussion %}
 							{% if currentUserId == message['user_sender_id'] %}
