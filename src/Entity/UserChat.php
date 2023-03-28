@@ -29,6 +29,12 @@ class UserChat
     #[ORM\Column]
     private ?bool $messageRead = null;
 
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+        $this->message_read = 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
