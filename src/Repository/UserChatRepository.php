@@ -94,6 +94,23 @@ class UserChatRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
+    public function SetAllMessageFromDiscussionToRead($user_ID,$other_user_ID)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        UPDATE user_chat UC SET UC.message_read = 1 
+        WHERE UC.user_sender_id = '.$other_user_ID.' AND UC.user_recipient_id = '.$user_ID.';';
+
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+    }
+
+    
+
     public function findNonReadMessageCount($user_ID): array
     {
         $conn = $this->getEntityManager()->getConnection();

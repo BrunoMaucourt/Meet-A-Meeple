@@ -39,6 +39,10 @@ class MessageMenuController extends AbstractController
         // Create form
         $form = $this->createForm(UserChatType::class, $userchat);            
 
+
+        //set message to read when watching discussion
+        $entityManager->getRepository(UserChat::class)->SetAllMessageFromDiscussionToRead($current_user_id,$other_user_id);
+
         // Process form
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
