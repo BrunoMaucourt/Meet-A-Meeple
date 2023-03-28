@@ -5,6 +5,7 @@ namespace App\Controller;
 //use App\Entity\Party;
 use App\Entity\User;
 use App\Entity\PartyUser;
+use App\Entity\UserChat;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,6 +29,9 @@ class MyPartyController extends AbstractController
         // Get ID of user
         $user = $this->getUser();
         $user_ID = $user->getId();
+
+        //seting non read message count
+        $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
         
         // Search in DataBase
         $incomming_game = $entityManager->getRepository(PartyUser::class)->findAllIncommingUserParty($user_ID);
@@ -67,6 +71,7 @@ class MyPartyController extends AbstractController
             'finishedGame' => $finished_game,
             'createdGame' => $created_game,
             'canceledGame' => $canceled_game,
+            'nonReadMessageCount' => $non_read_message_count,
         ]);
     }
 }
