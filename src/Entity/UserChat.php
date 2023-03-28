@@ -24,15 +24,16 @@ class UserChat
     private ?string $body = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $creataed_at = null;
+    private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column]
     private ?bool $messageRead = null;
 
     public function __construct()
     {
+        date_default_timezone_set('Europe/Paris');
         $this->created_at = new \DateTimeImmutable();
-        $this->message_read = 0;
+        $this->messageRead = 0;
     }
 
     public function getId(): ?int
@@ -78,12 +79,12 @@ class UserChat
 
     public function getCreataedAt(): ?\DateTimeImmutable
     {
-        return $this->creataed_at;
+        return $this->created_at;
     }
 
     public function setCreataedAt(\DateTimeImmutable $creataed_at): self
     {
-        $this->creataed_at = $creataed_at;
+        $this->created_at = $creataed_at;
 
         return $this;
     }

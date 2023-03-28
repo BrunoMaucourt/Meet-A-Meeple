@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-
 {% block withdashboard %}
 {% endblock withdashboard %}
 
 {% block bonus_javascript %}
-<script defer src="{{ asset('js/dashboard.js') }}"></script> 
+    <script defer src="{{ asset('js/dashboard.js') }}"></script> 
 {% endblock bonus_javascript %}
 
 {% block main_content %}
@@ -22,7 +21,7 @@
 
             <h2 class="font-bold text-xl my-3">Commencez dès maintenant !</h2>
                 <div class="flex flex-wrap gap-2">
-                    <a class="block w-fit p-2 border border-main-green rounded-lg text-main-green font-bold  hover:bg-main-green/20 transition-all duration-300" href="">Créer partie</a>
+                    <a class="block w-fit p-2 border border-main-green rounded-lg text-main-green font-bold  hover:bg-main-green/20 transition-all duration-300" href="{{ path('add party') }}">Créer partie</a>
                     <a class="block w-fit p-2 rounded-lg text-main-green font-bold  hover:bg-main-green/20 transition-all duration-300" href="">Trouver un lieu pour vos parties</a>
                     <a class="block w-fit p-2 rounded-lg text-main-green font-bold  hover:bg-main-green/20 transition-all duration-300" href="">Conseils</a>
                 </div>

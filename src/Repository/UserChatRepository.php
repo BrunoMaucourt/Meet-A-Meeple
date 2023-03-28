@@ -84,7 +84,7 @@ class UserChatRepository extends ServiceEntityRepository
         WHERE (user_sender_id ='.$user_ID.' AND user_recipient_id = '.$other_user_ID.')
         OR
         (user_sender_id = '.$other_user_ID.' AND user_recipient_id = '.$user_ID.')
-        ORDER BY UC.creataed_at ASC;';
+        ORDER BY UC.created_at ASC;';
 
 
         $stmt = $conn->prepare($sql);

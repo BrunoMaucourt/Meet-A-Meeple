@@ -95,6 +95,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function __construct()
     {
+        date_default_timezone_set('Europe/Paris');
         $this->created_at = new \DateTimeImmutable();
         $this->last_connexion = new \DateTime();
         $this->rate = 0;
