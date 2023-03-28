@@ -11,7 +11,7 @@ Meet A Meeple
 {% endblock bonus_javascript %}
 {% block main_content %}
 {#FORMULAIRE POUR CRÉER (AJOUTER) UNE PARTIE#}
-<div class="flex flex-col w-2/3 gap-8 items-center mx-auto max-w-4xl h-fit rounded-lg shadow-around bg-gradient-to-br from-white via-white to-main-orange/10 p-3">
+<div class="flex flex-col w-2/3 gap-8 items-center mx-auto max-w-4xl h-fit rounded-lg shadow-around bg-gradient-to-br from-white via-white to-main-orange/10 p-3 lg:w-1/3">
 	{#NOM DE LA PARTIE#}
 	<h1 class="text-3xl font-bold bg-slate-300">
 		Créer une partie
@@ -34,7 +34,7 @@ Meet A Meeple
 				<div class="w-full">
 					<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.description, {
-							'attr': {'class': 'border border-red-500 rounded w-full font-normal', 'rows': '5'},
+							'attr': {'class': 'pl-2 border border-red-500 rounded w-full font-normal', 'rows': '5'},
 							label: 'Description:',
                             })
                         }}
@@ -56,7 +56,7 @@ Meet A Meeple
 				<div>
 					<label for="player_number_total" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.player_number_total, {
-							'attr': {'class': 'w-1/4 font-normal appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white', 'type':'number', 'min':'0'},
+							'attr': {'class': 'w-1/3 font-normal appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white', 'type':'number', 'min':'0'},
 							label: 'Nombre maximum de joueur pour la partie:',
                             })
                         }}
@@ -114,7 +114,7 @@ Meet A Meeple
 						<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 							{{ form_row(party.date, {
 								'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
-										'value': ''~tomorrow~'', 'min': ''~tomorrow~'',
+										'value': ''~today~'', 'min': ''~today~'', 'max': ''
 										},
 								label: 'Date de la partie:',
 								})

@@ -35,6 +35,8 @@ class AddPartyController extends AbstractController
         //DEFAUT VALUE DATE INPUTS
         $today = date("Y-m-d H:i:s");
         $tomorrow = date("Y-m-d H:i:s", strtotime('tomorrow'));
+
+        
        
         //seting non read message count
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
