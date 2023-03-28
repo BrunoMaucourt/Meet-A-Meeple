@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Party;
 use App\Form\PartyType;
+use App\Entity\UserChat;
 //use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,8 +21,13 @@ class AddPartyController extends AbstractController
     //APPEL DE LA FONCTION ADDPARTY
     public function addParty(Request $request, EntityManagerInterface $entityManager): Response
     {
+
+        
+
         // Allow acces only to connected user
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+        $user_ID = $user->getId();
         $party = new Party();
         $form = $this->createForm(PartyType::class, $party);
         $form->handleRequest($request);
@@ -30,6 +36,8 @@ class AddPartyController extends AbstractController
         $today = date("Y-m-d H:i:s");
         $tomorrow = date("Y-m-d H:i:s", strtotime('tomorrow'));
        
+        //seting non read message count
+        $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
 
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,6 +64,7 @@ class AddPartyController extends AbstractController
             'party' => $form->createView(),
             'today'=> $today,
             'tomorrow' => $tomorrow,
+            'nonReadMessageCount' => $non_read_message_count,
         ]);
     }
 }

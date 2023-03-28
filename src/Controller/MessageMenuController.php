@@ -30,6 +30,9 @@ class MessageMenuController extends AbstractController
         $user_talking_with = $entityManager->getRepository(UserChat::class)->findAllUserTalkingWith($current_user_id);
         $all_user_talking_with = array_unique(array_merge($user_talking_to_me, $user_talking_with), SORT_REGULAR);
 
+        //seting non read message count
+        $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($current_user_id);
+
         //create discussion array
         $discussion = $entityManager->getRepository(UserChat::class)->findAllMessageFromDiscussion($current_user_id,$other_user_id);
         
@@ -55,7 +58,8 @@ class MessageMenuController extends AbstractController
             'allUserTalkingWith' => $all_user_talking_with,
             'discussion' => $discussion,
             'currentUserId' => $current_user_id,
-            'other_id' => $other_user_id
+            'other_id' => $other_user_id,
+            'nonReadMessageCount' => $non_read_message_count,
     ]);
     }
 
@@ -71,6 +75,9 @@ class MessageMenuController extends AbstractController
 
         $discussion = null;
 
+        //seting non read message count
+        $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($current_user_id);
+
         //create users array talking with
         $user_talking_to_me = $entityManager->getRepository(UserChat::class)->findAllUserTalkingToMe($current_user_id);
         $user_talking_with = $entityManager->getRepository(UserChat::class)->findAllUserTalkingWith($current_user_id);
@@ -79,6 +86,7 @@ class MessageMenuController extends AbstractController
         return $this->render('messageMenu.html.twig',[
             'allUserTalkingWith' => $all_user_talking_with,
             'discussion' => $discussion,
+            'nonReadMessageCount' => $non_read_message_count,
     ]);
     }
 }
