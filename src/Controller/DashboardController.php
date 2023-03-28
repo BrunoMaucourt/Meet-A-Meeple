@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Party;
 use App\Entity\User;
 use App\Entity\UserFriend;
+use App\Entity\UserChat;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+
 
 //ini_set("memory_limit", "4000M");
 
@@ -20,6 +22,7 @@ class DashboardController extends AbstractController
         // Allow acces only to connected user
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         
+
         /**
          * Update database with last connexion date
          * 
@@ -29,6 +32,10 @@ class DashboardController extends AbstractController
         $user_ID = $user->getId();
         $user_ID_lat = $user->getCityGPSLat();
         $user_ID_long = $user->getCityGPSLong();
+
+
+        //seting non read message count
+        $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
 
         /**
          * Update database with last connexion date
@@ -96,7 +103,8 @@ class DashboardController extends AbstractController
             'userInformations' => $userInformations,
             'current_user' => $user_ID,
             'partyResult' => $result_party,
-            'userResult' => $result_user,           
+            'userResult' => $result_user,
+            'nonReadMessageCount' => $non_read_message_count,       
         ]);
     }
 }

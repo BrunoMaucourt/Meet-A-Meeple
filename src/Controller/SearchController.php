@@ -6,6 +6,7 @@ use App\Entity\Party;
 use App\Entity\User;
 use App\Entity\UserComment;
 use App\Entity\PartyUser;
+use App\Entity\UserChat;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,9 @@ class SearchController extends AbstractController
         $user_ID_city = $user->getCity();
         $user_ID_lat = $user->getCityGPSLat();
         $user_ID_long = $user->getCityGPSLong();
+
+        //seting non read message count
+        $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
 
         // Default value for form
         $defaults = [
@@ -145,6 +149,7 @@ class SearchController extends AbstractController
             'userResult' => $result_user,
             'error' => $error,
             'data' => $data,
+            'nonReadMessageCount' => $non_read_message_count,
         ]);
     }
 
