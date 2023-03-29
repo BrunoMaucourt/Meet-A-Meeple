@@ -26,9 +26,24 @@ class MessageMenuController extends AbstractController
         $other_user_id = $id;
 
         //create users array talking with
+        $contactNonReadMessage = $entityManager->getRepository(UserChat::class)->findContactNonReadMessageCount($current_user_id);
         $user_talking_to_me = $entityManager->getRepository(UserChat::class)->findAllUserTalkingToMe($current_user_id);
         $user_talking_with = $entityManager->getRepository(UserChat::class)->findAllUserTalkingWith($current_user_id);
         $all_user_talking_with = array_unique(array_merge($user_talking_to_me, $user_talking_with), SORT_REGULAR);
+
+        //making a new row in the $all_user_talking_with array that show how many non read message for each user.
+        // $all_user_talking_with['non_read_msg_count']
+        foreach ($all_user_talking_with as &$user) {
+            foreach ($contactNonReadMessage as $message) {
+                if($message['id'] == $user['contact_id']){
+                    $user['non_read_msg_count'] = $message['count'];
+                    break;
+                }else{
+                    $user['non_read_msg_count'] = 0;
+                }
+            }
+        }
+
 
         //seting non read message count
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($current_user_id);
@@ -38,6 +53,10 @@ class MessageMenuController extends AbstractController
         
         // Create form
         $form = $this->createForm(UserChatType::class, $userchat);            
+
+
+        //set message to read when watching discussion
+        $entityManager->getRepository(UserChat::class)->SetAllMessageFromDiscussionToRead($current_user_id,$other_user_id);
 
         // Process form
         $form->handleRequest($request);
@@ -79,9 +98,23 @@ class MessageMenuController extends AbstractController
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($current_user_id);
 
         //create users array talking with
+        $contactNonReadMessage = $entityManager->getRepository(UserChat::class)->findContactNonReadMessageCount($current_user_id);
         $user_talking_to_me = $entityManager->getRepository(UserChat::class)->findAllUserTalkingToMe($current_user_id);
         $user_talking_with = $entityManager->getRepository(UserChat::class)->findAllUserTalkingWith($current_user_id);
         $all_user_talking_with = array_unique(array_merge($user_talking_to_me,$user_talking_with), SORT_REGULAR);
+
+        //making a new row in the $all_user_talking_with array that show how many non read message for each user.
+        // $all_user_talking_with['non_read_msg_count']
+        foreach ($all_user_talking_with as &$user) {
+            foreach ($contactNonReadMessage as $message) {
+                if($message['id'] == $user['contact_id']){
+                    $user['non_read_msg_count'] = $message['count'];
+                    break;
+                }else{
+                    $user['non_read_msg_count'] = 0;
+                }
+            }
+        }
 
         return $this->render('messageMenu.html.twig',[
             'allUserTalkingWith' => $all_user_talking_with,
