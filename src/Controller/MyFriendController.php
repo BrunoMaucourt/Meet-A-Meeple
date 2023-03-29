@@ -28,7 +28,7 @@ class MyFriendController extends AbstractController
         $user_ID = $user->getId();
         $user_ID_lat = $user->getCityGPSLat();
         $user_ID_long = $user->getCityGPSLong();
-        //$non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
+        $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
 
         /**
          * Search friend
@@ -75,7 +75,7 @@ class MyFriendController extends AbstractController
         return $this->render('myFriend.html.twig',[
             'userFriendResult' => $userFriendResult,
             'userBannedResult' => $userBannedResult,
-           // 'nonReadMessageCount' => $non_read_message_count
+            'nonReadMessageCount' => $non_read_message_count
         ]);
     }
 
@@ -185,7 +185,7 @@ class MyFriendController extends AbstractController
         ]);
     }
 
-    #[Route('/removeblacklist/{target_ID}', name: 'remove Black List')]
+    #[Route('/removeblacklist/{target_ID}', name: 'remove black list')]
     public function removeBlackList(EntityManagerInterface $entityManager, int $target_ID): Response
     {
         // Allow acces only to connected user

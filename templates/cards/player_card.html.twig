@@ -91,6 +91,21 @@
 		</div>
 		<div class="h-1/5 flex justify-center items-center">
 			<a href="{{ path('message_menu_with_discussion', {'id': user['id']}) }}" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+			<a href="" class="hover:scale-105 transition-all duration-300 flex justify-center">
+				<img src="{{ asset('img/content/meeple_informations.svg') }}" alt="" title="" class="w-1/2 h-1/2">
+			</a>
+			{% if user['friend'] %}
+				<a href="{{ path('remove friend', {'target_ID': user['id']}) }}" class="hover:scale-105 transition-all duration-300 flex justify-center">
+					<img src="{{ asset('img/content/meeple_heart.svg') }}" alt="" title="" class="w-1/2 h-1/2">
+				</a>
+			{% else %}
+				<a href="{{ path('add friend', {'target_ID': user['id']}) }}" class="hover:scale-105 transition-all duration-300 flex justify-center">
+					<img src="{{ asset('img/content/meeple_heart.svg') }}" alt="" title="" class="w-1/2 h-1/2">
+				</a>
+			{% endif %}
+			<a href="" class="hover:scale-105 transition-all duration-300 flex justify-center">
+				<img src="{{ asset('img/content/meeple_banned.svg') }}" alt="" title="" class="w-1/2 h-1/2">
+			</a>
 		</div>
 	</div>
 </div>

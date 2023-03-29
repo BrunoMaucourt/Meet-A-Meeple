@@ -6,7 +6,9 @@ use App\Entity\Party;
 use App\Entity\User;
 use App\Entity\UserComment;
 use App\Entity\PartyUser;
+use App\Entity\UserBlackList;
 use App\Entity\UserChat;
+use App\Entity\UserFriend;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -133,7 +135,8 @@ class SearchController extends AbstractController
                 $temp_result_last_connexion = SearchController::editLastConnexion($temp_result_date_created);
                 $temp_result_age = SearchController::calculateAge($temp_result_last_connexion);
                 $temp_result_comment = SearchController::numberOfComment($temp_result_age, $entityManager);
-                $result_user = $temp_result_comment;
+                $temp_result_contact = SearchController::checkContact($temp_result_comment, $user_ID, $entityManager);
+                $result_user = $temp_result_contact;
             }
 
             // Send a message if zero results are found
@@ -292,6 +295,30 @@ class SearchController extends AbstractController
                 $result[$i]['user_registered'][$y]["user_id"] = $party_user_information->getId();
                 $result[$i]['user_registered'][$y]["user_name"] = $party_user_information->getFirstName();
                 $result[$i]['user_registered'][$y]["user_profil_picture"] = $party_user_information->getPictureProfil();
+            }
+        }
+        return $result;
+    }
+
+    public static function checkContact($result, $user_ID, EntityManagerInterface $entityManager)
+    {
+        for ($i=0; $i < sizeof($result); $i++) { 
+            // Get ID of user
+            $target_ID = $result[$i]['id'];
+
+            // Chek if user is a friend
+            $check_friend_target = $entityManager->getRepository(UserFriend::class)->checkIfAlreadyFriend($user_ID, $target_ID);
+            $check_black_list_target = $entityManager->getRepository(UserBlackList::class)->checkIfAlreadyBlackList($user_ID, $target_ID);
+
+            if($check_friend_target != []){
+                $result[$i]['friend'] = true;
+                $result[$i]['black_list'] = false;
+            }else if($check_black_list_target != []){
+                $result[$i]['friend'] = false;
+                $result[$i]['black_list'] = true;             
+            }else{
+                $result[$i]['friend'] = false;
+                $result[$i]['black_list'] = false;               
             }
         }
         return $result;

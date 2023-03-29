@@ -91,6 +91,7 @@
 		</div>
 		<div class="h-1/5 flex justify-center items-center">
 			<a href="{{ path('message_menu_with_discussion', {'id': user['id']}) }}" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+			<a href="{{ path('remove friend', {'target_ID': user['id']}) }}" class="p-1.5 bg-red hover:shadow-lg hover:scale-105 hover:bg-red-dark rounded-md text-center transition-all duration-300">Retirer des favoris</a>
 		</div>
 	</div>
 </div>
