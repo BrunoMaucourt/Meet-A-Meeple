@@ -34,14 +34,18 @@ class MessageMenuController extends AbstractController
         //making a new row in the $all_user_talking_with array that show how many non read message for each user.
         // $all_user_talking_with['non_read_msg_count']
         foreach ($all_user_talking_with as &$user) {
-            foreach ($contactNonReadMessage as $message) {
-                if($message['id'] == $user['contact_id']){
-                    $user['non_read_msg_count'] = $message['count'];
-                    break;
-                }else{
-                    $user['non_read_msg_count'] = 0;
+            if($contactNonReadMessage == [] ){
+                $user['non_read_msg_count'] = 0;
+            }else{
+                foreach ($contactNonReadMessage as $message) {
+                    if($message['id'] == $user['contact_id']){
+                        $user['non_read_msg_count'] = $message['count'];
+                        break;
+                    }else{
+                        $user['non_read_msg_count'] = 0;
+                    }
                 }
-            }
+            }   
         }
 
 
