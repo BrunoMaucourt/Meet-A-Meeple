@@ -129,6 +129,27 @@ class UserChatRepository extends ServiceEntityRepository
 
     }
 
+    public function findContactNonReadMessageCount($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT U.id, count(*) count FROM user_chat UC 
+        INNER JOIN user U 
+        ON U.id = UC.user_sender_id
+        WHERE UC.message_read = 0 AND
+        UC.user_recipient_id = '.$user_ID.'
+        GROUP BY U.id;';
+
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+
+    }
+
     
 
 
