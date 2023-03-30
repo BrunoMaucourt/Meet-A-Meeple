@@ -55,7 +55,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $this->save($user, true);
     }
-    public function findAllAvailableUser($user_ID): array
+    public function findAllAvailableUser($user_ID, $party_optional_request): array
     {
         $conn = $this->getEntityManager()->getConnection();
 
@@ -63,7 +63,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             SELECT * FROM user U
             WHERE id NOT IN
             (select user_banned_id from user_black_list where user_that_block_id = ' . $user_ID . ') AND
-            id <> ' . $user_ID . '
+            id <> ' . $user_ID . $party_optional_request . '
             ';
 
         $stmt = $conn->prepare($sql);
