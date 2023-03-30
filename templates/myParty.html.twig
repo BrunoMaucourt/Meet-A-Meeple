@@ -18,41 +18,41 @@ Mes parties
 	</h1>
 	<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
 
+		<!--START INCOMMING GAME PART-->
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
 			<h2 class="text-xl font-bold">Partie à venir</h2>
 			<div class="hidden sm:flex gap-5">
-				<div id="incomming_event_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
-				<div id="incomming_event_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
+				<div id="incomming_game_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
+				<div id="incomming_game_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
 			</div>
 		</div>
-
-		<div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
+		<div id="incomming_game_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
 			{% if incommingGame != [] %}
 				{% for party in incommingGame %}
 					{% include('/cards/incomming_game_card.html.twig') %}
 				{% endfor %}
 			{% endif %}
 		</div> 
+		<!--END INCOMMING GAME PART-->
 
-
+		<!--START FINISHED GAME PART-->
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
 			<h2 class="text-xl font-bold">Partie finie</h2>
 			<div class="hidden sm:flex gap-5">
-				<div id="incomming_event_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
-				<div id="incomming_event_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
+				<div id="finished_game_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
+				<div id="finished_game_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
 			</div>
 		</div>
-
-		<div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
+		<div id="finished_game_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
 			{% if finishedGame != [] %}
 				{% for party in finishedGame %}
 					{% include('/cards/finished_game_card.html.twig') %}
 				{% endfor %}
 			{% endif %}
 		</div>
+		<!--END FINISHED GAME PART-->
 
-
-
+		<!--START CREATED GAME PART-->
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
 			<h2 class="text-xl font-bold">Partie créée</h2>
 			<div class="hidden sm:flex gap-5">
@@ -60,7 +60,6 @@ Mes parties
 				<div id="incomming_event_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
 			</div>
 		</div>
-
 		<div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
 			{% if createdGame != [] %}
 				{% for party in createdGame %}
@@ -68,7 +67,7 @@ Mes parties
 				{% endfor %}
 			{% endif %}
 		</div>
-
+		<!--END CREATED GAME PART-->
 
 
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
