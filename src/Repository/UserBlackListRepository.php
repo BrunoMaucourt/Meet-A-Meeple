@@ -39,6 +39,41 @@ class UserBlackListRepository extends ServiceEntityRepository
         }
     }
 
+    public function findBlackList($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT * FROM `user_black_list`
+        INNER JOIN user 
+        ON user.id = user_black_list.user_banned_id
+        WHERE user_that_block_id ='. $user_ID .';
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function checkIfAlreadyBlackList($user_ID, $target_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT * FROM `user_black_list`
+        WHERE user_that_block_id ='. $user_ID .' AND
+        user_banned_id ='. $target_ID .';
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return UserBlackList[] Returns an array of UserBlackList objects
 //     */

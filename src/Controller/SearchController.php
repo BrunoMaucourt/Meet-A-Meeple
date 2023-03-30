@@ -6,15 +6,22 @@ use App\Entity\Party;
 use App\Entity\User;
 use App\Entity\UserComment;
 use App\Entity\PartyUser;
+use App\Entity\UserBlackList;
 use App\Entity\UserChat;
+use App\Entity\UserFriend;
+use DateTime;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Doctrine\ORM\EntityManagerInterface;
 
 class SearchController extends AbstractController
@@ -41,6 +48,9 @@ class SearchController extends AbstractController
         $user_ID_city = $user->getCity();
         $user_ID_lat = $user->getCityGPSLat();
         $user_ID_long = $user->getCityGPSLong();
+
+        //DEFAUT VALUE DATE INPUTS
+        $tomorrow = date("Y-m-d", strtotime('tomorrow'));
 
         //seting non read message count
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
@@ -78,6 +88,40 @@ class SearchController extends AbstractController
                     'step' => 5
                 ],
             ])
+            // Option for party search
+            ->add('party_game_name', TextType::class, [
+                'required' => false,
+                'label' => 'Nom du jeu',
+            ])
+            ->add('party_player_number', IntegerType::class, [
+                'required' => false,
+                'label' => 'Nombre de joueurs',
+                'attr'=>[
+                    'min' => 0,
+                    'max' => 99,
+                    'step' => 1
+                ]
+            ])
+            ->add('party_date', DateType::class, [
+                'required' => false,
+                'label' => 'date de la partie',
+                'widget' => 'single_text',
+                'html5' => true,
+            ])
+            // Option for user search 
+            ->add('player_rate', IntegerType::class, [
+                'required' => false,
+                'label' => 'Note du joueur',
+                'attr'=>[
+                    'min' => 0,
+                    'max' => 5,
+                    'step' => 1
+                ]
+            ])
+            ->add('player_friend', CheckboxType::class, [
+                'label'    => 'seulement mes favoris',
+                'required' => false,
+            ])
             ->add('send', SubmitType::class)
             ->getForm();
 
@@ -92,10 +136,26 @@ class SearchController extends AbstractController
             // Variables declaration
             $temp_result = [];
 
+            //
+            $raw_data_form = $form->getData();
             // Check if user search player or party
             if($data['search_type'] == SEARCH_PARTY){
+                // Add optional 
+                $party_optional_request = "";
+                if($raw_data_form['party_game_name'] != null){
+                    $party_optional_request = $party_optional_request . " AND p.game LIKE '%" .  $raw_data_form['party_game_name'] ."%'"; 
+                }
+                if($raw_data_form['party_player_number'] != null){
+                    $party_optional_request = $party_optional_request . " AND p.player_number_total = " .  $raw_data_form['party_player_number'];       
+                }
+                if($raw_data_form['party_date'] != null){
+                    $date = $raw_data_form['party_date']->format('Y-m-d h:i:s');
+                    $party_optional_request = $party_optional_request . " AND p.date > '" . $date . "'";
+                }
+                echo($party_optional_request);
+                
                 // Search in database
-                $result = $entityManager->getRepository(Party::class)->findAllAvailableParty();
+                $result = $entityManager->getRepository(Party::class)->findAllAvailableParty($party_optional_request);
                 
                 for ($i=0; $i < sizeof($result); $i++) { 
                     $player_lat = $result[$i]['address_gps_lat'];
@@ -115,8 +175,17 @@ class SearchController extends AbstractController
                 $result_party =$result_party_player_register;
 
             }else if($data['search_type'] == SEARCH_PLAYER){
+                // Add optional 
+                $party_optional_request = "";
+                if($raw_data_form['player_rate'] != null){
+                    $party_optional_request = $party_optional_request . " AND rate >= ". $raw_data_form['player_rate']; 
+                }
+                if($raw_data_form['player_friend'] != null){
+                    $party_optional_request = $party_optional_request . " AND U.id IN (select UF.user_friend_id from user_friend UF where user_id = ".  $user_ID .") ";
+                    echo($party_optional_request);
+                }
                 // Search in database
-                $result = $entityManager->getRepository(User::class)->findAllAvailableUser($user_ID);
+                $result = $entityManager->getRepository(User::class)->findAllAvailableUser($user_ID, $party_optional_request);
 
                 for ($i=0; $i < sizeof($result); $i++) { 
                     $player_lat = $result[$i]['city_gps_lat'];
@@ -133,7 +202,8 @@ class SearchController extends AbstractController
                 $temp_result_last_connexion = SearchController::editLastConnexion($temp_result_date_created);
                 $temp_result_age = SearchController::calculateAge($temp_result_last_connexion);
                 $temp_result_comment = SearchController::numberOfComment($temp_result_age, $entityManager);
-                $result_user = $temp_result_comment;
+                $temp_result_contact = SearchController::checkContact($temp_result_comment, $user_ID, $entityManager);
+                $result_user = $temp_result_contact;
             }
 
             // Send a message if zero results are found
@@ -149,6 +219,7 @@ class SearchController extends AbstractController
             'userResult' => $result_user,
             'error' => $error,
             'data' => $data,
+            'tomorrow' => $tomorrow,
             'nonReadMessageCount' => $non_read_message_count,
         ]);
     }
@@ -193,7 +264,7 @@ class SearchController extends AbstractController
     public static function editDate($result)
     {
         for ($i=0; $i < sizeof($result); $i++) { 
-            $spliter_string =  str_split($result[$i]['created_at'], 10);
+            $spliter_string =  str_split($result[$i]['date'], 10);
             $result[$i]['date'] = $spliter_string[0];
         }
         return $result;
@@ -292,6 +363,30 @@ class SearchController extends AbstractController
                 $result[$i]['user_registered'][$y]["user_id"] = $party_user_information->getId();
                 $result[$i]['user_registered'][$y]["user_name"] = $party_user_information->getFirstName();
                 $result[$i]['user_registered'][$y]["user_profil_picture"] = $party_user_information->getPictureProfil();
+            }
+        }
+        return $result;
+    }
+
+    public static function checkContact($result, $user_ID, EntityManagerInterface $entityManager)
+    {
+        for ($i=0; $i < sizeof($result); $i++) { 
+            // Get ID of user
+            $target_ID = $result[$i]['id'];
+
+            // Chek if user is a friend
+            $check_friend_target = $entityManager->getRepository(UserFriend::class)->checkIfAlreadyFriend($user_ID, $target_ID);
+            $check_black_list_target = $entityManager->getRepository(UserBlackList::class)->checkIfAlreadyBlackList($user_ID, $target_ID);
+
+            if($check_friend_target != []){
+                $result[$i]['friend'] = true;
+                $result[$i]['black_list'] = false;
+            }else if($check_black_list_target != []){
+                $result[$i]['friend'] = false;
+                $result[$i]['black_list'] = true;             
+            }else{
+                $result[$i]['friend'] = false;
+                $result[$i]['black_list'] = false;               
             }
         }
         return $result;

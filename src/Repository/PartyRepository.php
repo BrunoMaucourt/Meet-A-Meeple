@@ -55,7 +55,7 @@ class PartyRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
-    public function findAllAvailableParty(): array
+    public function findAllAvailableParty($party_optional_request): array
     {
         $conn = $this->getEntityManager()->getConnection();
 
@@ -63,7 +63,7 @@ class PartyRepository extends ServiceEntityRepository
             SELECT * FROM party p
             WHERE p.last_sign_in > NOW() AND 
             p.player_number_needed > 0 AND
-            p.canceled = 0;
+            p.canceled = 0 '. $party_optional_request . ';
             ';
 
         $stmt = $conn->prepare($sql);

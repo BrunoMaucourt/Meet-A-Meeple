@@ -39,6 +39,24 @@ class UserFriendRepository extends ServiceEntityRepository
         }
     }
 
+    public function findFriend($user_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT * FROM user_friend
+        INNER JOIN user
+        ON user.id = user_friend.user_friend_id
+        WHERE user_friend.user_id ='. $user_ID .';
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
     public function findFriendNumber($user_ID): array
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -46,6 +64,23 @@ class UserFriendRepository extends ServiceEntityRepository
         $sql = '
         SELECT count(*) FROM `user_friend`
         WHERE user_id ='. $user_ID .';
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function checkIfAlreadyFriend($user_ID, $target_ID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT * FROM `user_friend`
+        WHERE user_id ='. $user_ID .' AND
+        user_friend_id ='. $target_ID .';
             ';
 
         $stmt = $conn->prepare($sql);
