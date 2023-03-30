@@ -88,7 +88,8 @@ class DashboardController extends AbstractController
         $temp_result_last_connexion = SearchController::editLastConnexion($temp_result_date_created);
         $temp_result_age = SearchController::calculateAge($temp_result_last_connexion);
         $temp_result_comment = SearchController::numberOfComment($temp_result_age, $entityManager);
-        $result_user = $temp_result_comment;
+        $temp_result_contact = SearchController::checkContact($temp_result_comment, $user_ID, $entityManager);
+        $result_user = $temp_result_contact;
 
         /**
          * Search last registered player in database

@@ -251,12 +251,12 @@
     <div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
         <h2 class="text-xl font-bold">Parties ajoutées récemment</h2>
         <div class="hidden sm:flex gap-5">
-            <div id="recommended_player_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
-            <div id="recommended_player_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
+            <div id="recommended_party_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
+            <div id="recommended_party_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
         </div>
     </div>
     
-    <div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
+    <div id="recommended_party_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
        {% if partyResult != [] %}
 			{% for party in partyResult %}
 				{% include('/cards/party_card.html.twig') %}

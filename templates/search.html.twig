@@ -5,6 +5,7 @@ Chercher une partie ou un joueur
 {% endblock title %}
 
 {% block bonus_javascript %}
+	<script defer src="{{ asset('js/search_optional_field.js') }}"></script> 
 	<script defer src="{{ asset('js/search.js') }}"></script> 
 	<script defer src="{{ asset('js/geolocation_search.js') }}"></script> 
 {% endblock bonus_javascript %}
@@ -19,7 +20,10 @@ Chercher une partie ou un joueur
 				Recherchez rapidement des joueurs ou des parties autour de vous !
 			</h1>
 			{{ form_start(searchForm) }}	
-				{{ form_row(searchForm.search_type) }}
+				{{ form_row(searchForm.search_type, {
+					'id': 'search_type'
+					})
+				}}
 				<div>
 					<div id="location-choice" class="w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
 						<label class="text-sm" for="locate-my-position">Choisir ma position</label>
@@ -42,6 +46,24 @@ Chercher une partie ou un joueur
 					})
 				}}
 				{{ form_row(searchForm.distance) }}
+
+				<div id="optional_field_party" class="bg-main-green hidden">
+					{{ form_row(searchForm.party_game_name) }}
+					{{ form_row(searchForm.party_player_number) }}	
+					{{ form_row(searchForm.party_date, {
+								'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
+										 'min': ''~tomorrow~'',
+										},
+								'label': 'Date de la partie:',
+								})
+							}}
+				</div>
+				
+				<div id="optional_field_user" class="bg-main-brown">
+					{{ form_row(searchForm.player_rate) }}	
+					{{ form_row(searchForm.player_friend) }}		
+				</div>
+
 				{{ form_row(searchForm.send) }}
 			{{ form_end(searchForm) }}	
 

@@ -1,4 +1,4 @@
-<div class="group recommended_player_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
+<div class="group recommended_friend_card w-60 sm:w-72 h-96 shadow-xl bg-gradient-to-br from-white via-white to-main-orange/20 rounded-md snap-center shrink-0 overflow-hidden border-b-4 border-main-emerald sm:hover:scale-105 transition-all duration-300">
 	<div class="h-2/5 group-odd:bg-gradient-to-r group-even:bg-gradient-to-l from-main-orange/20 to-main-green/20 flex">
 		<div class="w-1/2 h-full flex justify-center items-center p-4 overflow-hidden">
             <div class="h-20 w-20 sm:w-28 sm:h-28 border rounded-full bg-center bg-cover" style="background-image: url('{{ asset(user['picture_profil']) }}');"></div>
@@ -90,37 +90,8 @@
 			</div>-->
 		</div>
 		<div class="h-1/5 flex justify-center items-center">
-			<div class="flex flex-col justify-center items-center">
-				<h4 class="text-xs">Infos</h4>
-				<a href="{{ path('message_menu_with_discussion', {'id': user['id']}) }}" class="hover:scale-105 transition-all duration-300 flex justify-center">
-					<img src="{{ asset('img/content/meeple_informations.svg') }}" alt="" title="Voir plus d'informations" class="w-1/2 h-1/2">
-					
-				</a>
-			</div>
-			<div class="flex flex-col justify-center items-center">
-				<h4 class="text-xs">Parler</h4>
-				<a href="{{ path('message_menu_with_discussion', {'id': user['id']}) }}" class="hover:scale-105 transition-all duration-300 flex justify-center">
-					<img src="{{ asset('img/content/meeple_message.svg') }}" alt="" title="Envoyer un message" class="w-1/2 h-1/2">
-				</a>
-			</div>
-			<div class="flex flex-col justify-center items-center">
-				<h4 class="text-xs">Favoris</h4>
-				{% if user['friend'] %}
-					<a href="{{ path('remove friend', {'target_ID': user['id']}) }}" class="hover:scale-105 transition-all duration-300 flex justify-center">
-						<img src="{{ asset('img/content/meeple_heart_red.svg') }}" alt="" title="Retirer des favoris" class="w-1/2 h-1/2">
-					</a>
-				{% else %}
-					<a href="{{ path('add friend', {'target_ID': user['id']}) }}" class="hover:scale-105 transition-all duration-300 flex justify-center">
-						<img src="{{ asset('img/content/meeple_heart_green.svg') }}" alt="" title="Ajouter aux favoris" class="w-1/2 h-1/2">
-					</a>
-				{% endif %}
-			</div>
-			<div class="flex flex-col justify-center items-center">
-				<h4 class="text-xs">Bannir</h4>
-				<a href="" class="hover:scale-105 transition-all duration-300 flex justify-center">
-					<img src="{{ asset('img/content/meeple_banned.svg') }}" alt="" title="Bannir l'utilisateur" class="w-1/2 h-1/2">
-				</a>
-			</div>
+			<a href="{{ path('message_menu_with_discussion', {'id': user['id']}) }}" class="p-1.5 bg-main-orange hover:shadow-lg hover:scale-105 hover:bg-main-orange-dark rounded-md text-center transition-all duration-300">Contacter</a>
+			<a href="{{ path('remove friend', {'target_ID': user['id']}) }}" class="p-1.5 bg-red hover:shadow-lg hover:scale-105 hover:bg-red-dark rounded-md text-center transition-all duration-300">Retirer des favoris</a>
 		</div>
 	</div>
 </div>
