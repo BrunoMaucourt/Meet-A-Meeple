@@ -65,7 +65,7 @@ class PartyProfilController extends AbstractController
             'nonReadMessageCount' => $non_read_message_count,
             'party' => $party,
             'hostPlayer' => $host_player,
-            'titi' => $registered_players,
+            'registeredPlayers' => $registered_players,
         ]);
     }
 }
