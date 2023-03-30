@@ -118,7 +118,7 @@ class SearchController extends AbstractController
                 ]
             ])
             ->add('player_friend', CheckboxType::class, [
-                'label'    => 'seulement mes favoris',
+                'label'    => 'seulement mes joueurs favoris',
                 'required' => false,
             ])
             ->add('send', SubmitType::class, [
