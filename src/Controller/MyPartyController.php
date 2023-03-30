@@ -29,6 +29,8 @@ class MyPartyController extends AbstractController
         // Get ID of user
         $user = $this->getUser();
         $user_ID = $user->getId();
+        $user_ID_lat = $user->getCityGPSLat();
+        $user_ID_long = $user->getCityGPSLong();
 
         //seting non read message count
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
@@ -40,37 +42,74 @@ class MyPartyController extends AbstractController
         $canceled_game = $entityManager->getRepository(PartyUser::class)->findAllCanceledUserParty($user_ID);
 
 
-        // Creating finalized result array
+        
+        // Creating finalized $incomming_game result array
+        for ($i=0; $i < sizeof($incomming_game); $i++) { 
+            $player_lat = $incomming_game[$i]['address_gps_lat'];
+            $player_long = $incomming_game[$i]['address_gps_long'];
+            $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);              
+            $incomming_game[$i]['distance'] = round($distance_between,1);
+        }
+        $incomming_game_party_host = SearchController::checkHostInformation($incomming_game, $entityManager);
+        $incomming_game_party_date = SearchController::editDate($incomming_game_party_host, $entityManager);
+        $incomming_game_party_player = SearchController::checkUserInformation($incomming_game_party_date, $entityManager);
+        $incomming_game_party_player_register = SearchController::checkIfUserRegistered($incomming_game_party_player, $user_ID, $entityManager);
+        $incomming_game_party =$incomming_game_party_player_register;
 
-        for ($i=0; $i < sizeof($incomming_game) ; $i++) { 
-            $party_ID = $incomming_game[$i]['id'];
-            $incomming_game[$i]['date'] = str_split($incomming_game[$i]['date'], 10)[0];
-            $incomming_game[$i]['participants'] = $entityManager->getRepository(PartyUser::class)->findAllParticipantExceptUser($user_ID,$party_ID);
+
+
+        // Creating finalized $finished_game result array
+        for ($i=0; $i < sizeof($finished_game); $i++) { 
+            $player_lat = $finished_game[$i]['address_gps_lat'];
+            $player_long = $finished_game[$i]['address_gps_long'];
+            $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);              
+            $finished_game[$i]['distance'] = round($distance_between,1);
         }
-        for ($i=0; $i < sizeof($finished_game) ; $i++) { 
-            $party_ID = $finished_game[$i]['id'];
-            $finished_game[$i]['date'] = str_split($finished_game[$i]['date'], 10)[0];
-            $finished_game[$i]['participants'] = $entityManager->getRepository(PartyUser::class)->findAllParticipantExceptUser($user_ID,$party_ID);
+        $finished_game_party_host = SearchController::checkHostInformation($finished_game, $entityManager);
+        $finished_game_party_date = SearchController::editDate($finished_game_party_host, $entityManager);
+        $finished_game_party_player = SearchController::checkUserInformation($finished_game_party_date, $entityManager);
+        $finished_game_party_player_register = SearchController::checkIfUserRegistered($finished_game_party_player, $user_ID, $entityManager);
+        $finished_game_party =$finished_game_party_player_register;
+
+
+
+        // Creating finalized $created_game result array
+        for ($i=0; $i < sizeof($created_game); $i++) { 
+            $player_lat = $created_game[$i]['address_gps_lat'];
+            $player_long = $created_game[$i]['address_gps_long'];
+            $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);              
+            $created_game[$i]['distance'] = round($distance_between,1);
         }
-        for ($i=0; $i < sizeof($created_game) ; $i++) { 
-            $party_ID = $created_game[$i]['id'];
-            $created_game[$i]['date'] = str_split($created_game[$i]['date'], 10)[0];
-            $created_game[$i]['participants'] = $entityManager->getRepository(PartyUser::class)->findAllParticipantExceptUser($user_ID,$party_ID);
+        $created_game_party_host = SearchController::checkHostInformation($created_game, $entityManager);
+        $created_game_party_date = SearchController::editDate($created_game_party_host, $entityManager);
+        $created_game_party_player = SearchController::checkUserInformation($created_game_party_date, $entityManager);
+        $created_game_party_player_register = SearchController::checkIfUserRegistered($created_game_party_player, $user_ID, $entityManager);
+        $created_game_party =$created_game_party_player_register;
+
+
+        // Creating finalized $canceled_game result array
+        for ($i=0; $i < sizeof($canceled_game); $i++) { 
+            $player_lat = $canceled_game[$i]['address_gps_lat'];
+            $player_long = $canceled_game[$i]['address_gps_long'];
+            $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);              
+            $canceled_game[$i]['distance'] = round($distance_between,1);
         }
-        for ($i=0; $i < sizeof($canceled_game) ; $i++) { 
-            $party_ID = $canceled_game[$i]['id'];
-            $canceled_game[$i]['date'] = str_split($canceled_game[$i]['date'], 10)[0];
-            $canceled_game[$i]['participants'] = $entityManager->getRepository(PartyUser::class)->findAllParticipantExceptUser($user_ID,$party_ID);
-        }
+        $canceled_game_party_host = SearchController::checkHostInformation($canceled_game, $entityManager);
+        $canceled_game_party_date = SearchController::editDate($canceled_game_party_host, $entityManager);
+        $canceled_game_party_player = SearchController::checkUserInformation($canceled_game_party_date, $entityManager);
+        $canceled_game_party_player_register = SearchController::checkIfUserRegistered($canceled_game_party_player, $user_ID, $entityManager);
+        $canceled_game_party =$canceled_game_party_player_register;
+        
+    
        
         
         
         return $this->render('myParty.html.twig',[
-            'userID' => $user_ID,
-            'incommingGame' => $incomming_game,
-            'finishedGame' => $finished_game,
-            'createdGame' => $created_game,
-            'canceledGame' => $canceled_game,
+            'current_user' => $user_ID,
+            'incommingGame' => $incomming_game_party,
+            'finishedGame' => $finished_game_party,
+            'createdGame' => $created_game_party,
+            'canceledGame' => $canceled_game_party,
             'nonReadMessageCount' => $non_read_message_count,
         ]);
     }
