@@ -9,7 +9,6 @@ use App\Entity\PartyUser;
 use App\Entity\UserBlackList;
 use App\Entity\UserChat;
 use App\Entity\UserFriend;
-use DateTime;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -122,7 +121,9 @@ class SearchController extends AbstractController
                 'label'    => 'seulement mes favoris',
                 'required' => false,
             ])
-            ->add('send', SubmitType::class)
+            ->add('send', SubmitType::class, [
+                'label'    => 'Rechercher',
+            ])
             ->getForm();
 
         // Process form
@@ -152,7 +153,6 @@ class SearchController extends AbstractController
                     $date = $raw_data_form['party_date']->format('Y-m-d h:i:s');
                     $party_optional_request = $party_optional_request . " AND p.date > '" . $date . "'";
                 }
-                echo($party_optional_request);
                 
                 // Search in database
                 $result = $entityManager->getRepository(Party::class)->findAllAvailableParty($party_optional_request);
@@ -182,7 +182,6 @@ class SearchController extends AbstractController
                 }
                 if($raw_data_form['player_friend'] != null){
                     $party_optional_request = $party_optional_request . " AND U.id IN (select UF.user_friend_id from user_friend UF where user_id = ".  $user_ID .") ";
-                    echo($party_optional_request);
                 }
                 // Search in database
                 $result = $entityManager->getRepository(User::class)->findAllAvailableUser($user_ID, $party_optional_request);
