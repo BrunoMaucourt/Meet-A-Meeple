@@ -39,6 +39,22 @@ class PartyRepository extends ServiceEntityRepository
         }
     }
 
+    public function findParty($id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * FROM party p
+            WHERE p.id = '.$id.';
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
     public function findAllAvailableParty(): array
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -113,6 +129,24 @@ class PartyRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     } 
+    
+    public function findHostPlayer($partyID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT U.* FROM party P
+            INNER JOIN user U
+            ON P.user_host_id = U.id
+            WHERE P.id = '. $partyID .'            
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
     //    /**
     //     * @return Party[] Returns an array of Party objects
     //     */

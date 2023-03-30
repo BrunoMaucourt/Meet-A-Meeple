@@ -1,0 +1,10 @@
+<!--start message_user_card -->
+	<a href="{{ path('message_menu_with_discussion', {'id': registered_user['user_id']}) }}" class="relative message_user_div hover:scale-105 transition-all duration-300 border-b-4 border-main-brown w-[95%] min-w-[95%] min-h-[5rem] h-20 bg-gradient-to-r from-white to-main-orange/20 rounded-lg flex p-1 shadow-lg">
+		<div class="w-1/3 flex justify-center items-center">
+			<img class="h-12 w-12 sm:h-10 sm:w-10 lg:h-12 lg:w-12 rounded-full" src="{{ asset(registered_user['picture_profil']) }}" alt="">
+		</div>
+		<div class="w-2/3 flex justify-center items-center">
+			<span class="font-bold text-main-brown">{{ registered_user['first_name'] }}</span>
+		</div>	
+	</a>
+<!--start message_user_card -->
