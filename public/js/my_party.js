@@ -1,23 +1,20 @@
-const tabs_btns = document.querySelectorAll('.tab_btn')
-const games_container = document.querySelectorAll('.games_container')
-let default_btn = 0;
-
-for (let i = 0; i < tabs_btns.length; i++) {
-    tabs_btns[i].addEventListener('click',()=>{
-        if(!tabs_btns[i].classList.contains('active')){
-            tabs_btns[default_btn].classList.toggle('active');
-            tabs_btns[i].classList.toggle('active');
-            tabs_btns[i].classList.toggle('bg-main-orange/70');
-            tabs_btns[i].classList.toggle('text-white');
-            tabs_btns[default_btn].classList.toggle('bg-main-orange/70');
-            tabs_btns[default_btn].classList.toggle('text-white');
-
-            games_container[default_btn].classList.toggle('hidden');
-            games_container[default_btn].classList.toggle('flex');
-            games_container[i].classList.toggle('hidden');
-            games_container[i].classList.toggle('flex');
+//start incomming game slider//
+    let incomming_game_slider_container = document.querySelector('#incomming_game_slider_container');
+    let incomming_game_cards = document.querySelectorAll('.incomming_game_card');
+    const incomming_game_card_number = incomming_game_cards.length;
+    const incomming_game_prev_btn = document.querySelector('#incomming_game_prev_btn');
+    const incomming_game_next_btn = document.querySelector('#incomming_game_next_btn');
     
-            default_btn = i;  
-        }
-    }) 
-}
+    incomming_game_next_btn.addEventListener('click', incomming_game_next_slide);
+    incomming_game_prev_btn.addEventListener('click', incomming_game_prev_slide);
+
+    function incomming_game_next_slide(){
+        let cardwidth = incomming_game_cards[0].scrollWidth;
+        incomming_game_slider_container.scrollBy(cardwidth,0);
+    }
+    function incomming_game_prev_slide(){
+        let cardwidth = incomming_game_cards[0].scrollWidth;
+        incomming_game_slider_container.scrollBy(-cardwidth,0);
+    }
+
+//end incomming game slider//
