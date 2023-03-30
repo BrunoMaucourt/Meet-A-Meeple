@@ -56,11 +56,11 @@ Mes parties
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
 			<h2 class="text-xl font-bold">Partie créée</h2>
 			<div class="hidden sm:flex gap-5">
-				<div id="incomming_event_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
-				<div id="incomming_event_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
+				<div id="created_game_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
+				<div id="created_game_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
 			</div>
 		</div>
-		<div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
+		<div id="created_game_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
 			{% if createdGame != [] %}
 				{% for party in createdGame %}
 					{% include('/cards/created_game_card.html.twig') %}
@@ -69,23 +69,23 @@ Mes parties
 		</div>
 		<!--END CREATED GAME PART-->
 
-
+		<!--END CANCELED GAME PART-->
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
 			<h2 class="text-xl font-bold">Partie annulée</h2>
 			<div class="hidden sm:flex gap-5">
-				<div id="incomming_event_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
-				<div id="incomming_event_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
+				<div id="canceled_game_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
+				<div id="canceled_game_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
 			</div>
 		</div>
 
-		<div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
+		<div id="canceled_game_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
 			{% if canceledGame != [] %}
 				{% for party in canceledGame %}
 					{% include('/cards/canceled_game_card.html.twig') %}
 				{% endfor %}
 			{% endif %}
 		</div>
-
+		<!--END CANCELED GAME PART-->
 
 
 
