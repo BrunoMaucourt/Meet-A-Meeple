@@ -35,7 +35,6 @@ class DashboardController extends AbstractController
 
 
         //seting non read message count
-
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
 
         /**

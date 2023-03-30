@@ -12,7 +12,6 @@ Mes conversations
 
 {% block main_content %}
 	<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
-	
 		<h1 class="text-2xl sm:text-3xl font-bold underline">
 			Messagerie
 		</h1>
@@ -36,7 +35,9 @@ Mes conversations
 										<!--start current user message -->
 										<div class="w-full h-fit flex justify-start items-center p-0.5">
 											<span class="px-2 w-fit text-xs font-bold text-main-brown text-right">{{ message['created_at'] }}</span>
+											{% if message['message_read'] %}
 											<span class="h-4 w-4 bg-main-green rounded-full text-xs text-center">lu</span>
+											{% endif %}
 										</div>
 										<!--end current user message -->
 									</div>
@@ -47,8 +48,6 @@ Mes conversations
 										<span class="shadow-lg p-2 rounded-md bg-main-emerald/80">{{ message['body']}}</span>
 										<!--start other user message -->
 										<div class="w-full h-fit flex justify-end items-center p-0.5">
-											<span class="h-4 w-4 bg-main-green rounded-full text-xs text-center">lu</span>
-											<span class="h-4 w-4 bg-main-brown/50 rounded-full text-xs text-center text-white">v</span>
 											<span class="px-2 w-fit text-xs font-bold text-main-brown text-right">{{ message['created_at'] }}</span>
 										</div>	
 										<!--end other user message -->
