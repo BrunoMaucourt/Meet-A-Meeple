@@ -206,7 +206,7 @@ class SearchController extends AbstractController
             }
 
             // Send a message if zero results are found
-            if($result == []){
+            if($result_user == [] && $result_party == []){
                 $error = "Aucun résultats pour votre recherche";
             }
         }

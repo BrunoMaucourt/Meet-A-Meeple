@@ -13,6 +13,7 @@
 {% block withdashboard %}{% endblock withdashboard %}
 
 {% block main_content %}
+
 	<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
 		<div class="w-full h-fit">
 			<h1 class="text-2xl font-bold text-center text-main-orange mb-4">
@@ -92,13 +93,15 @@
 				</div>
 			</div>
 
-			{% if userResult != [] or partyResult != [] %}
+			{% if data != [] %}
 			<h2 class="text-2xl">Résultats</h2>
+				{% if error != "" %}
 				<div class="w-full flex justify-center items-center text-2xl text-main-orange">
-					{{ error }}			
+					<p>Aucun résultat pour votre recherche</p>		
 				</div>
+				{% endif%}
 			{% endif %}
-
+		
 			<div class="w-full flex flex-col sm:flex-row flex-wrap sm:justify-center items-center gap-4 lg:gap-6">
 				{% if userResult != [] %}
 					<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
