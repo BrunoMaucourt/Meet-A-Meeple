@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Trait1;
+use App\Entity\Trait2;
+use App\Entity\Trait3;
+use App\Entity\Trait4;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
@@ -26,8 +29,19 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('dashboard');
         }
 
+        // Display name of trait from database
+        $trait1_name = $entityManager->getRepository(Trait1::class)->findAllTrait1();
+        $trait2_name = $entityManager->getRepository(Trait2::class)->findAllTrait2();
+        $trait3_name = $entityManager->getRepository(Trait3::class)->findAllTrait3();
+        $trait4_name = $entityManager->getRepository(Trait4::class)->findAllTrait4();
+
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class, $user, [
+            'trait1_name' =>  $trait1_name,
+            'trait2_name' =>  $trait2_name,
+            'trait3_name' =>  $trait3_name,
+            'trait4_name' =>  $trait4_name,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

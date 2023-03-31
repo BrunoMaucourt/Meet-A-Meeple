@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use APP\Controller\RegistrationController;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -49,34 +50,36 @@ class RegistrationFormType extends AbstractType
             ->add('favorite_game')
             ->add('trait1_id', ChoiceType::class, [
                 'choices'  => [
-                    'Option 1' => 0,
-                    'Option 2' => 1,
-                    'Option 3' => 2,
-                    'Option 4' => 3,
+                    'choices'  => [
+                        $options['trait1_name']["0"]["name"] => 0,
+                        $options['trait1_name']["1"]["name"] => 1,
+                        $options['trait1_name']["2"]["name"] => 2,
+                        $options['trait1_name']["3"]["name"] => 3,
+                    ]
                 ]
             ])
             ->add('trait2_id', ChoiceType::class, [
                 'choices'  => [
-                    'Option 1' => 0,
-                    'Option 2' => 1,
-                    'Option 3' => 2,
-                    'Option 4' => 3,
+                    $options['trait2_name']["0"]["name"] => 0,
+                    $options['trait2_name']["1"]["name"] => 1,
+                    $options['trait2_name']["2"]["name"] => 2,
+                    $options['trait2_name']["3"]["name"] => 3,
                 ]
             ])
             ->add('trait3_id', ChoiceType::class, [
                 'choices'  => [
-                    'Option 1' => 0,
-                    'Option 2' => 1,
-                    'Option 3' => 2,
-                    'Option 4' => 3,
+                    $options['trait3_name']["0"]["name"] => 0,
+                    $options['trait3_name']["1"]["name"] => 1,
+                    $options['trait3_name']["2"]["name"] => 2,
+                    $options['trait3_name']["3"]["name"] => 3,
                 ]
             ])
             ->add('trait4_id', ChoiceType::class, [
                 'choices'  => [
-                    'Option 1' => 0,
-                    'Option 2' => 1,
-                    'Option 3' => 2,
-                    'Option 4' => 3,
+                    $options['trait4_name']["0"]["name_player"] => 0,
+                    $options['trait4_name']["1"]["name_player"] => 1,
+                    $options['trait4_name']["2"]["name_player"] => 2,
+                    $options['trait4_name']["3"]["name_player"] => 3,
                 ]
             ])
             ->add('picture_profil', FileType::class, [
@@ -125,6 +128,14 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'trait1_name' => false,
+            'trait2_name' => false,
+            'trait3_name' => false,
+            'trait4_name' => false,
         ]);
+
+        // you can also define the allowed types, allowed values and
+        // any other feature supported by the OptionsResolver component
+        $resolver->setAllowedTypes('trait1_name', 'array', 'trait2_name', 'array', 'trait3_name', 'array', 'trait4_name', 'array');
     }
 }

@@ -9,9 +9,7 @@ Détails de la partie
 {% block main_content %}
 	<h1 class="text-2xl sm:text-3xl text-main-orange font-bold ml-2 sm:ml-4">Info partie</h1>
 	<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
-		
-
-
+	
 		<div class="w-full h-fit flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-4">
 			<div class="flex justify-between items-center w-full mt-6 border-b border-main-grey py-2">
 				<h2 class="text-base font-bold">Informations générales</h2>
@@ -159,7 +157,7 @@ Détails de la partie
 				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
 					<div class="w-full h-1/3 flex">
 						<div class="w-2/3 flex justify-center items-center">
-							<span class="w-full text-base font-bold uppercase text-center">TRAIT 1 :</span>
+							<span class="w-full text-base font-bold uppercase text-center">Niveau de jeu :</span>
 						</div>
 						<div class="w-1/3 flex justify-center items-center ">
 							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
@@ -174,7 +172,7 @@ Détails de la partie
 				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
 					<div class="w-full h-1/3 flex">
 						<div class="w-2/3 flex justify-center items-center">
-							<span class="w-full text-base font-bold uppercase text-center">TRAIT 2 :</span>
+							<span class="w-full text-base font-bold uppercase text-center">Ambiance de jeu :</span>
 						</div>
 						<div class="w-1/3 flex justify-center items-center ">
 							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
@@ -189,7 +187,7 @@ Détails de la partie
 				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
 					<div class="w-full h-1/3 flex">
 						<div class="w-2/3 flex justify-center items-center">
-							<span class="w-full text-base font-bold uppercase text-center">TRAIT 3 :</span>
+							<span class="w-full text-base font-bold uppercase text-center">Alcool et cigarettes :</span>
 						</div>
 						<div class="w-1/3 flex justify-center items-center ">
 							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
@@ -204,7 +202,7 @@ Détails de la partie
 				<div class="w-60 h-24 rounded-md p-2 bg-gradient-to-b  from-main-orange/20 to-main-green/20 shadow-md border-b-4 border-main-brown flex flex-col">
 					<div class="w-full h-1/3 flex">
 						<div class="w-2/3 flex justify-center items-center">
-							<span class="w-full text-base font-bold uppercase text-center">TRAIT 4 :</span>
+							<span class="w-full text-base font-bold uppercase text-center">Animaux de compagnie :</span>
 						</div>
 						<div class="w-1/3 flex justify-center items-center ">
 							<img class="h-full max-w-full" src="{{ asset('img/content/creation_date.svg') }}" alt="">
@@ -229,10 +227,7 @@ Détails de la partie
 						{% include('/cards/player_card.html.twig') %}
 					{% endfor %}
 				</div>
-				
-		
 			</div>
-
 
 			<div class="w-full md:w-1/2 md:max-w-sm flex flex-col gap-4 justify-center items-center">
 				<div class="flex justify-between items-center w-full mt-6 border-b border-main-grey py-2">

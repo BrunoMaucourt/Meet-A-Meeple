@@ -38,7 +38,7 @@
 								</div>
 								{{ form_row(searchForm.city_name, {
 										'id': 'city_search_input',
-										'attr': {'class': 'px-1 border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange'}
+										'attr': {'class': 'px-1 ml-5 border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange'}
 										})
 									}}
 								<div id="city_list" class="hidden absolute flex-col w-full h-fit z-40"></div>
@@ -58,26 +58,53 @@
 								'attr': {'class': "accent-main-green w-full before:h-8 before:w-8 before:rounded-lg before:left-0 before:top-10 before:absolute before:content-['5km'] after:h-8 after:w-8 after:rounded-lg after:right-0 after:top-10 after:absolute after:content-['25km']"}
 							}) }}</div>
 
-							<div id="optional_field_party" class="flex flex-col justify-center items-center gap-2 hidden">
-								{{ form_row(searchForm.party_game_name) }}
+							<div id="optional_field_party" class="flex flex-col justify-center items-center gap-2 hidden [&>div]:flex [&>div]:flex-col [&>div]:text-center">
+							
+								{{ form_row(searchForm.party_game_name, {
+									'attr': {'class': 'px-1 ml-5 border border-main-brown focus:outline-main-orange rounded  [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
 								{{ form_row(searchForm.party_player_number, {
-									'attr': {'class': 'text-right'}
+									'attr': {'class': 'px-1 ml-5 border border-main-brown focus:outline-main-orange rounded [&>input]:bg-main-orange [@:not(:placeholder-shown)]:border-main-orange text-right'}
 								}) }}
 								{{ form_row(searchForm.party_date, {
-												'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
-														'min': ''~tomorrow~'',
-														},
-												'label': 'Date de la partie:',
-												})
-											}}
+									'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
+											'min': ''~tomorrow~'',
+											},
+									'label': 'Date de la partie:',
+									})
+								}}
+								{{ form_row(searchForm.party_trait1, {
+									'attr': {'class': 'px-1 ml-5 border bg-white border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
+								{{ form_row(searchForm.party_trait2, {
+									'attr': {'class': 'px-1 ml-5 bg-white border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
+								{{ form_row(searchForm.party_trait3, {
+									'attr': {'class': 'px-1 ml-5 bg-white border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
+								{{ form_row(searchForm.party_trait4, {
+									'attr': {'class': 'px-1 ml-5 bg-white border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
 							</div>
 
-							<div id="optional_field_user" class="flex flex-col justify-center items-center gap-2 hidden">
+							<div id="optional_field_user" class="flex flex-col justify-center items-center gap-2 hidden [&>div]:flex [&>div]:flex-col [&>div]:text-center">
 								{{ form_row(searchForm.player_rate, {
-									'attr': {'class': 'px-1 border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+									'attr': {'class': 'px-1 ml-5 border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
 								}) }}
 								{{ form_row(searchForm.player_friend, {
 									'attr': {'class': 'accent-main-emerald'}
+								}) }}
+								{{ form_row(searchForm.user_trait1, {
+									'attr': {'class': 'px-1 ml-5 bg-white border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
+								{{ form_row(searchForm.user_trait2, {
+									'attr': {'class': 'px-1 ml-5 bg-white border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
+								{{ form_row(searchForm.user_trait3, {
+									'attr': {'class': 'px-1 ml-5 bg-white border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
+								{{ form_row(searchForm.user_trait4, {
+									'attr': {'class': 'px-1 ml-5 bg-white border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
 								}) }}
 							</div>
 							<div class="flex justify-around items-center w-full">
@@ -96,9 +123,9 @@
 			{% if data != [] %}
 			<h2 class="text-2xl">Résultats</h2>
 				{% if error != "" %}
-				<div class="w-full flex justify-center items-center text-2xl text-main-orange">
-					<p>Aucun résultat pour votre recherche</p>		
-				</div>
+					<div class="w-full h-64 flex justify-center items-center">
+						<p class="text-2xl text-main-orange">Aucun résultat pour votre recherche</p>		
+					</div>
 				{% endif%}
 			{% endif %}
 		

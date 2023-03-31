@@ -103,7 +103,7 @@ class PartyRepository extends ServiceEntityRepository
             WHERE id = '. $partyID .' AND
             p.last_sign_in > NOW() AND 
             p.player_number_needed > 0 AND
-            p.canceled = 0;
+            p.canceled = 0 AND;
             ';
 
         $stmt = $conn->prepare($sql);
