@@ -20,6 +20,6 @@ class TestController extends AbstractController
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
-        return new Response('Well hi there '.$user->getFirstName().'   '.$user->getId());
+        return $this->render('test.html.twig');
     }
 }

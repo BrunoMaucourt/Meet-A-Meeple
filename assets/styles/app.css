@@ -51,7 +51,7 @@
     width: 0;
     height: 0;
 }
-#dd::-webkit-scrollbar{
+#registered_player_container::-webkit-scrollbar{
     width: 0;
     height: 0;
 }

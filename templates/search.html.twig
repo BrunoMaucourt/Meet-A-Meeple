@@ -1,88 +1,144 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-Chercher une partie ou un joueur
+	Chercher une partie ou un joueur
 {% endblock title %}
 
 {% block bonus_javascript %}
-	<script defer src="{{ asset('js/search_optional_field.js') }}"></script> 
-	<script defer src="{{ asset('js/search.js') }}"></script> 
-	<script defer src="{{ asset('js/geolocation_search.js') }}"></script> 
+	<script defer src="{{ asset('js/search_optional_field.js') }}"></script>
+	<script defer src="{{ asset('js/search.js') }}"></script>
+	<script defer src="{{ asset('js/geolocation_search.js') }}"></script>
 {% endblock bonus_javascript %}
 
-{% block withdashboard %}
-{% endblock withdashboard %}
+{% block withdashboard %}{% endblock withdashboard %}
 
 {% block main_content %}
+
 	<section class="text-sm md:text-base w-full flex flex-col gap-8 items-center justify-center px-2 sm:px-4">
 		<div class="w-full h-fit">
-			<h1 class="text-2xl font-bold text-center">
+			<h1 class="text-2xl font-bold text-center text-main-orange mb-4">
 				Recherchez rapidement des joueurs ou des parties autour de vous !
 			</h1>
-			{{ form_start(searchForm) }}	
-				{{ form_row(searchForm.search_type, {
-					'id': 'search_type'
-					})
-				}}
-				<div>
-					<div id="location-choice" class="w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
-						<label class="text-sm" for="locate-my-position">Choisir ma position</label>
-						<input class="accent-main-emerald" type="checkbox" name="locate-my-position" id="locate-my-position" value="my-position">
+			<div class="flex justify-center items-center">
+				<div class="flex w-full max-w-4xl h-fit rounded-lg shadow-md bg-gradient-to-br from-main-green/20 via-white to-main-orange/20 p-3 border-b-4 border-main-orange">
+					<div class="w-full h-full flex flex-col justify-center items-center">
+						{{ form_start(searchForm, {
+                                'attr':{'class':'w-full max-w-lg flex flex-col justify-center items-center gap-2 p-3'}
+                        	})
+						}}
+							{{ form_row(searchForm.search_type, {
+									'id': 'search_type',
+									'attr': {'class' : 'w-full px-4 flex accent-main-emerald [&>label]:mr-4'}
+									})
+								}}
+							<div>
+								<div id="location-choice" class="w-full max-w-[400px] h-fit flex gap-1 overflow-hidden">
+									<label class="text-sm" for="locate-my-position">Choisir ma position</label>
+									<input class="accent-main-emerald" type="checkbox" name="locate-my-position" id="locate-my-position" value="my-position">
+								</div>
+								{{ form_row(searchForm.city_name, {
+										'id': 'city_search_input',
+										'attr': {'class': 'px-1 border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange'}
+										})
+									}}
+								<div id="city_list" class="hidden absolute flex-col w-full h-fit z-40"></div>
+							</div>
+							{{ form_row(searchForm.city_GPS_lat, {
+									'attr': {'class': 'hidden'},
+									'id': 'form_city_GPS_lat'
+									})
+								}}
+							{{ form_row(searchForm.city_GPS_long, {
+									'attr': {'class': 'hidden'},
+									'id': 'form_city_GPS_long'
+									})
+								}}
+								<div class="relative">
+							{{ form_row(searchForm.distance,{
+								'attr': {'class': "accent-main-green w-full before:h-8 before:w-8 before:rounded-lg before:left-0 before:top-10 before:absolute before:content-['5km'] after:h-8 after:w-8 after:rounded-lg after:right-0 after:top-10 after:absolute after:content-['25km']"}
+							}) }}</div>
+
+							<div id="optional_field_party" class="flex flex-col justify-center items-center gap-2 hidden">
+								{{ form_row(searchForm.party_game_name) }}
+								{{ form_row(searchForm.party_player_number, {
+									'attr': {'class': 'text-right'}
+								}) }}
+								{{ form_row(searchForm.party_date, {
+												'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
+														'min': ''~tomorrow~'',
+														},
+												'label': 'Date de la partie:',
+												})
+											}}
+							</div>
+
+							<div id="optional_field_user" class="flex flex-col justify-center items-center gap-2 hidden">
+								{{ form_row(searchForm.player_rate, {
+									'attr': {'class': 'px-1 border border-main-brown focus:outline-main-orange rounded [@:not(:placeholder-shown)]:border-main-orange text-right'}
+								}) }}
+								{{ form_row(searchForm.player_friend, {
+									'attr': {'class': 'accent-main-emerald'}
+								}) }}
+							</div>
+							<div class="flex justify-around items-center w-full">
+								{{ form_row(searchForm.send, 
+									{
+										'attr': {'class': 'btn-orange'}
+									}
+								) }}
+								<p class="btn-grey" id="btn_more_field">Plus d'options</p>
+							</div>
+						{{ form_end(searchForm) }}
 					</div>
-					{{ form_row(searchForm.city_name, {
-						'id': 'city_search_input'
-						})
-					}}
-					<div id="city_list" class="hidden absolute flex-col w-full h-fit"></div>
 				</div>
-				{{ form_row(searchForm.city_GPS_lat, {
-					'attr': {'class': 'hidden'},
-					'id': 'form_city_GPS_lat'
-					})
-				}}
-				{{ form_row(searchForm.city_GPS_long, {
-					'attr': {'class': 'hidden'},
-					'id': 'form_city_GPS_long'
-					})
-				}}
-				{{ form_row(searchForm.distance) }}
+			</div>
 
-				<div id="optional_field_party" class="bg-main-green hidden">
-					{{ form_row(searchForm.party_game_name) }}
-					{{ form_row(searchForm.party_player_number) }}	
-					{{ form_row(searchForm.party_date, {
-								'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
-										 'min': ''~tomorrow~'',
-										},
-								'label': 'Date de la partie:',
-								})
-							}}
+			{% if data != [] %}
+			<h2 class="text-2xl">Résultats</h2>
+				{% if error != "" %}
+				<div class="w-full flex justify-center items-center text-2xl text-main-orange">
+					<p>Aucun résultat pour votre recherche</p>		
 				</div>
-				
-				<div id="optional_field_user" class="bg-main-brown">
-					{{ form_row(searchForm.player_rate) }}	
-					{{ form_row(searchForm.player_friend) }}		
-				</div>
+				{% endif%}
+			{% endif %}
+		
+			<div class="w-full flex flex-col sm:flex-row flex-wrap sm:justify-center items-center gap-4 lg:gap-6">
+				{% if userResult != [] %}
+					<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
+						<h2 class="text-xl font-bold">Joueurs correspondant à votre recherche</h2>
+						<div class="hidden sm:flex gap-5">
+							<div id="recommended_player_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"> < </div>
+							<div id="recommended_player_next_btn"class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"> > </div>
+						</div>
+					</div>
 
-				{{ form_row(searchForm.send) }}
-			{{ form_end(searchForm) }}	
+					<div id="recommended_player_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
+						{% if userResult != [] %}
+							<script defer src="{{ asset('js/slider_players.js') }}"></script>
+							{% for user in userResult %}
+								{% include('/cards/player_card.html.twig') %}
+							{% endfor %}
+						{% endif %}
+					</div>
+				{% endif %}
+				{% if partyResult != [] %}
+					<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
+						<h2 class="text-xl font-bold">Parties correspondant à votre recherche</h2>
+						<div class="hidden sm:flex gap-5">
+							<div id="recommended_party_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"> < </div>
+							<div id="recommended_party_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
+						</div>
+					</div>
 
-			<h2>Résultats</h2>
-
-			{{ error }}
-		</div>
-
-		<div class="w-full flex flex-col sm:flex-row flex-wrap sm:justify-center items-center gap-4 lg:gap-6">
-		{% if userResult != [] %}
-			{% for user in userResult %}
-				{% include('/cards/player_card.html.twig') %}
-			{% endfor %}
-		{% endif %}
-		{% if partyResult != [] %}
-			{% for party in partyResult %}
-				{% include('/cards/party_card.html.twig') %}
-			{% endfor %}
-		{% endif %}
-		</div>
-	</section>
-{% endblock main_content %}
+					<div id="recommended_party_slider_container" class="relative w-full flex items-center snap-x snap-mandatory overflow-x-scroll scroll-smooth gap-8 px-6 sm:px-2 py-4">
+						{% if partyResult != [] %}
+							<script defer src="{{ asset('js/slider_parties.js') }}"></script>
+							{% for party in partyResult %}
+								{% include('/cards/party_card.html.twig') %}
+							{% endfor %}
+						{% endif %}
+					</div>
+				{% endif %}
+			</div>
+		</section>
+	{% endblock main_content %}

@@ -53,7 +53,8 @@ class PartyProfilController extends AbstractController
         $temp_result_last_connexion = SearchController::editLastConnexion($temp_result_date_created);
         $temp_result_age = SearchController::calculateAge($temp_result_last_connexion);
         $temp_result_comment = SearchController::numberOfComment($temp_result_age, $entityManager);
-        $host_player = $temp_result_comment;
+        $temp_result_contact = SearchController::checkContact($temp_result_comment, $user_ID, $entityManager);
+        $host_player = $temp_result_contact;
     //**** ****/
 
     //***getting registered players informations***
@@ -64,7 +65,7 @@ class PartyProfilController extends AbstractController
             'nonReadMessageCount' => $non_read_message_count,
             'party' => $party,
             'hostPlayer' => $host_player,
-            'titi' => $registered_players,
+            'registeredPlayers' => $registered_players,
         ]);
     }
 }
