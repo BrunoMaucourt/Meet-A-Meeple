@@ -8,6 +8,7 @@ Meet A Meeple
 {#SCRIPT PERMET DE TROUVER LA GÉOLOCALISATION#}
 {% block bonus_javascript %}
     <script defer src="{{ asset('js/geolocation_addparty.js') }}"></script>
+	<script defer src="{{ asset('js/input_date_gestion_addparty.js') }}"></script>
 {% endblock bonus_javascript %}
 {% block main_content %}
 {#FORMULAIRE POUR CRÉER (AJOUTER) UNE PARTIE#}
@@ -117,6 +118,7 @@ Meet A Meeple
 										'value': ''~today~'', 'min': ''~today~'', 'max': ''
 										},
 								label: 'Date de la partie:',
+								id: 'date_time_party',
 								})
 							}}
 						</label>
@@ -126,8 +128,9 @@ Meet A Meeple
 					<div>
 						<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 							{{ form_row(party.last_sign_in, {
-								'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap'},
+								'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap', 'min': ''~today~'', 'max': ''},
 								label: 'Date limite d\'inscription:',
+								id: 'last_date_party',
 								})
 							}}
 						</label>
