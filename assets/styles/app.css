@@ -66,7 +66,7 @@
     }
   }
 
-  .slider::before, .slider::after {
+.slider::before, .slider::after {
     background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
     content: "";
     height: 265px;
@@ -74,21 +74,21 @@
     width: 100px;
     z-index: 2;
   }
-  .slider::after {
+.slider::after {
     right: 0;
     top: 0;
     transform: rotateZ(180deg);
   }
-  .slider::before {
+.slider::before {
     left: 0;
     top: 0;
   }
-  .slider .slide-track {
+.slider .slide-track {
     animation: scroll 40s linear infinite;
     display: flex;
     width: calc(400px * 14);
   }
 
-  .slider .slide-track:hover {
+.slider .slide-track:hover {
     animation-play-state: paused;
 }

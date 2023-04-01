@@ -38,7 +38,7 @@
     }
 //end incomming game slider//
 
-//start incomming game slider//
+//start created game slider//
     let created_game_slider_container = document.querySelector('#created_game_slider_container');
     let created_game_cards = document.querySelectorAll('.created_game_card');
     const created_game_card_number = created_game_cards.length;
@@ -56,7 +56,7 @@
         let cardwidth = created_game_cards[0].scrollWidth;
         created_game_slider_container.scrollBy(-cardwidth,0);
     }
-//end incomming game slider//
+//end created game slider//
 
 //start canceled game slider//
     let canceled_game_slider_container = document.querySelector('#canceled_game_slider_container');

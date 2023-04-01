@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256.44mm"
+   height="80.93mm"
+   viewBox="0 0 256.44 80.93"
+   version="1.1"
+   id="svg5"
+   xml:space="preserve"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false" /><defs
+     id="defs2"><clipPath
+       id="presentation_clip_path"
+       clipPathUnits="userSpaceOnUse">
+   <rect
+   x="0"
+   y="0"
+   width="30000"
+   height="17000"
+   id="rect132" />
+  </clipPath></defs><g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(208.38045,-156.42679)"><g
+       style="fill-rule:evenodd;stroke-width:28.222;stroke-linejoin:round"
+       id="g253"
+       transform="matrix(0.01,0,0,0.01,-228.18045,136.62679)"><g
+         id="g179">
+  <g
+   id="id2"
+   class="Master_Slide">
+   <g
+   id="bg-id2"
+   class="Background" />
+   <g
+   id="bo-id2"
+   class="BackgroundObjects" />
+  </g>
+ </g><g
+         class="SlideGroup"
+         id="g204">
+  <g
+   id="g202">
+   <g
+   id="container-id1">
+    <g
+   id="id1"
+   class="Slide"
+   clip-path="url(#presentation_clip_path)">
+     <g
+   class="Page"
+   id="g198">
+      <g
+   class="Group"
+   id="g196">
+       <g
+   class="Group"
+   id="g194">
+        <g
+   class="Group"
+   id="g192">
+         <g
+   class="Group"
+   id="g190">
+          <g
+   class="com.sun.star.drawing.ClosedBezierShape"
+   id="g188">
+           <g
+   id="id3">
+            <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="1980"
+   y="1980"
+   width="25644"
+   height="8093"
+   id="rect181" />
+            <path
+   fill="#ffb300"
+   stroke="none"
+   d="m 3533,2436 c 456,-263 974,-403 1503,-403 h 19530 c 529,0 1047,140 1503,403 457,263 834,641 1097,1097 264,456 403,974 403,1503 0,526 -139,1044 -403,1500 -263,457 -640,834 -1097,1100 -456,263 -974,400 -1503,400 H 5036 c -45,0 -87,0 -129,-2 L 2033,10018 V 4468 l 48,34 c 61,-339 182,-667 355,-969 263,-456 641,-834 1097,-1097 z"
+   id="path183" />
+            <path
+   fill="none"
+   stroke="#ffb300"
+   stroke-width="106"
+   stroke-linejoin="round"
+   d="m 3533,2436 c 456,-263 974,-403 1503,-403 h 19530 c 529,0 1047,140 1503,403 457,263 834,641 1097,1097 264,456 403,974 403,1503 0,526 -139,1044 -403,1500 -263,457 -640,834 -1097,1100 -456,263 -974,400 -1503,400 H 5036 c -45,0 -87,0 -129,-2 L 2033,10018 V 4468 l 48,34 c 61,-339 182,-667 355,-969 263,-456 641,-834 1097,-1097 z"
+   id="path185" />
+           </g>
+          </g>
+         </g>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g></g></g></svg>
