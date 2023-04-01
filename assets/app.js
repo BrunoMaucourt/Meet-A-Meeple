@@ -24,7 +24,7 @@ window.addEventListener('resize', () => {
     if (body.offsetWidth < 1280) {
         site_title.style.transform = "scale(1) translateY(0px)";
         site_title.style.transition = "all 1s ease";
-    } else if (body.offsetWidth > 1280 && scrollY < 80) {
+    } else if (body.offsetWidth > 1280 && scrollY < 40) {
         site_title.style.transform = "scale(1.2,1.2) translateY(2rem)";
         header.style.boxShadow = "none";
         header.style.transition = "all 1.5s ease";
@@ -33,17 +33,17 @@ window.addEventListener('resize', () => {
 })
 
 document.addEventListener('scroll', () => {
-    if (scrollY > 80 && body.offsetWidth > 1280) {
+    if (scrollY > 40 && body.offsetWidth > 1280) {
         site_title.style.transform = "scale(1) translateY(0px)";
         site_title.style.transition = "all 1s ease";
         header.style.boxShadow = "2px 0px 2px black";
         header.style.transition = "all 1.5s ease";
-    } else if (scrollY < 80 && body.offsetWidth > 1280) {
+    } else if (scrollY < 40 && body.offsetWidth > 1280) {
         site_title.style.transform = "scale(1.2,1.2) translateY(2rem)";
         site_title.style.transition = "all 1s ease";
         header.style.boxShadow = "none";
         header.style.transition = "all 1.5s ease";
-    } else if (body.offsetWidth < 1280 && scrollY < 80) {
+    } else if (body.offsetWidth < 1280 && scrollY < 40) {
         header.style.boxShadow = "none";
         header.style.transition = "all 1.5s ease";
     } else {
