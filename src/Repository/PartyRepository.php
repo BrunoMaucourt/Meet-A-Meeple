@@ -45,7 +45,7 @@ class PartyRepository extends ServiceEntityRepository
 
         $sql = '
             SELECT * FROM party p
-            WHERE p.id = '.$id.';
+            WHERE p.id = ' . $id . ';
             ';
 
         $stmt = $conn->prepare($sql);
@@ -63,7 +63,7 @@ class PartyRepository extends ServiceEntityRepository
             SELECT * FROM party p
             WHERE p.last_sign_in > NOW() AND 
             p.player_number_needed > 0 AND
-            p.canceled = 0 '. $party_optional_request . ';
+            p.canceled = 0 ' . $party_optional_request . ';
             ';
 
         $stmt = $conn->prepare($sql);
@@ -100,10 +100,10 @@ class PartyRepository extends ServiceEntityRepository
 
         $sql = '
             SELECT COUNT(id) FROM party p
-            WHERE id = '. $partyID .' AND
+            WHERE id = ' . $partyID . ' AND
             p.last_sign_in > NOW() AND 
             p.player_number_needed > 0 AND
-            p.canceled = 0;
+            p.canceled = 0 AND;
             ';
 
         $stmt = $conn->prepare($sql);
@@ -111,7 +111,27 @@ class PartyRepository extends ServiceEntityRepository
 
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
-    } 
+    }
+
+    public function findNumberOfPlayedParty($userID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT COUNT(PU.id) FROM party_user PU
+            INNER JOIN party P ON
+            PU.party_id = P.id
+            WHERE PU.user_id = ' . $userID . ' AND
+            P.date < NOW() AND
+            P.canceled = 0;
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
 
     public function findNumberOfHostedParty($userID): array
     {
@@ -119,7 +139,7 @@ class PartyRepository extends ServiceEntityRepository
 
         $sql = '
             SELECT COUNT(id) FROM party p
-            WHERE user_host_id = '. $userID .' AND
+            WHERE user_host_id = ' . $userID . ' AND
             p.canceled = 0;
             ';
 
@@ -128,8 +148,8 @@ class PartyRepository extends ServiceEntityRepository
 
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
-    } 
-    
+    }
+
     public function findHostPlayer($partyID): array
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -138,7 +158,7 @@ class PartyRepository extends ServiceEntityRepository
             SELECT U.* FROM party P
             INNER JOIN user U
             ON P.user_host_id = U.id
-            WHERE P.id = '. $partyID .'            
+            WHERE P.id = ' . $partyID . '            
             ';
 
         $stmt = $conn->prepare($sql);

@@ -96,7 +96,7 @@ class DashboardController extends AbstractController
          * 
          * */ 
         $userInformations['numberOfFriend'] = $entityManager->getRepository(UserFriend::class)->findFriendNumber($user_ID);
-        $userInformations['playedParty'] = $entityManager->getRepository(Party::class)->findNumberOfHostedParty($user_ID);
+        $userInformations['playedParty'] = $entityManager->getRepository(Party::class)->findNumberOfPlayedParty($user_ID);
         $userInformations['hostedParty'] = $entityManager->getRepository(Party::class)->findNumberOfHostedParty($user_ID);
         $userInformations['registeredEvents'] = [];
 

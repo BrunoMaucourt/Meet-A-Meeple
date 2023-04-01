@@ -39,6 +39,21 @@ class Trait1Repository extends ServiceEntityRepository
         }
     }
 
+    public function findAllTrait1(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT category_id, name FROM trait1
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Trait1[] Returns an array of Trait1 objects
 //     */

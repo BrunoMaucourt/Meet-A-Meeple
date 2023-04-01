@@ -39,6 +39,21 @@ class Trait4Repository extends ServiceEntityRepository
         }
     }
 
+    public function findAllTrait4(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT category_id, name_player, name_party FROM trait4
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Trait4[] Returns an array of Trait4 objects
 //     */
