@@ -68,26 +68,16 @@ Meet A Meeple
 					<p class="text-red-500 text-xs italic">Veuillez remplir ce champ.</p>
 				</div>
 				{#LOCALISATION DE LA PARTIE (VILLE)#}
-				{#<div>
-					<div class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
-						{{ form_row(party.address_location, {
-							'attr': {'class': 'w-5/5 mr-48 font-normal appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white'},
-							label: 'localisation de la partie:', id: 'address_location'
-                            })
-                        }}
-					</div>
-					<p class="text-red-500 text-xs italic">Veuillez remplir ce champ.</p>
-				</div>#}
 				<div id="container_city_search_input" class="w-3/4 block uppercase tracking-wide text-gray-700 text-xs font-bold relative [&>:first-child]:flex [&>:first-child]:flex-col">
                     {{ form_row(party.address_location, {
-                                                'attr': {
-                                                'class': 'text-base font-normal appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white',
-                                                'placeholder' : ' '
-                                        },
-                                                label: 'localisation de la partie:',
-                                                id: 'address_location'
-                                        })
-                                }}
+								'attr': {
+								'class': 'text-base font-normal appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white',
+								'placeholder' : ' '
+						},
+								label: 'localisation de la partie:',
+								id: 'address_location'
+						})
+                    }}
                     <div id="city_list" class="hidden absolute top-12 flex-col w-full h-fit rounded-b-lg overflow-hidden border border-main-grey-light"></div>
 					<p class="text-red-500 text-xs italic font-normal lowercase">Veuillez remplir ce champ.</p>
                     {{ form_row(party.address_GPS_lat, {
@@ -118,7 +108,7 @@ Meet A Meeple
 						<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 							{{ form_row(party.date, {
 								'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap',
-										'value': ''~today~'', 'min': ''~today~'', 'max': ''
+										'min': ''~today~'', 'max': ''
 										},
 								label: 'Date de la partie:',
 								id: 'date_time_party',
@@ -145,7 +135,7 @@ Meet A Meeple
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.trait1_ID, {
 							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':'0'},
-							label: 'Option 1',
+							label: 'Niveau de jeu',
                             })
                         }}
 					</label>
@@ -153,7 +143,7 @@ Meet A Meeple
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.trait2_ID, {
 							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':'0'},
-							label: 'Option 2',
+							label: 'Ambiance de jeu',
                             })
                         }}
 					</label>
@@ -161,7 +151,7 @@ Meet A Meeple
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.trait3_ID, {
 							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':'0'},
-							label: 'Option 3',
+							label: 'Alcool et cigarettes',
                             })
                         }}
 					</label>
@@ -169,7 +159,7 @@ Meet A Meeple
 					<label for="trait_ID" class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.trait4_ID, {
 							'attr': {'class': 'font-normal border border-gray-300 text-gray-900 text-sm rounded flex flex-wrap','min':'0'},
-							label: 'Option 4',
+							label: 'Animaux de compagnie',
                             })
                         }}
 					</label>
@@ -189,22 +179,6 @@ Meet A Meeple
       		</h2>
     	{% endfor %}
 	</div>
-	{#<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
-		{{ form_row(party.address_GPS_lat, {
-			'attr': {'class': 'hidden'},
-			
-			})
-		}}
-	</label>
-	<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
-		{{ form_row(party.address_GPS_long, {
-			'attr': {'class': 'hidden'},
-			
-			})
-		}}
-	</label>
-</div>#}
-{#Commentaires#}
 {{ form_end(party) }}
 </section>
 {% endblock main_content %}
