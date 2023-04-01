@@ -230,7 +230,7 @@ class SearchController extends AbstractController
             $raw_data_form = $form->getData();
             // Check if user search player or party
             if ($data['search_type'] == SEARCH_PARTY) {
-                // Add optional 
+                // Add optional field if they are not null
                 $party_optional_request = "";
                 if ($raw_data_form['party_game_name'] != null) {
                     $party_optional_request = $party_optional_request . " AND p.game LIKE '%" .  $raw_data_form['party_game_name'] . "%'";
@@ -241,6 +241,18 @@ class SearchController extends AbstractController
                 if ($raw_data_form['party_date'] != null) {
                     $date = $raw_data_form['party_date']->format('Y-m-d h:i:s');
                     $party_optional_request = $party_optional_request . " AND p.date > '" . $date . "'";
+                }
+                if($raw_data_form['party_trait1'] != null){
+                    $party_optional_request = $party_optional_request . " AND p.trait1_id = " .  $raw_data_form['party_trait1'];
+                }
+                if($raw_data_form['party_trait2'] != null){
+                    $party_optional_request = $party_optional_request . " AND p.trait2_id = " .  $raw_data_form['party_trait2'];
+                }
+                if($raw_data_form['party_trait3'] != null){
+                    $party_optional_request = $party_optional_request . " AND p.trait3_id = " .  $raw_data_form['party_trait3'];
+                }
+                if($raw_data_form['party_trait4'] != null){
+                    $party_optional_request = $party_optional_request . " AND p.trait4_id = " .  $raw_data_form['party_trait4'];
                 }
 
                 // Search in database
@@ -263,13 +275,25 @@ class SearchController extends AbstractController
                 $result_party_player_register = SearchController::checkIfUserRegistered($result_party_player, $user_ID, $entityManager);
                 $result_party = $result_party_player_register;
             } else if ($data['search_type'] == SEARCH_PLAYER) {
-                // Add optional 
+                // Add optional field if they are not null
                 $party_optional_request = "";
                 if ($raw_data_form['player_rate'] != null) {
                     $party_optional_request = $party_optional_request . " AND rate >= " . $raw_data_form['player_rate'];
                 }
                 if ($raw_data_form['player_friend'] != null) {
                     $party_optional_request = $party_optional_request . " AND U.id IN (select UF.user_friend_id from user_friend UF where user_id = " .  $user_ID . ") ";
+                }
+                if ($raw_data_form['user_trait1'] != null) {
+                    $party_optional_request = $party_optional_request . " AND U.trait1_id = " .  $raw_data_form['user_trait1'];
+                }
+                if ($raw_data_form['user_trait2'] != null) {
+                    $party_optional_request = $party_optional_request . " AND U.trait1_id = " .  $raw_data_form['user_trait2'];
+                }
+                if ($raw_data_form['user_trait3'] != null) {
+                    $party_optional_request = $party_optional_request . " AND U.trait1_id = " .  $raw_data_form['user_trait3'];
+                }
+                if ($raw_data_form['user_trait4'] != null) {
+                    $party_optional_request = $party_optional_request . " AND U.trait1_id = " .  $raw_data_form['user_trait4'];
                 }
                 // Search in database
                 $result = $entityManager->getRepository(User::class)->findAllAvailableUser($user_ID, $party_optional_request);
