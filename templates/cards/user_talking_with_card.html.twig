@@ -22,7 +22,7 @@
 		</div>
 		<div class="w-2/3 flex justify-center items-center gap-4">
 			<span class="font-bold text-main-brown">{{ contact['contact_first_name'] }}</span>
-			<a href="/myProfil" class="z-30 flex justify-center items-center w-5 h-5 top-1 right-1 cursor-auto hover:bg-red rounded-full absolute text-white">
+			<a href="{{ path('message menu close', {'id': contact['contact_id']}) }}" class="z-30 flex justify-center items-center w-5 h-5 top-1 right-1 cursor-auto hover:bg-red rounded-full absolute text-white">
 				<img class="w-full" src="{{ asset('img/content/trash.svg')}}" alt="">
 			</a>
 		</div>	
