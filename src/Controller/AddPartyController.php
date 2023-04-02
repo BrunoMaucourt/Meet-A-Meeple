@@ -10,11 +10,9 @@ use App\Entity\Trait4;
 use App\Entity\Party;
 use App\Form\PartyType;
 use App\Entity\UserChat;
-//use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-//use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -45,12 +43,12 @@ class AddPartyController extends AbstractController
         $form->handleRequest($request);
 
         //DEFAUT VALUE DATE INPUTS
-        $today = date("Y-m-d H:i:s");
-        $tomorrow = date("Y-m-d H:i:s", strtotime('tomorrow'));
-       
+        $today = date("Y-m-d H:i");
+        $tomorrow = date("Y-m-d H:i", strtotime('tomorrow'));
+
         //seting non read message count
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $party = $form->getData();
             // Get ID of user
@@ -59,7 +57,10 @@ class AddPartyController extends AbstractController
             $user_ID = $user->getId();
 
             $party->setUserHostID($user_ID);
-            
+            // Set player number needed because host player is automaticly register to the party when add
+            $player_number_needed_corrected = $party->getPlayerNumberNeeded() + 1;
+            $party->setPlayerNumberNeeded($player_number_needed_corrected);
+
             $entityManager->persist($party);
             $entityManager->flush();
             // generate a URL with route arguments
@@ -71,7 +72,7 @@ class AddPartyController extends AbstractController
 
         return $this->render('addParty.html.twig', [
             'party' => $form->createView(),
-            'today'=> $today,
+            'today' => $today,
             'tomorrow' => $tomorrow,
             'nonReadMessageCount' => $non_read_message_count,
         ]);

@@ -33,7 +33,7 @@ class PartyType extends AbstractType
                 'label' => false])
             ->add('type_location_ID', ChoiceType::class, [
                 'choices'  => [
-                    'Maison d\un particulier' => 0,
+                    'Maison d\'un particulier' => 0,
                     'Bar' => 1,
                     'Boutique de jeux de société' => 2,
                 ]

@@ -103,7 +103,7 @@ class PartyRepository extends ServiceEntityRepository
             WHERE id = ' . $partyID . ' AND
             p.last_sign_in > NOW() AND 
             p.player_number_needed > 0 AND
-            p.canceled = 0 AND;
+            p.canceled = 0;
             ';
 
         $stmt = $conn->prepare($sql);
@@ -167,6 +167,25 @@ class PartyRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+
+    public function checkIfPartyCanBeEdit($partyID): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT COUNT(id) FROM party p
+            WHERE id = ' . $partyID . ' AND
+            p.last_sign_in > NOW() AND 
+            p.canceled = 0;
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
     //    /**
     //     * @return Party[] Returns an array of Party objects
     //     */
