@@ -397,7 +397,7 @@ class SearchController extends AbstractController
         $current_date_string = date('Y/m/d', time());
         $current_date = strtotime($current_date_string);
         for ($i = 0; $i < sizeof($result); $i++) {
-            $spliter_string =  str_split($result[$i]['created_at'], 10);
+            $spliter_string =  str_split($result[$i]['last_connexion'], 10);
             $last_connexion_date  = strtotime($spliter_string[0]);
             $last_connexion_date = strtotime($spliter_string[0]);
             $timeDiff = abs($current_date - $last_connexion_date);
