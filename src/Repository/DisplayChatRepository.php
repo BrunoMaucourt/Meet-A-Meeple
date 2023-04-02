@@ -39,6 +39,56 @@ class DisplayChatRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllUserIAmTalkingWith($user_ID){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT U.id contact_id, U.first_name contact_first_name, U.picture_profil contact_profil_picture FROM display_chat DC
+        INNER JOIN user U ON
+        U.id = DC.user_recipient_id
+        WHERE DC.user_sender_id = '.$user_ID.'';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function checkIfUserIsInChatList($user_ID,$target_ID){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT count(*) count FROM display_chat DC
+        WHERE DC.user_sender_id = '.$user_ID.' AND
+        DC.user_recipient_id = '.$target_ID.'';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    //public function addUserToChatList($user_ID,$target_ID);//a faire sylfony
+
+    public function removeUserToChatList($user_ID,$target_ID){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        DELETE FROM display_chat
+        WHERE user_sender_id = '.$user_ID.' 
+        AND user_recipient_id = '.$target_ID.'';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative(); 
+    }
+
+
+
 //    /**
 //     * @return DisplayChat[] Returns an array of DisplayChat objects
 //     */
