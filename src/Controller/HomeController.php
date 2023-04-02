@@ -19,7 +19,7 @@ class HomeController extends AbstractController
             [
                 'name' => 'Gabriella G.',
                 'profil_picture' => 'img/profil_picture/profil_picture_641ec0921fa94.jpg',
-                'message' => 'J\'ai été accueilli à bras ouverts sur Meet a meeple et j\'ai rencontré des joueurs fantastiques avec qui j\'ai passé de nombreuses soirées de jeux mémorables.',
+                'message' => 'J\'ai été accueillie à bras ouverts sur Meet a meeple et j\'ai rencontré des joueurs fantastiques avec qui j\'ai passé de nombreuses soirées de jeux mémorables.',
             ],
             [
                 'name' => 'Denis M.',
@@ -29,7 +29,7 @@ class HomeController extends AbstractController
             [
                 'name' => 'Julie D.',
                 'profil_picture' => 'img/profil_picture/profil_picture_641ebff7a1f1b.jpg',
-                'message' => 'Meet a Meeple est fantastique ! J\'ai trouvé des joueurs passionnés de jeux de société avec qui j\'ai pu découvrir de nouveaux jeux grâce à eux. Je recommande !',
+                'message' => 'Meet a Meeple est fantastique ! J\'ai trouvé des joueurs passionnés de jeux de société grâce auxquels j\'ai pu découvrir de nouveaux jeux. Je recommande !',
             ],
             [
                 'name' => 'Sophie M.',
@@ -39,7 +39,7 @@ class HomeController extends AbstractController
             [
                 'name' => 'Brice R.',
                 'profil_picture' => 'img/profil_picture/profil_picture_641eb95f9989b.jpg',
-                'message' => 'Meet a Meeple est le paradis des joueurs de jeux de société. Le site est facile à naviguer et j\'ai rencontré des joueurs incroyables avec qui je suis devenu ami.',
+                'message' => 'Meet a Meeple est le paradis des joueurs de jeux de société. Le site est facile d\'utilisation et j\'ai rencontré des joueurs incroyables avec qui je suis devenu ami.',
             ],
             [
                 'name' => 'Hiromi L.',

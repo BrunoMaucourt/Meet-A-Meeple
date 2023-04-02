@@ -9,8 +9,8 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class PlayerController extends AbstractController
 {
-    #[Route('/playerprofil/{id}', name: 'player profil')]
-    public function player(EntityManagerInterface $entityManager): Response
+    #[Route('/playerprofil/{playerID}', name: 'player profil')]
+    public function player(EntityManagerInterface $entityManager, int $playerID): Response
     {
         // Allow acces only to connected user
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -22,7 +22,7 @@ class PlayerController extends AbstractController
         //seting non read message count
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
 
-        return $this->render('playerprofil.html.twig',[
+        return $this->render('player.html.twig',[
             'nonReadMessageCount' => $non_read_message_count,
         ]);
     }

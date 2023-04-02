@@ -5,10 +5,8 @@ Mes parties
 {% endblock title %}
 
 {% block bonus_javascript %}
-<script defer src="{{ asset('js/my_party.js') }}"></script> 
+	<script defer src="{{ asset('js/my_party.js') }}"></script> 
 {% endblock bonus_javascript %}
-
-
 
 {% block withdashboard %}{% endblock withdashboard %}
 
@@ -20,7 +18,7 @@ Mes parties
 
 		<!--START INCOMMING GAME PART-->
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
-			<h2 class="text-xl font-bold">Partie à venir</h2>
+			<h2 class="text-xl font-bold">Parties à venir</h2>
 			<div class="hidden sm:flex gap-5">
 				<div id="incomming_game_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
 				<div id="incomming_game_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
@@ -37,7 +35,7 @@ Mes parties
 
 		<!--START FINISHED GAME PART-->
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
-			<h2 class="text-xl font-bold">Partie finie</h2>
+			<h2 class="text-xl font-bold">Parties finies</h2>
 			<div class="hidden sm:flex gap-5">
 				<div id="finished_game_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
 				<div id="finished_game_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
@@ -54,7 +52,7 @@ Mes parties
 
 		<!--START CREATED GAME PART-->
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
-			<h2 class="text-xl font-bold">Partie créée</h2>
+			<h2 class="text-xl font-bold">Parties créées</h2>
 			<div class="hidden sm:flex gap-5">
 				<div id="created_game_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
 				<div id="created_game_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
@@ -71,7 +69,7 @@ Mes parties
 
 		<!--END CANCELED GAME PART-->
 		<div class="flex justify-between items-center w-full mt-8 border-b border-main-grey py-2">
-			<h2 class="text-xl font-bold">Partie annulée</h2>
+			<h2 class="text-xl font-bold">Parties annulées</h2>
 			<div class="hidden sm:flex gap-5">
 				<div id="canceled_game_prev_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300"><</div>
 				<div id="canceled_game_next_btn" class="flex justify-center items-center cursor-pointer w-8 h-8 rounded-full border-2 border-main-green text-main-green hover:bg-main-green/20 transition-all duration-300">></div>
@@ -85,16 +83,7 @@ Mes parties
 				{% endfor %}
 			{% endif %}
 		</div>
-		<!--END CANCELED GAME PART-->
-
-
-
-
-
-
-
-
-		
+		<!--END CANCELED GAME PART-->	
 		
 	</section>
 {% endblock main_content %}
