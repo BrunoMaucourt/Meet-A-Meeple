@@ -7,44 +7,44 @@
 	</div>
 	<div class="absolute h-20 w-20 border-2 rounded-full overflow-hidden left-[5rem] sm:left-[6.5rem] top-[7rem] bg-main-brown bg-cover bg-center" style="background-image: url('{{ asset(party['party_host_picture']) }}');"></div>
 	<div class="w-full h-3/5 pt-12 flex flex-col">
-		<div class="w-full flex flex-col justify-center items-center">
-			<span class="text-xs">Organisateur :</span>
+		<div class="w-full flex flex-col justify-center items-center mb-4">
+			<span class="text-lg">Organisateur :</span>
 			<span class="text-lg">{{ party['party_host_name'] }}</span>
 		</div>
 		<div class="w-full flex flex-col h-1/5 justify-center px-4">
 			<div class="flex w-full justify-center items-center">
-				<span class="text-xs">Nombre de joueur :</span>
+				<span class="text-lg">Nombre de joueurs :</span>
 			</div>
 			<div class="flex w-full justify-center items-center pr-4">
                 {% if party['user_registered'] != null %}
                     {% for user in party['user_registered'] %}
-                        <a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center mx-1" href="" title="{{ user['user_name'] }}" style="background-image: url('{{ user['user_profil_picture'] }}');"></a>
+                        <a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center mx-1" href="{{ path('player profil', {'playerID': user['user_id']}) }}" title="{{ user['user_name'] }}" style="background-image: url('{{ user['user_profil_picture'] }}');"></a>
                     {% endfor %}	
                 {% endif %}
-				{% for i in (party['player_number_total'] - party['player_number_needed'])..party['player_number_total']-1 %}
+				{% for i in 1..party['player_number_needed'] %}
 					<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center mx-1" href="{{ path('app_party_registration', {'partyID': party['id']}) }}" title="S'inscrire à la partie" style="background-image: url('{{ asset('img/profil_menu/addition.svg') }}');"></a>
 				{% endfor %}
 			</div>
 		</div>
 		<div class="w-full flex h-1/5 justify-center px-4">
-		<div class="flex flex-col w-full justify-center items-center">
-				<span class="text-xs">Distance :</span>
-					<img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt=""><span> {{ party['distance'] }} km</span>
+			<div class="absolute bottom-3 w-full h-10 flex justify-center items-center">
+				{% if party['current_user_registered'] == false %}
+					<a class="p-2 text-white bg-main-green rounded-md hover:bg-main-emerald hover:shadow-md transition-all duration-300" href="{{ path('app_party_registration', {'partyID': party['id']}) }}">S'inscrire</a>
+				{% elseif party['user_host_id'] == current_user %}
+					<a class="p-2 text-white bg-main-brown/50 rounded-md hover:bg-main-brown/60 hover:shadow-md transition-all duration-300" href="{{ path('edit_party', {'partyID': party['id']}) }}">Modifier la partie</a>
+				{% else %}
+					<a class="p-2 text-white bg-red rounded-md hover:bg-red-dark hover:shadow-md transition-all duration-300" href="{{ path('app_party_unsubscribe', {'partyID': party['id']}) }}">Se désinscrire</a>
+				{% endif %}
+			</div>
+			</div>
+			<div class="absolute w-8 h-8 rounded-full bottom-3 left-5 hover:scale-110 transition-all duration-300">
+				<a href="{{ path('party profil', {'partyID': party['id']}) }}">
+					<img class="max-w-full w-full" src="{{ asset('img/profil_menu/search.svg') }}" alt="">
+				</a>
+			</div>
+			<div class=" absolute w-14 h-8 bottom-3 right-4 flex flex-col justify-center items-center">
+				<img class="h-1/2" src="{{ asset('img/content/range.svg') }}" alt="">
+				<span class="text-xs"> {{ party['distance'] }} km</span>
 			</div>
 		</div>
-		<div class="absolute bottom-3 w-full h-10 flex justify-center items-center">
-            {% if party['current_user_registered'] == false %}
-			    <a class="p-2 text-white bg-main-green rounded-md hover:bg-main-emerald hover:shadow-md transition-all duration-300" href="{{ path('app_party_registration', {'partyID': party['id']}) }}">S'inscrire</a>
-            {% elseif party['user_host_id'] == current_user %}
-				<a class="p-2 text-white bg-main-brown/50 rounded-md hover:bg-main-brown/60 hover:shadow-md transition-all duration-300" href="">Modifier la partie</a>
-			{% else %}
-			    <a class="p-2 text-white bg-red rounded-md hover:bg-red-dark hover:shadow-md transition-all duration-300" href="{{ path('app_party_unsubscribe', {'partyID': party['id']}) }}">Se désinscrire</a>
-            {% endif %}
-		</div>
-	</div>
-	<div class="absolute w-8 h-8 rounded-full bottom-3 left-5 hover:scale-110 transition-all duration-300">
-		<a href="{{ path('party profil', {'partyID': party['id']}) }}">
-			<img class="max-w-full w-full" src="{{ asset('img/profil_menu/search.svg') }}" alt="">
-		</a>
-	</div>
 </div>

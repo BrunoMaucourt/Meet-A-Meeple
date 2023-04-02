@@ -18,8 +18,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EditPartyController extends AbstractController
 {
-    #[Route('/editparty/{party_ID}', name: 'edit_party')]
-    public function editParty(Request $request, EntityManagerInterface $entityManager, int $party_ID): Response
+    #[Route('/editparty/{partyID}', name: 'edit_party')]
+    public function editParty(Request $request, EntityManagerInterface $entityManager, int $partyID): Response
     {
         // Allow acces only to connected user
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -29,12 +29,12 @@ class EditPartyController extends AbstractController
         $user_ID = $user->getId();
 
         // Get data about party
-        $party = $entityManager->getRepository(Party::class)->find($party_ID);
+        $party = $entityManager->getRepository(Party::class)->find($partyID);
         $party_user_host_id = $party->getUserHostID();
 
         // Check is user is allowed to edit party
         define('PARTY_CAN_BE_EDITED', '1');
-        $checkIfPartyCanBeEdit = $entityManager->getRepository(Party::class)->checkIfPartyCanBeEdit($party_ID);
+        $checkIfPartyCanBeEdit = $entityManager->getRepository(Party::class)->checkIfPartyCanBeEdit($partyID);
 
         if ($user_ID != $party_user_host_id || $checkIfPartyCanBeEdit[0]['COUNT(id)'] != PARTY_CAN_BE_EDITED) {
             return $this->redirectToRoute('dashboard');
