@@ -94,6 +94,7 @@ class MyPartyController extends AbstractController
             $distance_between = SearchController::calculateDistance($user_ID_lat,$user_ID_long,$player_lat,$player_long);              
             $canceled_game[$i]['distance'] = round($distance_between,1);
         }
+        
         $canceled_game_party_host = SearchController::checkHostInformation($canceled_game, $entityManager);
         $canceled_game_party_date = SearchController::editDate($canceled_game_party_host, $entityManager);
         $canceled_game_party_player = SearchController::checkUserInformation($canceled_game_party_date, $entityManager);

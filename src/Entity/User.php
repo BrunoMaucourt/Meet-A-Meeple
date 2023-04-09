@@ -52,7 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?float $city_GPS_lat = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $city_GPS_long = null;
+    private ?float $city_GPS_long = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
@@ -257,12 +257,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCityGPSLong(): ?string
+    public function getCityGPSLong(): ?float
     {
         return $this->city_GPS_long;
     }
 
-    public function setCityGPSLong(string $city_GPS_long): self
+    public function setCityGPSLong(float $city_GPS_long): self
     {
         $this->city_GPS_long = $city_GPS_long;
 
