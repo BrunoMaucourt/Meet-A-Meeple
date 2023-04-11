@@ -9,7 +9,6 @@ const img_chat3 = document.querySelector('#chat3');
 const observe_img = new IntersectionObserver((entries)=>{
     entries.forEach((entry) => {
         if (entry.isIntersecting){
-            console.log('wesh');
             img_meeple_zoom.classList.add('animate-meeple-zoom');
             img_glass_animation.classList.add('animate-glass-animation');
             img_pop_meeple_map.classList.add('animate-pop-meeple-map');
@@ -17,7 +16,6 @@ const observe_img = new IntersectionObserver((entries)=>{
             img_chat2.classList.add('animate-chat2');
             img_chat3.classList.add('animate-chat3');
         }else{
-            console.log("pas wesh");
             img_meeple_zoom.classList.remove('animate-meeple-zoom');
             img_glass_animation.classList.remove('animate-glass-animation');
             img_pop_meeple_map.classList.remove('animate-pop-meeple-map');
