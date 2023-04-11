@@ -27,8 +27,9 @@ Ajouter une partie
 					{{ form_start(party) }}
 					<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.game, {
-							'attr': {'class': 'font-normal appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white'},
-							label: 'Nommer la partie:',
+							'attr': {'class': 'font-normal appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white',
+									'placeholder' : 'Entrez le nom du jeu'},
+							label: 'Nom du jeu :',
                             })
                         }}
 					</label>
@@ -38,7 +39,7 @@ Ajouter une partie
 				<div class="w-full">
 					<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
 						{{ form_row(party.description, {
-							'attr': {'class': 'pl-2 border border-red-500 rounded w-full font-normal', 'rows': '5'},
+							'attr': {'class': 'pl-2 border border-red-500 rounded w-full font-normal', 'rows': '5' , 'placeholder' : 'Expliquez ici comment votre partie sera organisée'},
 							label: 'Description:',
                             })
                         }}
@@ -169,7 +170,7 @@ Ajouter une partie
 				</div>
 				{#BOUTTON CRÉER LA PARTIE (ENVOI LE FORMULAIRE#}
 				<div class="mx-auto">
-					<button type="submit" value="Créer la partie" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="" required>
+					<button type="submit" value="Créer la partie" class="appearance-none block w-full bg-main-orange hover:bg-main-orange-dark shadow hover:shadow-lg transition-all duration-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="" required>
 						Créer Partie
 					</button>
 				</div>
