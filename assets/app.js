@@ -18,6 +18,7 @@ import './bootstrap';
 let header = document.querySelector('header');
 let body = document.querySelector('body');
 let site_title = document.querySelector('#site_title');
+const btn_auto_scroll = document.getElementById("btn_auto-scroll_top");
 
 /*START ANIMATION MENU*/
 window.addEventListener('resize', () => {
@@ -48,6 +49,14 @@ document.addEventListener('scroll', () => {
         header.style.transition = "all 1.5s ease";
     } else {
         header.style.boxShadow = "2px 0px 2px black";
+        header.style.transition = "all 1.5s ease";
+    }
+
+    if(scrollY > 100){
+        btn_auto_scroll.classList.remove("hidden");
+        header.style.transition = "all 1.5s ease";
+    }else{
+        btn_auto_scroll.classList.add("hidden");
         header.style.transition = "all 1.5s ease";
     }
 })
@@ -107,10 +116,9 @@ document.addEventListener('click', (e) => {
 /******** Start FOOTER ********/
 
 // Social media
-
-let logo_facebook = document.querySelector("#logo_facebook");
-let logo_twitter = document.querySelector("#logo_twitter");
-let logo_instagram = document.querySelector("#logo_instagram");
+const logo_facebook = document.querySelector("#logo_facebook");
+const logo_twitter = document.querySelector("#logo_twitter");
+const logo_instagram = document.querySelector("#logo_instagram");
 
 logo_facebook.addEventListener("mouseover", function () {
     logo_facebook.src = '/img/social_icon/LogoFacebookOrange.svg';
@@ -134,3 +142,22 @@ logo_instagram.addEventListener("mouseout", function () {
 });
 
 /******** End FOOTER ********/
+
+/******** End auto-scroll ********/
+
+btn_auto_scroll.addEventListener('click', function(){
+    let size = document.body.scrollHeight;
+    let currentPosition = window.scrollY;
+    let newCurrentPosition = currentPosition;
+
+    let refreshId = setInterval(function() {
+        newCurrentPosition -= 15;
+        window.scrollTo(0, newCurrentPosition);
+        currentPosition = newCurrentPosition;
+        if (currentPosition < 15) {
+          clearInterval(refreshId);
+        }
+      }, 10);
+});
+
+/******** End auto-scroll ********/

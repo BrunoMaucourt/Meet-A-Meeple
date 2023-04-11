@@ -14,17 +14,19 @@
 		</div>
 		<div class="w-full flex flex-col h-1/5 justify-center px-4">
 			<div class="flex w-full justify-center items-center">
-				<span class="text-lg">Nombre de joueur :</span>
+				<span class="text-lg">Nombre de joueurs :</span>
 			</div>
 			<div class="flex w-full justify-center items-center pr-4">
                 {% if party['user_registered'] != null %}
                     {% for user in party['user_registered'] %}
-                        <a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center mx-1" href="{{ path('player profil', {'playerID': user['user_id']}) }}" title="{{ user['user_name'] }}" style="background-image: url('{{ user['user_profil_picture'] }}');"></a>
+                        <a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center mx-1" href="{{ path('player profil', {'playerID': user['user_id']}) }}" title="{{ user['user_name'] }}" style="background-image: url('{{ asset(user['user_profil_picture']) }}');"></a>
                     {% endfor %}	
                 {% endif %}
-				{% for i in 1..party['player_number_needed'] %}
-					<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center mx-1" href="{{ path('app_party_registration', {'partyID': party['id']}) }}" title="S'inscrire à la partie" style="background-image: url('{{ asset('img/profil_menu/addition.svg') }}');"></a>
-				{% endfor %}
+				{% if party['player_number_needed'] != 0 %}
+					{% for i in 1..party['player_number_needed'] %}
+						<a class="h-6 w-6 border border-main-orange rounded-full flex justify-center items-center hover:scale-110 transition-all duration-300 bg-cover bg-center mx-1" href="{{ path('app_party_registration', {'partyID': party['id']}) }}" title="S'inscrire à la partie" style="background-image: url('{{ asset('img/profil_menu/addition.svg') }}');"></a>
+					{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 		<div class="w-full flex h-1/5 justify-center px-4">

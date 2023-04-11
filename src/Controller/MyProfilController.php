@@ -22,8 +22,8 @@ class MyProfilController extends AbstractController
         //seting non read message count
         $non_read_message_count = $entityManager->getRepository(UserChat::class)->findNonReadMessageCount($user_ID);
 
-        return $this->render('myProfil.html.twig',[
-            'nonReadMessageCount' => $non_read_message_count,
+        return $this->redirectToRoute('player profil', [
+            'playerID' => $user_ID,
         ]);
     }
 }
