@@ -7,7 +7,7 @@ Le projet réalisé correspond à un site permettant de trouver des joueu.r.se.s
 
 Autre défis, pour nous, découvrir de nouveaux outils, nous avons choisis d’utiliser TailwindCSS pour le front et Symfony pour le Back. Nous avons choisis ces deux frameworks car on ne les avais pas vu en cours et que l’on voulait continuer à apprendre.
 
-
+![Mockup de Meet a meeple](https://raw.githubusercontent.com/BrunoMaucourt/Meet-A-Meeple/main/public/img/content/mockup.jpg?token=GHSAT0AAAAAAB7SD32KQ5XAATDQZDI72WAUZBVKO5A)
 
 ## Features du site :
 
