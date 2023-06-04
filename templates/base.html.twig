@@ -36,7 +36,7 @@
 					<div class="w-1/4 sm:w-1/3">
 						<img id="mobile-open-button" class="cursor-pointer scale-75 xl:hidden" src="{{ asset('img/menu_logo/open_menu.svg') }}" alt="open_menu_icon">
 						<nav class="hidden space-x-8 xl:flex" aria-label="main">
-							<a href="{{ path('how_its_work') }}" class="hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Comment ça marche ?</a>
+							<a href="{{ path('about') }}" class="hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Comment ça marche ?</a>
 							<a href="{{ path('search') }}" class="hover:text-main-orange after:block after:h-0.5 after:w-0 after:bg-main-orange after:transition-all after:duration-700 after:hover:w-full">Trouver des joueurs</a>
 						</nav>
 					</div>
@@ -137,13 +137,12 @@
 						<span class="w-full ml-3 hidden md:block font-bold">Tableau de bord</span>
 					</a>
 
-					<hr
-					class="border-b w-full border-main-grey/40">
+					<hr class="border-b w-full border-main-grey/40">
 
 					<!--normal dashboard menu icon  :
-																				 icon on mobile and icon + text when not mobile
-																				 animation on hover
-																				 -->
+					icon on mobile and icon + text when not mobile
+					animation on hover
+					-->
 					<a href="{{ path('my profil') }}" title="Profil" class="group w-full h-12 flex justify-center items-center rounded hover:text-main-orange md:hover:translate-x-2 hover:scale-125 md:hover:scale-105 transition-all duration-500">
 						<div class="group-hover:bg-main-orange/60 group-hover:shadow-xl group-hover:shadow-main-orange/20 transition-all duration-500 rounded-lg w-full md:w-1/3 md:p-3 p-0.5 relative">
 							<img src="{{ asset('img/content/meeple_empty.svg') }}" alt="dashboard_logo">
@@ -176,21 +175,18 @@
 					</a>
 
 					<!--message dashboard icon  :
-																				 icon on mobile and icon + text when not mobile
-																				 animation on hover
-																				 notification : little red circle when mobile, and with a number when not mobile
-																				 -->
+					icon on mobile and icon + text when not mobile
+					animation on hover
+					notification : little red circle when mobile, and with a number when not mobile
+					-->
 					<a href="{{ path('message menu') }}" title="Message" class="group w-full h-10 flex justify-center items-center rounded hover:text-main-orange md:hover:translate-x-2 hover:scale-125 md:hover:scale-105 transition-all duration-500">
 						<div class="relative group-hover:bg-main-orange/60 group-hover:shadow-xl group-hover:shadow-main-orange/20 transition-all duration-500 rounded-lg w-full md:w-1/3 md:p-3 p-0.5">
 							<img src="{{ asset('img/profil_menu/message.svg') }}" alt="dashboard_logo">
-							
 							{% if nonReadMessageCount and nonReadMessageCount[0]['count'] > 0 %}
 								<div class="absolute w-3 h-3 top-0 right-0 rounded-full bg-red md:w-5 md:h-5 md:flex md:justify-center md:items-center md:right-1.5 md:top-1.5">
 									<span class="hidden text-white font-bold text-xs md:block">{{nonReadMessageCount[0]['count']}}</span>
 								</div>
 							{% endif %}
-							
-							
 						</div>
 						<span class="w-full ml-3 hidden md:block">Message</span>
 					</a>
@@ -203,7 +199,6 @@
 				</aside>
 				<div class="main-mobile-width md:main-width">
 				{% endblock nodashboard %}
-
 
 				{% block withdashboard %}
 					<div class="w-full">
@@ -221,8 +216,8 @@
 									<div class="flex flex-col w-full items-center gap-10 text-center sm:flex-row sm:justify-between">
 										<div class="w-1/3  text-white flex flex-col justify-start items-center">
 											<h3 class="uppercase text-main-grey sm:mb-3">aide</h3>
-											<a class="w-fit" href="{{ path('contact') }}">Contact</a>
-											<a class="w-fit" href="{{ path('FAQ') }}">FAQ</a>
+											<a class="w-fit" href="{{ path('about') }}">Contact</a>
+											<a class="w-fit" href="{{ path('about') }}">FAQ</a>
 										</div>
 										<div class="sm:w-1/3 text-white flex flex-col justify-start items-center">
 											<h3 class="uppercase text-main-grey sm:mb-3">entreprise</h3>

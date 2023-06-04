@@ -8,9 +8,76 @@ A propos de nous
 {% endblock nodashboard %}
 
 {% block main_content %}
-	<h1 class="text-2xl sm:text-3xl font-bold underline">
-		A propos de nous
-	</h1>
+	<section class="wrapper my-6">
 
-	<h2 class="text-3xl font-bold">Une équipe de pasionnée</h2>
+			<h1 class="text-2xl sm:text-3xl font-bold underline my-6">
+				A propos de nous
+			</h1>
+
+			<h2 class="text-3xl font-bold my-6">Description du projet</h2>
+
+			<p class="text-xl my-6">
+				Meet A Meeple est un projet réalisé dans le cadre de notre reconversion à la Coding Factory. L'objectif était de réaliser, en moins de 4 semaines, un projet depuis la création d’une idée jusqu’à présenter un produit finis en passant par les étapes de création d’une start-up (design thinking, lean start-up et méthode Agile / Scrum). Le projet s’est finis par la rédaction d’un rapport sur sa création et une présentation devant des entrepreneurs.
+			</p>
+			<div class="full-bleed flex justify-around flex-wrap my-6">
+				<img src="{{ asset('img/content/Projet_synthese.png') }}" alt="" class="w-1/4 min-w-[350px] m-6">
+				<img src="{{ asset('img/content/Projet_synthese_2.png') }}" alt="" class="w-1/4 min-w-[350px] m-6">
+				<img src="{{ asset('img/content/Projet_synthese_3.png') }}" alt="" class="w-1/4 min-w-[350px] m-6">		
+				<img src="{{ asset('img/content/Projet_synthese_5.png') }}" alt="" class="w-1/4 min-w-[350px] m-6">		
+				<img src="{{ asset('img/content/Projet_synthese_6.png') }}" alt="" class="w-1/4 min-w-[350px] m-6">		
+			</div>
+
+			<p class="text-xl my-6">
+				Le projet réalisé correspond à un site permettant de trouver des joueu.r.se.s de jeux de société proche de chez soi. De plus en plus de français.e jouent aux jeux de société mais de nombreuses personnes ne savent pas à quels jeux jouer ni avec qui. C’est pour ça que nous proposons Meet A Meeple pour faciliter la rencontre entre joueu.r.se.s et favoriser l’essor des jeux de société.
+			</p>
+			<div class="full-bleed flex justify-around my-6">
+				<img src="{{ asset('img/content/mockup.jpg') }}" alt="" class="w-1/4 min-w-[350px]">
+			</div>
+			
+			<p class="text-xl my-6">
+				Autre défis, pour nous, découvrir de nouveaux outils, nous avons choisis d’utiliser TailwindCSS pour le front et Symfony pour le Back. Nous avons choisis ces deux frameworks car on ne les avais pas vu en cours et que l’on voulait continuer à apprendre.
+			</p>
+			<div class="full-bleed flex justify-around my-6">
+				<img src="{{ asset('img/content/Projet_synthese_4.png') }}" alt="" class="w-1/4 min-w-[350px]">
+			</div>
+			
+			<h2 class="text-3xl font-bold my-6">Features du site</h2>
+			<ul class="flex flex-col list-disc my-6">
+				<li>Système d’inscription / connexion</li>
+				<li>Recherche de joueurs et de parties avec géolocalisation (avec des filtres)</li>
+				<li>Ajout de parties et système d’éditions des informations</li>
+				<li>Inscriptions et désinscriptions à des parties</li>
+				<li>Système de chat pour communiquer avec les autres utilisateurs</li>
+				<li>Possibilité d’ajouter en favoris, ou de bannir, des joueurs et des joueuses</li>
+				<li>Page de profil pour les joueurs ou les parties</li>
+				<li>Site dynamique</li>
+			</ul>
+
+			<h2 class="text-3xl font-bold my-6">Une équipe de pasionnée</h2>
+			<h3 class="text-xl font-bold my-6">Couanon Thibault</h3>
+			<a href="https://www.couanon-thibault.com/" target="_blank" rel="noopener noreferrer">https://www.couanon-thibault.com/</a>
+			<br/>
+			<a href="https://www.linkedin.com/in/thibaultcouanon/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/thibaultcouanon/</a>
+			<br/>
+			<a href="https://github.com/TitiBond" target="_blank" rel="noopener noreferrer">https://github.com/TitiBond</a>
+			<br/>
+
+			<h3 class="text-xl font-bold my-6">Hasani Ferdi</h3>
+			<a href="https://www.linkedin.com/in/ferdi-hasani/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/ferdi-hasani/</a>
+			<br/>
+			<a href="https://github.com/Ferdi-H-Dev" target="_blank" rel="noopener noreferrer">https://github.com/Ferdi-H-Dev</a>
+			
+			<h3 class="text-xl font-bold my-6">Maucourt Bruno</h3>
+			<a href="https://brunomaucourt.com/" target="_blank" rel="noopener noreferrer">https://brunomaucourt.com/</a>
+			<br/>
+			<a href="https://www.linkedin.com/in/bruno-maucourt-developpeur-fullstack/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/bruno-maucourt-developpeur-fullstack/</a>
+			<br/>
+			<a href="https://github.com/BrunoMaucourt" target="_blank" rel="noopener noreferrer">https://github.com/BrunoMaucourt</a>
+			<br/>
+	</section>
+	
+
 {% endblock main_content %}
+
+
+

@@ -3,6 +3,8 @@
 ## Description du projet
 Meet A Meeple est un projet réalisé dans le cadre de notre reconversion à la Coding Factory. L'objectif était de réaliser, en moins de 4 semaines, un projet depuis la création d’une idée jusqu’à présenter un produit finis en passant par les étapes de création d’une start-up (design thinking, lean start-up et méthode Agile / Scrum). Le projet s’est finis par la rédaction d’un rapport sur sa création et une présentation devant des entrepreneurs.
 
+https://meetameeple.brunomaucourt.com/
+
 Le projet réalisé correspond à un site permettant de trouver des joueu.r.se.s de jeux de société proche de chez soi. De plus en plus de français.e jouent aux jeux de société mais de nombreuses personnes ne savent pas à quels jeux jouer ni avec qui. C’est pour ça que nous proposons Meet A Meeple pour faciliter la rencontre entre joueu.r.se.s et favoriser l’essor des jeux de société.
 
 Autre défis, pour nous, découvrir de nouveaux outils, nous avons choisis d’utiliser TailwindCSS pour le front et Symfony pour le Back. Nous avons choisis ces deux frameworks car on ne les avais pas vu en cours et que l’on voulait continuer à apprendre.
@@ -40,6 +42,6 @@ https://github.com/Ferdi-H-Dev
 
 https://brunomaucourt.com/
 
-https://www.linkedin.com/in/maucourt/
+https://www.linkedin.com/in/bruno-maucourt-developpeur-fullstack/
 
 https://github.com/BrunoMaucourt
